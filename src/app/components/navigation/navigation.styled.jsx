@@ -4,19 +4,30 @@ import styled from "@emotion/styled";
 
 const Wrapper = styled.nav`
   padding: 10px 0;
+  position: fixed;
+  background: #ffffffca;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+backdrop-filter: blur(10px);
+  .top-navigation {
+    padding: 5px 0;
+    border-top: 0.5px solid gray;
+    border-bottom: 0.5px solid gray;
+  }
 `;
 
 const TopNav = styled.div`
   display: flex;
-  border-top: 0.5px solid black;
-  border-bottom: 0.5px solid black;
-  padding: 10px 0;
+  /* padding: 10px 0; */
   gap: 30px;
   justify-content: space-between;
   align-items: center;
-  .today-date {
-    font-size: 14px;
-    margin: 0;
+
+  .logo {
+    width: 150px;
+    height: 50px;
+    object-fit: cover;
   }
 `;
 

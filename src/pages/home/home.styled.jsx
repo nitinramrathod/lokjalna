@@ -66,7 +66,7 @@ const StyledNavWrapper = styled.section`
   gap: 10px;
   overflow-x: auto;
   margin-bottom: 40px;
-  margin-top: 20px;
+  margin-top: 90px;
 `;
 
 const StyledNavigationBox = styled.div`

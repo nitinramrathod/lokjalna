@@ -2,15 +2,21 @@ import React from 'react'
 import { TopNav, Wrapper, GlobalSearch } from './navigation.styled'
 import { Container } from 'react-bootstrap'
 import { search_icon } from '@/assets/icons/navigation.icon'
+import Image from 'next/image'
+import logo from "@/assets/images/full-logo.png"
+import Link from 'next/link'
 
 const Navigation = () => {
   return (
+
     <Wrapper>
+        <div className="top-navigation">
+
         <Container>
         <TopNav>
-            <h3 className='today-date'>
-                Saturday, 14 Dec 2024
-            </h3>
+            <Link href={'/'}>
+                <Image className='logo' src={logo} alt='Lokjalna News'></Image>
+            </Link>
             <GlobalSearch>
 
             <input type="text" placeholder='Search News' />
@@ -18,6 +24,7 @@ const Navigation = () => {
             </GlobalSearch>
         </TopNav>
         </Container>
+        </div>
     </Wrapper>
   )
 }
