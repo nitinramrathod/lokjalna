@@ -4,7 +4,6 @@ import {
   Category,
   MainNews,
   SectionHeading,
-  StyledLatestCard,
   StyledNavigationBox,
   Wrapper,
 } from "./home.styled";
@@ -26,34 +25,18 @@ const NavigationBox = () => {
     </StyledNavigationBox>
   );
 };
-const LatestCard = () => {
-  return (
-    <StyledLatestCard>
-      <Image
-        width={100}
-        height={100}
-        src="/images/landing-news.png"
-        alt="landing image"
-      />
-      <div className="text-wrapper">
-        <h3 className="title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam veri voluptate reiciendis?</h3>
-        <p className="description">14th Dec 2024</p>
-      </div>
-    </StyledLatestCard>
-  );
-};
+
 const Landing = () => {
   return (
     <Container>
       <Wrapper>
         <div className="landing-nav-wrapper">
-          <NavigationBox/>
-          <NavigationBox/>
-          <NavigationBox/>
-          <NavigationBox/>
+          <NavigationBox />
+          <NavigationBox />
+          <NavigationBox />
+          <NavigationBox />
         </div>
         <SectionHeading>Breaking News</SectionHeading>
-
         <MainNews>
           <Image
             width={600}
@@ -71,15 +54,8 @@ const Landing = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quas
             placeat rem voluptatem?
           </h2>
-        <p className="description">14th Dec 2024</p>
+          <p className="description">14th Dec 2024</p>
         </MainNews>
-        <SectionHeading>Trending News</SectionHeading>
-        <div className="bottom-news">
-          <LatestCard/>
-          <LatestCard/>
-          <LatestCard/>
-          <LatestCard/>
-        </div>
       </Wrapper>
     </Container>
   );

@@ -7,18 +7,10 @@ const Wrapper = styled.section`
     display: flex;
     gap: 20px;
     width: 100%;
-    background: #f2f2f2;
+    /* background: #f2f2f2; */
     overflow-x: auto;
     padding: 10px;
-    /* border-radius: 10px; */
-    margin-bottom: 50px;
-  }
-
-  .bottom-news{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 50px;
+    margin-bottom: 60px;
   }
 `;
 
@@ -28,9 +20,11 @@ const Category = styled.p`
   border-radius: 5px;
   font-size: 13px;
   padding: 3px 7px;
+  text-transform: uppercase;
 `;
 
 const MainNews = styled.div`
+margin-top: 30px;
   img {
     width: 100%;
     height: auto;
@@ -43,6 +37,18 @@ const MainNews = styled.div`
   .heading {
     font-size: 18px;
     line-height: 24px;
+    display: -webkit-box; /* Establish a flexbox container for multiline support */
+    -webkit-line-clamp: 2; /* Specify the number of lines to show */
+    -webkit-box-orient: vertical; /* Specify the orientation for the box layout */
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis;
+  }
+
+  @media (min-width: 1200px) {
+    .heading {
+      font-size: 26px;
+      line-height: 32px;
+    }
   }
 `;
 
@@ -51,8 +57,9 @@ const StyledNavigationBox = styled.div`
   gap: 10px;
   padding: 5px;
   min-width: 230px;
-  background: #e8e8e8;
+  background: #e8e8e86b;
   transition: all 0.5s ease-in;
+
   img {
     width: 80px;
     height: 80px;
@@ -68,45 +75,24 @@ const StyledNavigationBox = styled.div`
   }
 
   &:hover {
-    background: #c0c0c0;
+    background: #e3e3e3;
   }
 `;
 
 const SectionHeading = styled.h2`
-    font-size: 22px;
-    border-left: 5px solid orange;
-    padding-left: 10px;
-    color: #393939;
-`
-const StyledLatestCard = styled.div`
-  display: flex;
-  gap: 20px;
-  padding: 5px;
-  min-width: 230px;
-  transition: all 0.5s ease-in;
+  font-size: 22px;
+  border-left: 5px solid orange;
+  padding-left: 10px;
+  color: #393939;
+  line-height: 26px;
+  font-weight: 600;
 
-  img {
-    width: 130px;
-    object-fit: cover;
-  }
-
-  .description {
-    margin: 0;
-    font-size: 14px;
-  }
-  .title {
-    font-size: 16px;
-  }
-
-  &:hover {
-   
-    .title{
-        color: #f8633a;
-        text-decoration: underline;
-    }
+  @media screen {
+    font-size: 32px;
+    line-height: 38px;
   }
 `;
 
 export default Wrapper;
 
-export { Wrapper, SectionHeading, Category, StyledLatestCard, StyledNavigationBox, MainNews };
+export { Wrapper, SectionHeading, Category, StyledNavigationBox, MainNews };

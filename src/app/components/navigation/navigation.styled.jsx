@@ -3,18 +3,20 @@
 import styled from "@emotion/styled";
 
 const Wrapper = styled.nav`
-  /* background: red; */
   padding: 10px 0;
 `;
 
 const TopNav = styled.div`
   display: flex;
-  border-top: .5px solid black;
-  border-bottom: .5px solid black;
+  border-top: 0.5px solid black;
+  border-bottom: 0.5px solid black;
   padding: 10px 0;
   gap: 30px;
+  justify-content: space-between;
+  align-items: center;
   .today-date {
     font-size: 14px;
+    margin: 0;
   }
 `;
 
