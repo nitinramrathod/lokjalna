@@ -3,14 +3,13 @@
 const { default: styled } = require("@emotion/styled");
 
 const Wrapper = styled.section`
-  .landing-nav-wrapper {
+  @media (min-width: 1200px) {
     display: flex;
-    gap: 20px;
-    width: 100%;
-    /* background: #f2f2f2; */
-    overflow-x: auto;
-    padding: 10px;
-    margin-bottom: 60px;
+    gap: 40px;
+
+    .breaking-news {
+        flex: 1.7;
+    }
   }
 `;
 
@@ -18,13 +17,39 @@ const Category = styled.p`
   margin: 0;
   border: 1px solid black;
   border-radius: 5px;
-  font-size: 13px;
-  padding: 3px 7px;
+  font-size: 12px;
+  padding: 2px 7px;
   text-transform: uppercase;
+  background: #f5f5f5;
+`;
+
+const Title = styled.h3`
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (min-width: 1200px) {
+    font-size: 20px;
+    line-height: 26px;
+  }
+`;
+
+const Date = styled.p`
+  margin: 0;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #494949;
 `;
 
 const MainNews = styled.div`
-margin-top: 30px;
+  margin-top: 30px;
   img {
     width: 100%;
     height: auto;
@@ -34,22 +59,14 @@ margin-top: 30px;
     display: flex;
     gap: 15px;
   }
-  .heading {
-    font-size: 18px;
-    line-height: 24px;
-    display: -webkit-box; /* Establish a flexbox container for multiline support */
-    -webkit-line-clamp: 2; /* Specify the number of lines to show */
-    -webkit-box-orient: vertical; /* Specify the orientation for the box layout */
-    overflow: hidden; /* Hide overflowing content */
-    text-overflow: ellipsis;
-  }
+`;
 
-  @media (min-width: 1200px) {
-    .heading {
-      font-size: 26px;
-      line-height: 32px;
-    }
-  }
+const StyledNavWrapper = styled.section`
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin-bottom: 40px;
+  margin-top: 20px;
 `;
 
 const StyledNavigationBox = styled.div`
@@ -80,19 +97,29 @@ const StyledNavigationBox = styled.div`
 `;
 
 const SectionHeading = styled.h2`
-  font-size: 22px;
+  font-size: 26px;
   border-left: 5px solid orange;
   padding-left: 10px;
   color: #393939;
-  line-height: 26px;
+  line-height: 30px;
   font-weight: 600;
+  margin-bottom: 20px;
 
-  @media screen {
-    font-size: 32px;
-    line-height: 38px;
+  @media (min-width: 1200px) {
+    font-size: 28px;
+    line-height: 32px;
   }
 `;
 
 export default Wrapper;
 
-export { Wrapper, SectionHeading, Category, StyledNavigationBox, MainNews };
+export {
+  Wrapper,
+  StyledNavWrapper,
+  Title,
+  Date,
+  SectionHeading,
+  Category,
+  StyledNavigationBox,
+  MainNews,
+};

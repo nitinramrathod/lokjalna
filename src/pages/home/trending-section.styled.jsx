@@ -35,17 +35,9 @@ const StyledLatestCard = styled.div`
   }
 
   @media (min-width: 1200px) {
-    flex-direction: column;
-    max-width: 370px;
-
     .title {
       font-size: 18px;
       line-height: 26px;
-    }
-
-    img {
-      width: 100%;
-      height: auto;
     }
   }
 `;
@@ -61,11 +53,8 @@ const Wrapper = styled.section`
   }
 
   @media (min-width: 1200px) {
-    .card-wrapper {
-      flex-direction: row;
-    }
-
-    /* max-width: 370px; */
+    margin: 0;
+    flex: 1;
   }
 `;
 

@@ -27,7 +27,6 @@ const LatestCard = () => {
 const TrendingSection = () => {
   return (
     <Wrapper>
-      <Container>
         <SectionHeading>Trending News</SectionHeading>
         <div className="card-wrapper">
           <LatestCard />
@@ -35,7 +34,6 @@ const TrendingSection = () => {
           <LatestCard />
           <LatestCard />
         </div>
-      </Container>
     </Wrapper>
   );
 };
