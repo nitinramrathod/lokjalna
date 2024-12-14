@@ -26,7 +26,14 @@ export const metadata = {
     title: 'Lokjalna - Voice of Jalna People',
     description: 'Stay informed with Lokjalna - Jalna’s most reliable news source. Local stories, events, and updates.',
     url: 'https://lokjalna.com',
-    image: 'https://lokjalna.vercel.app/images/og-image.png',
+    images: [
+      {
+        url: 'https://lokjalna.vercel.app/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Lokjalna - Voice of Jalna People',
+      },
+    ],
     siteName: 'Lokjalna',
     type: 'website',
     locale: 'en_US',
@@ -34,7 +41,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Lokjalna - Voice of Jalna People',
-    image: 'https://lokjalna.vercel.app/images/og-image.png',
+    images: ['https://lokjalna.vercel.app/images/og-image.png'],
     description: 'Lokjalna (लोकजालना) brings you the latest news, stories, and updates from Jalna.',
   },
 };
