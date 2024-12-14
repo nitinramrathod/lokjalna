@@ -25,9 +25,16 @@ const TopNav = styled.div`
   align-items: center;
 
   .logo {
+    width: 100px;
+    height: 30px;
+    object-fit: cover;
+  }
+
+  @media (min-width: 1200px) {
+    .logo {
     width: 150px;
     height: 50px;
-    object-fit: cover;
+  }
   }
 `;
 
@@ -38,10 +45,14 @@ const GlobalSearch = styled.div`
   padding: 3px 15px;
   border-radius: 35px;
   border: 1px solid black;
+  width: 40%;
+  max-width: 500px;
+  min-width: 195px;
 
   input {
     border: none;
     outline: none;
+    width: calc(100% - 20px);
   }
 `;
 

@@ -1,7 +1,24 @@
 "use client";
 
+import { css } from "@emotion/react";
+
 const { default: styled } = require("@emotion/styled");
 
+
+const truncate2line = css`
+      display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`
+const truncate3line = css`
+      display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`
 const Wrapper = styled.section`
   @media (min-width: 1200px) {
     display: flex;
@@ -67,13 +84,14 @@ const StyledNavWrapper = styled.section`
   overflow-x: auto;
   margin-bottom: 40px;
   margin-top: 90px;
+  padding-bottom: 10px;
 `;
 
 const StyledNavigationBox = styled.div`
   display: flex;
   gap: 10px;
   padding: 5px;
-  min-width: 230px;
+  min-width: 295px;
   background: #e8e8e86b;
   transition: all 0.5s ease-in;
 
@@ -86,13 +104,24 @@ const StyledNavigationBox = styled.div`
   .description {
     margin: 0;
     font-size: 14px;
+ ${truncate2line}
+
+
   }
   .title {
     font-size: 16px;
+ ${truncate2line}
   }
 
   &:hover {
     background: #e3e3e3;
+  }
+
+  @media (min-width: 1200px) {
+    min-width: 250px;
+    gap: 20px;
+    padding: 10px;
+    
   }
 `;
 
