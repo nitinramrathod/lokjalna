@@ -107,4 +107,6 @@ const StyledLatestCard = styled.div`
   }
 `;
 
+export default Wrapper;
+
 export { Wrapper, SectionHeading, Category, StyledLatestCard, StyledNavigationBox, MainNews };
