@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { truncate3line } from "../common/text.styled";
 import { titleTextStyles } from "./home.styled";
+import Link from "next/link";
+
 
 
 const { default: styled } = require("@emotion/styled");

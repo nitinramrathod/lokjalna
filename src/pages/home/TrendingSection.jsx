@@ -5,7 +5,7 @@ import StyledLatestCard, { Title, Wrapper } from "@/pages/home/trending-section.
 
 const LatestCard = () => {
   return (
-    <StyledLatestCard href='/news/trending-news/detail'>
+    <StyledLatestCard href="/news/trending-news/detail">
       <Image
         width={100}
         height={100}
