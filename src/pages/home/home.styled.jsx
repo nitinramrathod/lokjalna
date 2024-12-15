@@ -1,24 +1,12 @@
 "use client";
 
 import { css } from "@emotion/react";
+import { truncate2line } from "../common/text.styled";
+import Link from "next/link";
 
 const { default: styled } = require("@emotion/styled");
 
-const truncate2line = css`
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
 
-const truncate3line = css`
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
 
 const Wrapper = styled.section`
   @media (min-width: 1200px) {
@@ -41,17 +29,27 @@ const Category = styled.p`
   background: #f5f5f5;
 `;
 
-const Title = styled.h3`
+const titleTextStyles = css`
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
+  transition: all .5s ease;
+  color: #424242;
 
-  ${truncate2line}
+
+  &:hover{
+    color: orange;
+  }
 
   @media (min-width: 1200px) {
     font-size: 20px;
     line-height: 26px;
   }
+`
+
+const Title = styled.h3`
+  ${titleTextStyles}
+  ${truncate2line}
 `;
 
 const Date = styled.p`
@@ -62,8 +60,11 @@ const Date = styled.p`
   color: #494949;
 `;
 
-const MainNews = styled.div`
+const MainNews = styled(Link)`
   margin-top: 30px;
+  text-decoration: none;
+  color: #323232;
+
   img {
     width: 100%;
     height: auto;
@@ -72,6 +73,12 @@ const MainNews = styled.div`
     padding: 10px 0;
     display: flex;
     gap: 15px;
+  }
+
+  &:hover {
+    .heading{
+      color: orange;
+    }
   }
 `;
 
@@ -144,4 +151,5 @@ export {
   Category,
   StyledNavigationBox,
   MainNews,
+  titleTextStyles,
 };

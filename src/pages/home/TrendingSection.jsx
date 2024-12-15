@@ -1,12 +1,11 @@
 import React from "react";
-import { SectionHeading } from "./home.styled";
+import { Date, SectionHeading } from "./home.styled";
 import Image from "next/image";
-import { Container } from "react-bootstrap";
-import StyledLatestCard, { Wrapper } from "./trending-section.styled";
+import StyledLatestCard, { Title, Wrapper } from "./trending-section.styled";
 
 const LatestCard = () => {
   return (
-    <StyledLatestCard>
+    <StyledLatestCard href={'/news/trending-news/detail'}>
       <Image
         width={100}
         height={100}
@@ -14,11 +13,11 @@ const LatestCard = () => {
         alt="landing image"
       />
       <div className="text-wrapper">
-        <h3 className="title">
+        <Title className="title">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam veri
           voluptate reiciendis?
-        </h3>
-        <p className="description">14th Dec 2024</p>
+        </Title>
+        <Date>14th Dec 2024</Date>
       </div>
     </StyledLatestCard>
   );

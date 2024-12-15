@@ -21,7 +21,7 @@ const Landing = () => {
 
      
         <SectionHeading>Breaking News</SectionHeading>
-        <MainNews>
+        <MainNews href="/news/sport/detail">
           <Image
             width={600}
             height={300}
@@ -34,7 +34,7 @@ const Landing = () => {
             <Category> ipl</Category>
           </div>
 
-          <Title>
+          <Title className="heading">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quas
             placeat rem voluptatem?
           </Title>

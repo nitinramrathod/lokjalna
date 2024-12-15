@@ -8,8 +8,10 @@ import { Container } from "react-bootstrap";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import { Date, SectionHeading, Title } from "./home.styled";
+import Link from "next/link";
 
-const StyledCard = styled.div`
+const StyledCard = styled(Link)`
+  text-decoration: none;
   img {
     width: 100%;
     height: auto;
@@ -17,6 +19,13 @@ const StyledCard = styled.div`
 
   .text-wrapper {
     margin-top: 20px;
+  }
+
+  &:hover {
+    .title{
+      color: orange;
+
+    }
   }
 `;
 const Wrapper = styled.section`
@@ -48,7 +57,7 @@ const Wrapper = styled.section`
 
 const Card = () => {
   return (
-    <StyledCard>
+    <StyledCard href={"/news/top-stories/detail"}>
       <Image
         width={100}
         height={100}
@@ -56,7 +65,7 @@ const Card = () => {
         alt="landing image"
       />
       <div className="text-wrapper">
-        <Title>
+        <Title className="title">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam veri
           voluptate reiciendis?
         </Title>

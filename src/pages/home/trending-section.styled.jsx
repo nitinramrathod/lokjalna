@@ -1,45 +1,34 @@
 "use client";
 
+import Link from "next/link";
+import { truncate3line } from "../common/text.styled";
+import { titleTextStyles } from "./home.styled";
+
 const { default: styled } = require("@emotion/styled");
 
-const StyledLatestCard = styled.div`
+const StyledLatestCard = styled(Link)`
   display: flex;
   gap: 20px;
   padding: 5px;
   min-width: 230px;
   transition: all 0.5s ease-in;
+  text-decoration: none;
 
   img {
     width: 130px;
     object-fit: cover;
   }
 
-  .description {
-    margin: 0;
-    font-size: 14px;
-  }
-  .title {
-    font-size: 16px;
-    display: -webkit-box; /* Establish a flexbox container for multiline support */
-    -webkit-line-clamp: 3; /* Specify the number of lines to show */
-    -webkit-box-orient: vertical; /* Specify the orientation for the box layout */
-    overflow: hidden; /* Hide overflowing content */
-    text-overflow: ellipsis;
-  }
-
-  &:hover {
-    .title {
-      color: #f8633a;
-      text-decoration: underline;
+  &:hover{
+    .title{
+      color: orange;
     }
   }
+`;
 
-  @media (min-width: 1200px) {
-    .title {
-      font-size: 18px;
-      line-height: 26px;
-    }
-  }
+const Title = styled.h3`
+  ${titleTextStyles}
+  ${truncate3line}
 `;
 
 const Wrapper = styled.section`
@@ -59,4 +48,4 @@ const Wrapper = styled.section`
 `;
 
 export default StyledLatestCard;
-export { Wrapper };
+export { Wrapper, Title };
