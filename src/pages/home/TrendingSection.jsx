@@ -1,11 +1,11 @@
 import React from "react";
 import { Date, SectionHeading } from "./home.styled";
 import Image from "next/image";
-import StyledLatestCard, { Title, Wrapper } from "./trending-section.styled";
+import StyledLatestCard, { Title, Wrapper } from "@/pages/home/trending-section.styled";
 
 const LatestCard = () => {
   return (
-    <StyledLatestCard href={'/news/trending-news/detail'}>
+    <StyledLatestCard href='/news/trending-news/detail'>
       <Image
         width={100}
         height={100}

@@ -33,3 +33,5 @@ export const DetailHeading = styled.h1`
   }
 `;
 
+export default DetailHeading;
+

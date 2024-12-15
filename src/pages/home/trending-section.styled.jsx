@@ -4,9 +4,10 @@ import Link from "next/link";
 import { truncate3line } from "../common/text.styled";
 import { titleTextStyles } from "./home.styled";
 
+
 const { default: styled } = require("@emotion/styled");
 
-const StyledLatestCard = styled(Link)`
+const StyledLatestCard = styled.a`
   display: flex;
   gap: 20px;
   padding: 5px;
@@ -27,8 +28,9 @@ const StyledLatestCard = styled(Link)`
 `;
 
 const Title = styled.h3`
-  ${titleTextStyles}
-  ${truncate3line}
+
+${truncate3line}
+${titleTextStyles}
 `;
 
 const Wrapper = styled.section`
@@ -48,4 +50,5 @@ const Wrapper = styled.section`
 `;
 
 export default StyledLatestCard;
-export { Wrapper, Title };
+export { Wrapper, Title, StyledLatestCard };
+// export default Wrapper;
