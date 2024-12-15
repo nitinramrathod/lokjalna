@@ -4,28 +4,29 @@ import { css } from "@emotion/react";
 
 const { default: styled } = require("@emotion/styled");
 
-
 const truncate2line = css`
-      display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const truncate3line = css`
-      display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-`
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 const Wrapper = styled.section`
   @media (min-width: 1200px) {
     display: flex;
     gap: 40px;
 
     .breaking-news {
-        flex: 1.7;
+      flex: 1.7;
     }
   }
 `;
@@ -45,11 +46,7 @@ const Title = styled.h3`
   line-height: 24px;
   font-weight: 500;
 
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  ${truncate2line}
 
   @media (min-width: 1200px) {
     font-size: 20px;
@@ -83,7 +80,6 @@ const StyledNavWrapper = styled.section`
   gap: 10px;
   overflow-x: auto;
   margin-bottom: 40px;
-  margin-top: 90px;
   padding-bottom: 10px;
 `;
 
@@ -104,13 +100,11 @@ const StyledNavigationBox = styled.div`
   .description {
     margin: 0;
     font-size: 14px;
- ${truncate2line}
-
-
+    ${truncate2line}
   }
   .title {
     font-size: 16px;
- ${truncate2line}
+    ${truncate2line}
   }
 
   &:hover {
@@ -121,7 +115,6 @@ const StyledNavigationBox = styled.div`
     min-width: 250px;
     gap: 20px;
     padding: 10px;
-    
   }
 `;
 
