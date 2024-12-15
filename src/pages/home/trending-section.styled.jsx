@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const { default: styled } = require("@emotion/styled");
 
-const StyledLatestCard = styled.a`
+const StyledLatestCard = styled(Link)`
   display: flex;
   gap: 20px;
   padding: 5px;
@@ -50,6 +50,5 @@ const Wrapper = styled.section`
   }
 `;
 
-export default StyledLatestCard;
+export default Wrapper;
 export { Wrapper, Title, StyledLatestCard };
-// export default Wrapper;
