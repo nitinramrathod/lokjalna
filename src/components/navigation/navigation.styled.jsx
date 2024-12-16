@@ -19,7 +19,7 @@ const Wrapper = styled.nav`
 
 const TopNav = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 20px;
   justify-content: space-between;
   align-items: center;
 
@@ -65,7 +65,7 @@ const GlobalSearch = styled.div`
   border: 1px solid black;
   width: 40%;
   max-width: 500px;
-  min-width: 195px;
+  min-width: 240px;
 
   input {
     border: none;

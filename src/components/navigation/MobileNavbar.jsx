@@ -1,4 +1,5 @@
 "use client";
+import navigationLinks from "@/utils/constants/navigation-links.constant";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
@@ -41,13 +42,7 @@ const MenuWrapper = styled.div`
   padding: 30px 0;
 `;
 
-export const navigationLinks = [
-  { name: "Home", href: "/" },
-  { name: "Local News", href: "/news/local-news" },
-  { name: "World News", href: "/news/world-news" },
-  { name: "About Us", href: "/about-us" },
-  { name: "Contact Us", href: "/contact-us" },
-];
+
 const MobileNavbar = ({ show }) => {
   return (
     <Wrapper show={show}>

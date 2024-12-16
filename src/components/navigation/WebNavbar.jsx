@@ -1,6 +1,7 @@
 import React from "react";
-import { navigationLinks, StyledLink } from "./MobileNavbar";
+import { StyledLink } from "./MobileNavbar";
 import styled from "@emotion/styled";
+import navigationLinks from "@/utils/constants/navigation-links.constant";
 
 const Wrapper = styled.div`
   gap: 40px;
