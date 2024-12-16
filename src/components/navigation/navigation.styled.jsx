@@ -63,7 +63,7 @@ const GlobalSearch = styled.div`
   padding: 3px 15px;
   border-radius: 35px;
   border: 1px solid black;
-  width: 40%;
+  width: 70%;
   max-width: 500px;
   min-width: 240px;
 
