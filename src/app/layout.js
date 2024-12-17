@@ -16,36 +16,47 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: 'Lokjalna - Voice of Jalna People',
-  description: 'Lokjalna (लोकजालना) is the trusted news source for Jalna, Maharashtra, bringing you the latest local news, events, and updates.',
-  keywords: 'Lokjalna, Jalna news, Maharashtra news, local news, breaking news, लोकजालना',
-  authors: { name: 'Lokjalna Team', url: 'https://lokjalna.com' },
-  viewport: 'width=device-width, initial-scale=1',
-  charset: 'utf-8',
-  robots: 'index, follow',
+  title: "जालना लोकज्योत | सत्याची ज्योत, जालन्याचा आवाज!",
+  description:
+    "जालना लोकज्योत - सत्याची ज्योत आणि जालन्याचा आवाज! तुमच्या शहरातील सत्य, बातम्या आणि महत्त्वाच्या घडामोडींसाठी भेट द्या.",
+  keywords: [
+    "जालना",
+    "लोकज्योत",
+    "जालना बातम्या",
+    "सत्य बातम्या",
+    "मराठी बातम्या",
+    "जालन्याचा आवाज",
+    "स्थानीक बातम्या",
+    "Jalna Lokjyot",
+    "Jalna news",
+    "Marathi news",
+  ],
   openGraph: {
-    title: 'Lokjalna - Voice of Jalna People',
-    description: 'Stay informed with Lokjalna - Jalna’s most reliable news source. Local stories, events, and updates.',
-    url: 'https://lokjalna.com',
+    type: "website",
+    url: "https://your-website-url.com",
+    title: "जालना लोकज्योत | सत्याची ज्योत, जालन्याचा आवाज!",
+    description:
+      "जालना लोकज्योत - सत्याची ज्योत आणि जालन्याचा आवाज! तुमच्या शहरातील सत्य, बातम्या आणि महत्त्वाच्या घडामोडींसाठी भेट द्या.",
     images: [
       {
-        url: 'https://lokjalna.vercel.app/images/og-image.png',
+        url: "https://lokjalna.vercel.app/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: 'Lokjalna - Voice of Jalna People',
+        alt: "जालना लोकज्योत लोगो - सत्याची ज्योत, जालन्याचा आवाज!",
       },
     ],
-    siteName: 'Lokjalna',
-    type: 'website',
-    locale: 'en_US',
+    siteName: "जालना लोकज्योत",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Lokjalna - Voice of Jalna People',
-    images: ['https://lokjalna.vercel.app/images/og-image.png'],
-    description: 'Lokjalna (लोकजालना) brings you the latest news, stories, and updates from Jalna.',
+    card: "summary_large_image",
+    site: "@jalnalokjyot",
+    title: "जालना लोकज्योत | सत्याची ज्योत, जालन्याचा आवाज!",
+    description:
+      "जालना लोकज्योत - सत्याची ज्योत आणि जालन्याचा आवाज! तुमच्या शहरातील सत्य, बातम्या आणि महत्त्वाच्या घडामोडींसाठी भेट द्या.",
+    images: ["https://lokjalna.vercel.app/images/og-image.png"],
   },
 };
+
 
 export default function RootLayout({ children }) {
   return (
