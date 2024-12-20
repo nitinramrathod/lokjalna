@@ -5,11 +5,12 @@ import React from "react";
 import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
 
 const StyledForm = styled.form`
-  padding: 40px 30px;
+  padding: 60px 30px;
   background: #eeeeee;
   border-radius: 20px;
-  margin: 40px auto;
-  max-width: 600px;
+  margin: 80px auto;
+  max-width: 400px;
+  margin-top: 140px;
 
   .button-wrapper{
     display: flex;

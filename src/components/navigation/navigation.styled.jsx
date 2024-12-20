@@ -8,7 +8,7 @@ const Wrapper = styled.nav`
   background: #ffffffca;
   width: 100%;
   top: 0;
-  z-index: 2;
+  z-index: 5;
   backdrop-filter: blur(10px);
   .top-navigation {
     padding: 5px 0;
