@@ -12,7 +12,7 @@ import TrendingSection from "./TrendingSection";
 
 
 
-const Landing = () => {
+const Landing = ({data, trending}) => {
   return (
     <Container>
       <Wrapper>
@@ -21,12 +21,12 @@ const Landing = () => {
 
      
         <SectionHeading>Breaking News</SectionHeading>
-        <MainNews href="/news/sport/detail">
+        <MainNews href={`/news/trending/${data?._id}`}>
           <Image
             width={600}
             height={300}
-            src="/images/landing-news.png"
-            alt="landing image"
+            src={data.image_url}
+            alt={data?.name}
           />
           <div className="category-wrapper">
             <Category> sport</Category>
@@ -35,13 +35,12 @@ const Landing = () => {
           </div>
 
           <Title className="heading">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quas
-            placeat rem voluptatem?
+            {data?.name}
           </Title>
           <p className="description">14th Dec 2024</p>
         </MainNews>
         </div>
-        <TrendingSection></TrendingSection>
+        <TrendingSection data={trending}/>
       </Wrapper>
     </Container>
   );

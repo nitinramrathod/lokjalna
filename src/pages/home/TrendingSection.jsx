@@ -3,19 +3,18 @@ import { Date, SectionHeading } from "./home.styled";
 import Image from "next/image";
 import { StyledLatestCard, Title, Wrapper } from "@/pages/home/trending-section.styled";
 
-const LatestCard = () => {
+const LatestCard = ({data}) => {
   return (
-    <StyledLatestCard href="/news/trending/detail">
+    <StyledLatestCard href={`/news/trending/${data?._id}`}>
       <Image
         width={100}
         height={100}
-        src="/images/landing-news.png"
-        alt="landing image"
+        src={data?.image_url}
+        alt={data?.name}
       />
       <div className="text-wrapper">
         <Title className="title">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam veri
-          voluptate reiciendis?
+          {data?.name || "--"}
         </Title>
         <Date>14th Dec 2024</Date>
       </div>
@@ -23,15 +22,12 @@ const LatestCard = () => {
   );
 };
 
-const TrendingSection = () => {
+const TrendingSection = ({data}) => {
   return (
     <Wrapper>
         <SectionHeading>Trending News</SectionHeading>
         <div className="card-wrapper">
-          <LatestCard />
-          <LatestCard />
-          <LatestCard />
-          <LatestCard />
+          {data?.map((item, index)=> <LatestCard key ={item?._id} data={item}/>)}
         </div>
     </Wrapper>
   );

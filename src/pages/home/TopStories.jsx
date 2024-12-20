@@ -22,9 +22,8 @@ const StyledCard = styled(Link)`
   }
 
   &:hover {
-    .title{
+    .title {
       color: orange;
-
     }
   }
 `;
@@ -55,19 +54,18 @@ const Wrapper = styled.section`
   }
 `;
 
-const Card = () => {
+const Card = ({data}) => {
   return (
-    <StyledCard href={"/news/top-stories/detail"}>
+    <StyledCard href={`/news/top-stories/${data?._id}`}>
       <Image
         width={100}
         height={100}
-        src="/images/image-placeholder.webp"
-        alt="landing image"
+        src={data?.image_url}
+        alt={data?.name}
       />
       <div className="text-wrapper">
         <Title className="title">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam veri
-          voluptate reiciendis?
+        {data?.name}
         </Title>
         <Date>14th Dec 2024</Date>
       </div>
@@ -75,7 +73,7 @@ const Card = () => {
   );
 };
 
-const TopStories = ({ section_name = "no name" }) => {
+const TopStories = ({ section_name = "no name", data }) => {
   return (
     <Wrapper>
       <Container>
@@ -98,18 +96,11 @@ const TopStories = ({ section_name = "no name" }) => {
             },
           }}
         >
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
+          {data?.map((item, index) => (
+            <SwiperSlide key={item?._id}>
+              <Card data={item} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </Container>
     </Wrapper>
