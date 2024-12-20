@@ -25,7 +25,7 @@ const Landing = ({data, trending}) => {
           <Image
             width={600}
             height={300}
-            src={data.image_url}
+            src={data?.image_url}
             alt={data?.name}
           />
           <div className="category-wrapper">
