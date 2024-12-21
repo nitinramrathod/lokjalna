@@ -16,6 +16,9 @@ const NewsList = async () => {
 
     return (
         <Container>
+            {/* <Button variant='warning' className='mb-3'> */}
+                <Link href="/dashboard/news/add">Add News</Link>
+            {/* </Button> */}
             <Table responsive bordered hover>
                 <thead>
                     <tr>
@@ -27,7 +30,7 @@ const NewsList = async () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.data?.map((item, index) => (<tr key={item._id}>
+                    {data?.data?.map((item, index) => (<tr key={item?._id}>
                         <td>{index + 1}</td>
                         <td><Link href={`/dashboard/news/${item?._id}`}>{item?.name || "--"}</Link></td>
                         <td>{item?.author_name || "--"}</td>

@@ -1,7 +1,10 @@
 "use client";
+import { saveToken } from "@/utils/helper/localStorage";
+import { getLogin } from "@/utils/services/login.services";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
 
 const StyledForm = styled.form`
@@ -12,7 +15,7 @@ const StyledForm = styled.form`
   max-width: 400px;
   margin-top: 140px;
 
-  .button-wrapper{
+  .button-wrapper {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -29,9 +32,40 @@ const FormHeading = styled.h1`
   color: orange;
 `;
 
-
-
 const LoginForm = () => {
+  const [data, setData] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const route = useRouter()
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    getLogin(data)
+      .then((resp) => {
+        setData("");
+        setError("");
+        saveToken(resp?.token);
+        route.push('/dashboard/news')
+      })
+      .catch((err) => {
+        setError({
+          email: err?.errors?.email,
+          password: err?.errors?.password,
+        });
+        console.log("err==>", err);
+      });
+  };
+
+  console.log('error', error)
+
   return (
     <Container>
       <StyledForm>
@@ -41,20 +75,35 @@ const LoginForm = () => {
           label="Enter Email"
           className="mb-3"
         >
-          <Form.Control type="email" placeholder="Enter Email" />
+          <Form.Control
+            value={data.email || ""}
+            onChange={handleChange}
+            name="email"
+            type="email"
+            placeholder="Enter Email"
+          />
+          {error?.email && <p>{error.email}</p>}
         </FloatingLabel>
         <FloatingLabel
           controlId="floatingInput"
           label="Enter Password"
           className="mb-3"
         >
-          <Form.Control type="password" placeholder="Enter Password" />
+          <Form.Control
+            onChange={handleChange}
+            value={data.password || ""}
+            name="password"
+            type="password"
+            placeholder="Enter Password"
+          />
+          {error?.password && <p>{error.password}</p>}
+
         </FloatingLabel>
         <div className="button-wrapper">
-
-
-        <Link href="/forgot-password">Forgot password.</Link>
-        <Button variant="primary">Login</Button>
+          <Link href="/forgot-password">Forgot password.</Link>
+          <Button onClick={handleSubmit} variant="primary">
+            Login
+          </Button>
         </div>
       </StyledForm>
     </Container>

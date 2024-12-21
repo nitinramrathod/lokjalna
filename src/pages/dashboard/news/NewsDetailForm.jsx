@@ -1,7 +1,9 @@
 "use client";
 
+import { clearToken } from "@/utils/helper/localStorage";
 import { postNews, updateNews } from "@/utils/services/news.services";
 import styled from "@emotion/styled";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
@@ -13,28 +15,32 @@ const FormWrapper = styled.div`
   flex-direction: column;
   gap: 30px;
 `;
-const NewsDetailForm = ({defaultData=''}) => {
-  const [data, setData] = useState({...defaultData});
-  const router = useRouter()
+const NewsDetailForm = ({ defaultData = "" }) => {
+  const [data, setData] = useState({ ...defaultData });
+  const router = useRouter();
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const saveNews = defaultData ? updateNews : postNews
+  const saveNews = defaultData ? updateNews : postNews;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await saveNews(data, defaultData?._id);
-      setData('')
-      router.push('/dashboard/news');
+      setData("");
+      router.push("/dashboard/news");
     } catch (error) {
       console.log("error", error);
+      clearToken();
     }
   };
   return (
     <Container className="py-5">
-      <h2 className="pb-4">{defaultData ? "Update News": "Add News"}</h2>
+      <Button variant="warning" className="mb-3">
+        <Link href="/dashboard/news">News List</Link>
+      </Button>
+      <h2 className="pb-4">{defaultData ? "Update News" : "Add News"}</h2>
       <Row className="mb-4">
         <Col sm="12">
           <Form.Label htmlFor="name">News Title</Form.Label>

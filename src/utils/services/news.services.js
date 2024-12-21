@@ -1,3 +1,5 @@
+import { getToken } from "../helper/localStorage";
+
 async function getNews() {
     const response = await fetch('https://lokjyot-api.onrender.com/api/v1/news', {
         method: 'GET',
@@ -24,10 +26,12 @@ async function getSingleNews(slug) {
 }
 
 async function postNews(data) {
+    const token = getToken();
     const response = await fetch('https://lokjyot-api.onrender.com/api/v1/news', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(data),
         cache: 'no-store',
@@ -40,10 +44,12 @@ async function postNews(data) {
     return response.json();
 }
 async function updateNews(data, id) {
+    const token = getToken();
     const response = await fetch(`https://lokjyot-api.onrender.com/api/v1/news/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(data),
         cache: 'no-store',
@@ -56,10 +62,12 @@ async function updateNews(data, id) {
     return response.json();
 }
 async function deleteNews(id) {
+    const token = getToken();
     const response = await fetch(`https://lokjyot-api.onrender.com/api/v1/news/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
         cache: 'no-store',
     });
