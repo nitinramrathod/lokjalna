@@ -1,7 +1,7 @@
 function formatDateToReadable(inputDate) {
     const date = new Date(inputDate); // Ensure the input is a Date object
     if (isNaN(date)) {
-        throw new Error("Invalid date format. Please provide a valid date.");
+        return inputDate;
     }
 
     const suffixes = ["th", "st", "nd", "rd"];
@@ -21,7 +21,7 @@ function formatDateToReadable(inputDate) {
 function formatDateWithDay(inputDate) {
     const date = new Date(inputDate); // Ensure the input is a Date object
     if (isNaN(date)) {
-        throw new Error("Invalid date format. Please provide a valid date.");
+        return inputDate;        
     }
 
     const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
