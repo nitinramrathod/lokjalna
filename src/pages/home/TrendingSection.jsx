@@ -2,6 +2,7 @@ import React from "react";
 import { Date, SectionHeading } from "./home.styled";
 import Image from "next/image";
 import { StyledLatestCard, Title, Wrapper } from "@/pages/home/trending-section.styled";
+import { formatDateToReadable } from "@/utils/helper/dateFormater";
 
 const LatestCard = ({data}) => {
   return (
@@ -16,7 +17,7 @@ const LatestCard = ({data}) => {
         <Title className="title">
           {data?.name || "--"}
         </Title>
-        <Date>14th Dec 2024</Date>
+        <Date>{formatDateToReadable(data?.publish_date)}</Date>
       </div>
     </StyledLatestCard>
   );

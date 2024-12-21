@@ -5,7 +5,7 @@ import navigationLinks from "@/utils/constants/navigation-links.constant";
 
 const Wrapper = styled.div`
   gap: 40px;
-  padding-top: 5px;
+  padding-top: 10px;
   display: none;
 
   @media (min-width: 1200px) {

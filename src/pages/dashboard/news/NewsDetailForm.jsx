@@ -1,7 +1,8 @@
 "use client";
 
-import { postNews } from "@/utils/services/homepage";
+import { postNews, updateNews } from "@/utils/services/news.services";
 import styled from "@emotion/styled";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
@@ -13,24 +14,27 @@ const FormWrapper = styled.div`
   gap: 30px;
 `;
 const NewsDetailForm = ({defaultData=''}) => {
-  const [data, setData] = useState({defaultData});
+  const [data, setData] = useState({...defaultData});
+  const router = useRouter()
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  const saveNews = defaultData ? updateNews : postNews
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await postNews(data);
+      const response = await saveNews(data, defaultData?._id);
       setData('')
-      console.log("response", response);
+      router.push('/dashboard/news');
     } catch (error) {
       console.log("error", error);
     }
   };
   return (
     <Container className="py-5">
-      <h2 className="pb-4">Add News</h2>
+      <h2 className="pb-4">{defaultData ? "Update News": "Add News"}</h2>
       <Row className="mb-4">
         <Col sm="12">
           <Form.Label htmlFor="name">News Title</Form.Label>
@@ -131,7 +135,7 @@ const NewsDetailForm = ({defaultData=''}) => {
       <Row>
         <Col sm="12">
           <Button onClick={handleSubmit} variant="primary">
-            Save
+            {defaultData ? "Update" : "Save"}
           </Button>
         </Col>
       </Row>

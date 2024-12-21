@@ -4,6 +4,7 @@ import { DetailHeading } from "../common/text.styled";
 import Wrapper, { BackButton, Category, DetailWrapper } from "./news-detail.styled.";
 import { back_icon } from "@/assets/icons/navigation.icon";
 import { Date } from "../home/home.styled";
+import { formatDateWithDay } from "@/utils/helper/dateFormater";
 
 const Landing = ({data}) => {
   return (
@@ -17,7 +18,7 @@ const Landing = ({data}) => {
       <DetailHeading className="heading">
         {data?.name}
       </DetailHeading>
-      <Date className="date">Sunday, 15 Dec 2024</Date>
+      <Date className="date">{formatDateWithDay(data?.publish_date)}</Date>
       <Image
         className="landing-image"
         width={600}

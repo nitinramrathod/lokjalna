@@ -1,16 +1,20 @@
-import NewsDetailForm  from '@/pages/dashboard/news/NewsDetailForm'
-import { getSingleNews } from '@/utils/services/homepage';
+import NewsDetailForm from '@/pages/dashboard/news/NewsDetailForm'
+import { getSingleNews } from '@/utils/services/news.services';
 import React from 'react'
 import { Container } from 'react-bootstrap'
 
-const NewsDetail = async({params}) => {
-    const {slug} = params;
-    // const data = await getSingleNews(slug);
+const NewsDetail = async ({ params }) => {
+    const { slug } = params;
+    let data
+    try {
+        data = await getSingleNews(slug);
+    } catch (error) {
+        console.log("error", error);
+    }
 
-    // console.log('data', data)
     return (
         <Container>
-            <NewsDetailForm />
+            <NewsDetailForm defaultData={data?.data} />
         </Container>
     )
 }

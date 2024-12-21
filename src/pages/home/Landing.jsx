@@ -9,6 +9,7 @@ import {
 } from "./home.styled";
 import Image from "next/image";
 import TrendingSection from "./TrendingSection";
+import { formatDateToReadable } from "@/utils/helper/dateFormater";
 
 
 
@@ -37,7 +38,7 @@ const Landing = ({data, trending}) => {
           <Title className="heading">
             {data?.name}
           </Title>
-          <p className="description">14th Dec 2024</p>
+          <p className="description">{formatDateToReadable(data?.publish_date)}</p>
         </MainNews>
         </div>
         <TrendingSection data={trending}/>
