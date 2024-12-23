@@ -27,7 +27,7 @@ const TopNav = styled.div`
     display: none;
     height: 30px;
     width: auto;
-    object-fit: cover;
+    /* object-fit: cover; */
 
     &.short {
       display: block;
@@ -39,6 +39,7 @@ const TopNav = styled.div`
       width: 150px;
       height: 50px;
       display: block;
+      object-fit: contain;
       &.short {
       display: none;
     }
