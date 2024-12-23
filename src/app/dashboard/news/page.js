@@ -16,9 +16,9 @@ const NewsList = async () => {
 
     return (
         <Container>
-            {/* <Button variant='warning' className='mb-3'> */}
+            <Button variant='warning' className='mb-3'>
                 <Link href="/dashboard/news/add">Add News</Link>
-            {/* </Button> */}
+            </Button>
             <Table responsive bordered hover>
                 <thead>
                     <tr>
@@ -34,7 +34,7 @@ const NewsList = async () => {
                         <td>{index + 1}</td>
                         <td><Link href={`/dashboard/news/${item?._id}`}>{item?.name || "--"}</Link></td>
                         <td>{item?.author_name || "--"}</td>
-                        <td>{item?.publish_date || "--"}</td>
+                        <td>{ new Date(item?.publish_date).toISOString().split("T")[0]|| "--"}</td>
                         <td className='d-flex gap-2'><DeleteButton id={item?._id} variant="danger" size='sm' >Delete</DeleteButton> <Button href={`/dashboard/news/${item?._id}`} as="a" variant="primary" size='sm' >Edit</Button></td>
                     </tr>))}
 
