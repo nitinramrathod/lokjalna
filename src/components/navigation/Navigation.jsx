@@ -8,8 +8,8 @@ import {
   search_icon,
 } from "@/assets/icons/navigation.icon";
 import Image from "next/image";
-import logo from "@/assets/images/full-logo.png?v2";
-import short_logo from "@/assets/images/short-logo.png?v2";
+import logo from "@/assets/images/full-logo.png??v=2";
+import short_logo from "@/assets/images/short-logo.png?v=2";
 import Link from "next/link";
 import MobileNavbar from "./MobileNavbar";
 import { usePathname } from "next/navigation";
