@@ -37,9 +37,6 @@ const NewsDetailForm = ({ defaultData = "" }) => {
   };
   return (
     <Container className="py-5">
-      <Button variant="warning" className="mb-3">
-        <Link href="/dashboard/news">News List</Link>
-      </Button>
       <h2 className="pb-4">{defaultData ? "Update News" : "Add News"}</h2>
       <Row className="mb-4">
         <Col sm="12">

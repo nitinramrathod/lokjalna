@@ -12,6 +12,18 @@ async function getNews() {
 
     return response.json();
 }
+async function adminGetNews() {
+    const response = await fetch('https://lokjyot-api.onrender.com/api/v1/admin/news', {
+        method: 'GET',
+        cache: 'no-store', // To disable caching (optional)
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
+
+    return response.json();
+}
 async function getSingleNews(slug) {
     const response = await fetch(`https://lokjyot-api.onrender.com/api/v1/news/${slug}`, {
         method: 'GET',
@@ -84,5 +96,6 @@ export {
     postNews,
     getSingleNews,
     updateNews,
-    deleteNews
+    deleteNews,
+    adminGetNews
 }

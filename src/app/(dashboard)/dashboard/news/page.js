@@ -1,5 +1,5 @@
 import DeleteButton from '@/components/DeleteButton';
-import { getNews } from '@/utils/services/news.services';
+import { adminGetNews } from '@/utils/services/news.services';
 import Link from 'next/link';
 import React from 'react'
 import { Button, Container, Table } from 'react-bootstrap'
@@ -7,7 +7,7 @@ import { Button, Container, Table } from 'react-bootstrap'
 const NewsList = async () => {
     let data;
     try {
-        data = await getNews();
+        data = await adminGetNews();
         console.log('data', data)
     } catch (error) {
         console.log('error', error)
@@ -16,9 +16,6 @@ const NewsList = async () => {
 
     return (
         <Container>
-            <Button variant='warning' className='mb-3'>
-                <Link href="/dashboard/news/add">Add News</Link>
-            </Button>
             <Table responsive bordered hover>
                 <thead>
                     <tr>
@@ -26,6 +23,7 @@ const NewsList = async () => {
                         <th>Title</th>
                         <th>Author Name</th>
                         <th>Publish Date</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -35,6 +33,7 @@ const NewsList = async () => {
                         <td><Link href={`/dashboard/news/${item?._id}`}>{item?.name || "--"}</Link></td>
                         <td>{item?.author_name || "--"}</td>
                         <td>{ new Date(item?.publish_date).toISOString().split("T")[0]|| "--"}</td>
+                        <td>{item?.status || "--"}</td>
                         <td className='d-flex gap-2'><DeleteButton id={item?._id} variant="danger" size='sm' >Delete</DeleteButton> <Button href={`/dashboard/news/${item?._id}`} as="a" variant="primary" size='sm' >Edit</Button></td>
                     </tr>))}
 

@@ -27,13 +27,13 @@
   /* Even darker gray when hovered */
 }
 
-body.main-body-tag {
+.website-wrapper {
   margin-top: 75px;
 
 }
 
 @media (min-width: 1200px) {
-  body.main-body-tag {
+  .website-wrapper{
     margin-top: 105px;
 
   }
