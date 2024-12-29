@@ -11,19 +11,19 @@ const Wrapper = styled.div`
   overflow-y: auto;
   max-height: calc(100vh - 60px);
 
-  .delete{
+  .delete {
     color: red;
-    &:hover{
-        background: #ff0f0f72;
-        color: #fff;
+    &:hover {
+      background: #ff0f0f72;
+      color: #fff;
     }
   }
-  .active{
+  .active {
     color: green;
     background: transparent;
-    &:hover{
-        background: #259d0067;
-        color: #fff;
+    &:hover {
+      background: #259d0067;
+      color: #fff;
     }
   }
 
@@ -33,7 +33,6 @@ const Wrapper = styled.div`
     margin: 0;
     position: relative;
   }
- 
 `;
 const TableHeader = styled.div`
   padding-bottom: 20px;
@@ -46,7 +45,6 @@ const TableHeader = styled.div`
     font-weight: 600;
   }
 `;
-
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -75,9 +73,12 @@ const Table = ({
     <Wrapper>
       <TableHeader>
         <h4 className="title">{title}</h4>
-        {addButton && 
-        <StyledLink href={addButton?.href}>{addButton?.text}</StyledLink>
-        }
+        {addButton?.type === "link" && (
+          <StyledLink href={addButton?.href}>{addButton?.text}</StyledLink>
+        )}
+        {addButton?.type === "button" && (
+          <Button onClick={addButton?.onClick}>{addButton?.text}</Button>
+        )}
       </TableHeader>
 
       <BootstrapTable striped responsive bordered hover>
@@ -88,9 +89,17 @@ const Table = ({
             ))}
           </Tr>
         </thead>
-        <tbody>{ loading ? <tr>
-            <td className="text-center py-4" colSpan={header?.length}><Spinner animation="border" variant="primary" /> </td>
-        </tr>: children}</tbody>
+        <tbody>
+          {loading ? (
+            <tr>
+              <td className="text-center py-4" colSpan={header?.length}>
+                <Spinner animation="border" variant="primary" />{" "}
+              </td>
+            </tr>
+          ) : (
+            children
+          )}
+        </tbody>
       </BootstrapTable>
     </Wrapper>
   );

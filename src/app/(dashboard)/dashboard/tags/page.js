@@ -1,4 +1,6 @@
 "use client"
+import AddTag from '@/components/dashboard/AddTag';
+import Offcanvas from '@/components/dashboard/offcanvas/Offcanvas';
 import Table from '@/components/dashboard/table/Table';
 import DeleteButton from '@/components/DeleteButton';
 import { fetchTags } from '@/utils/services/dashboard.services';
@@ -18,32 +20,47 @@ const NEWS_HEADER = [
 const NewsList = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [show, setShow] = useState(false);
 
+    const fetchData = async () => {
+        try {
+            const [categoryRes] = await Promise.all([
+                fetchTags(),
+            ]);
+
+            setData(categoryRes?.data?.data);
+            setLoading(false);
+
+        } catch (error) {
+            setLoading(false);
+
+            console.error("Error fetching dropdown data:", error);
+        }
+    };
     useEffect(() => {
 
-        const fetchData = async () => {
-            try {
-                const [categoryRes] = await Promise.all([
-                    fetchTags(),
-                ]);
 
-                setData(categoryRes?.data?.data);
-                setLoading(false);
-
-            } catch (error) {
-                setLoading(false);
-
-                console.error("Error fetching dropdown data:", error);
-            }
-        };
 
         fetchData();
     }, [])
 
+    const showCanvas = () => setShow(true);
+    const hideCanvas = () => setShow(false);
+
+    const addButton = {
+        type: "button",
+        text: "Create Tag",
+        onClick: showCanvas
+    }
 
 
     return (<>
-        <Table loading={loading} title="Tags List" header={NEWS_HEADER}>
+        <Table
+            addButton={addButton}
+            loading={loading}
+            title="Tags List"
+            header={NEWS_HEADER}
+        >
 
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>
@@ -54,6 +71,14 @@ const NewsList = () => {
             </tr>))}
 
         </Table>
+
+        <Offcanvas
+            show={show}
+            handleClose={hideCanvas}
+            title='Create Category'
+        >
+            <AddTag handleClose={hideCanvas} callback={fetchData} />
+        </Offcanvas>
 
 
     </>

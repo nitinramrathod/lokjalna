@@ -2,10 +2,11 @@
 
 import Table from '@/components/dashboard/table/Table';
 import DeleteButton from '@/components/DeleteButton';
-import { adminGetNews } from '@/utils/services/news.services';
+import { changeNewsStatus } from '@/utils/services/dashboard.services';
+import { adminGetNews, deleteNews } from '@/utils/services/news.services';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import {Dropdown, DropdownButton } from 'react-bootstrap'
+import { Dropdown, DropdownButton } from 'react-bootstrap'
 
 
 const NEWS_HEADER = [
@@ -21,6 +22,7 @@ const NEWS_HEADER = [
 const AddButton = {
     href: "/dashboard/news/add",
     text: "Add News",
+    type: "link"
 };
 
 
@@ -28,27 +30,46 @@ const NewsList = () => {
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const fetchData = async () => {
+        try {
+            const [categoryRes] = await Promise.all([
+                adminGetNews(),
+            ]);
+
+            setData(categoryRes?.data?.data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+
+            console.error("Error fetching dropdown data:", error);
+        }
+    };
+
     useEffect(() => {
-
-        const fetchData = async () => {
-            try {
-                const [categoryRes] = await Promise.all([
-                    adminGetNews(),
-                ]);
-
-                setData(categoryRes?.data?.data);
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-
-                console.error("Error fetching dropdown data:", error);
-            }
-        };
-
         fetchData();
     }, [])
 
-    console.log('data', data)
+    const handleChangeStatus = (id, currentStatus) => {
+        const status = currentStatus == "pending" ? 'active' : currentStatus == "inactive" ? 'active' : "inactive";
+        changeNewsStatus(id, { status }).then(res => {
+            console.log('res', res)
+            fetchData();
+
+        }).catch(err => {
+            console.log('err', err)
+        })
+
+    }
+
+    const handleDelete = async (id) => {
+        try {
+            const response = await deleteNews(id);
+            fetchData();
+
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
 
 
     return (<>
@@ -66,11 +87,6 @@ const NewsList = () => {
                 <td>{item?.category?.name || "--"}</td>
                 <td>{item?.status || "--"}</td>
                 <td>
-                    {/* <div className='d-flex gap-2'>
-
-                        <DeleteButton id={item?._id} variant="danger" size='sm' >Delete</DeleteButton> <Button href={`/dashboard/news/${item?._id}`} as="a" variant="primary" size='sm' >Edit</Button>
-                    </div> */}
-
                     <DropdownButton
                         as={'div'}
                         key={item?._id}
@@ -80,9 +96,9 @@ const NewsList = () => {
                         title="Actions"
                     >
                         <Dropdown.Item as={Link} href={`/dashboard/news/${item?._id}`} eventKey="3">Edit</Dropdown.Item>
-                        <Dropdown.Item as="button" eventKey="1">Active</Dropdown.Item>
+                        <Dropdown.Item as="button" onClick={(e) => handleChangeStatus(item?._id, item?.status)} eventKey="1">{item?.status == "active" ? "Inactive" : "Active"}</Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item as={DeleteButton} id={item?._id} className='delete' eventKey="4">Delete</Dropdown.Item>
+                        <Dropdown.Item onClick={()=>handleDelete(item?._id)} className='delete' eventKey="4">Delete</Dropdown.Item>
                     </DropdownButton>
                 </td>
             </tr>))}

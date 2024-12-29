@@ -1,12 +1,9 @@
 "use client"
+import AddCategory from '@/components/dashboard/AddCategory';
+import Offcanvas from '@/components/dashboard/offcanvas/Offcanvas';
 import Table from '@/components/dashboard/table/Table';
-import DeleteButton from '@/components/DeleteButton';
 import { fetchCategories } from '@/utils/services/dashboard.services';
-import { adminGetNews } from '@/utils/services/news.services';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import { Button, Container } from 'react-bootstrap'
-
 
 const NEWS_HEADER = [
     "Sr. No.",
@@ -18,34 +15,43 @@ const NEWS_HEADER = [
 const CategoryList = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [show, setShow] = useState(false);
+
+
+    const fetchData = async () => {
+        try {
+            const [categoryRes] = await Promise.all([
+                fetchCategories(),
+            ]);
+
+            setData(categoryRes?.data?.data);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.error("Error fetching dropdown data:", error);
+        }
+    };
+
     useEffect(() => {
-
-        const fetchData = async () => {
-            try {
-                const [categoryRes] = await Promise.all([
-                    fetchCategories(),
-                ]);
-
-                setData(categoryRes?.data?.data);
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-                console.error("Error fetching dropdown data:", error);
-            }
-        };
-
         fetchData();
     }, [])
 
+    const showCanvas = () => setShow(true);
+    const hideCanvas = () => setShow(false);
 
+    const addButton = {
+        type: "button",
+        text: "Create Category",
+        onClick: showCanvas
+    }
 
     return (<>
         <Table
             loading={loading}
             title="Category List"
             header={NEWS_HEADER}
+            addButton={addButton}
         >
-
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>
                 <td>{item?.name || "--"}</td>
@@ -54,6 +60,14 @@ const CategoryList = () => {
             </tr>))}
 
         </Table>
+
+        <Offcanvas
+            show={show}
+            handleClose={hideCanvas}
+            title='Create Category'
+        >
+            <AddCategory handleClose={hideCanvas} callback={fetchData} />
+        </Offcanvas>
     </>
     )
 }
