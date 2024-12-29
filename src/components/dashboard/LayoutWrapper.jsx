@@ -9,6 +9,9 @@ const Wrapper = styled.section`
 
   #main-content {
     padding-top: 20px;
+    width: calc(100% -  200px);
+    height: calc(100vh);
+    overflow-y: auto;
   }
 `;
 const LayoutWrapper = ({ children }) => {

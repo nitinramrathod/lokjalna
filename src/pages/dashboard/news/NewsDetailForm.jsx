@@ -1,11 +1,18 @@
 "use client";
 
+import MultiSelect from "@/components/form/MultiSelect";
+import SingleSelect from "@/components/form/SingleSelect";
 import { clearToken } from "@/utils/helper/localStorage";
+import { transformToOptions } from "@/utils/helper/transformToOptions";
+import {
+  fetchCategories,
+  fetchTags,
+} from "@/utils/services/dashboard.services";
 import { postNews, updateNews } from "@/utils/services/news.services";
 import styled from "@emotion/styled";
-import Link from "next/link";
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 const FormWrapper = styled.div`
@@ -16,25 +23,79 @@ const FormWrapper = styled.div`
   gap: 30px;
 `;
 const NewsDetailForm = ({ defaultData = "" }) => {
-  const [data, setData] = useState({ ...defaultData });
+  const formattedData = {
+    ...defaultData,
+    tags: transformToOptions(defaultData?.tags),
+    category: transformToOptions(defaultData?.category)
+  }
+  const [data, setData] = useState(formattedData);
   const router = useRouter();
-  const handleInputChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
-
+  const [dropdownOptions, setDropdownOptions] = useState({});
+  
   const saveNews = defaultData ? updateNews : postNews;
-
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+
+    for (const [key, value] of Object.entries(data)) {
+      formData.append(key, value);
+    }
+
+    if (data?.tags?.length > 0) {
+      data.tags.forEach((tag, index) => {
+        formData.append(`tags[${index}]`, tag.value); // Append as tags[0], tags[1], etc.
+      });
+    }
+
+    if(data?.category){
+      formData.set('category', data?.category?.value);
+    }
+
     try {
-      const response = await saveNews(data, defaultData?._id);
+      const response = await saveNews(formData, defaultData?._id);
       setData("");
       router.push("/dashboard/news");
     } catch (error) {
       console.log("error", error);
-      clearToken();
+      // clearToken();
     }
   };
+  
+  const handleInputChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleDropdownChange = (e, name)=>{
+    console.log('e', e)
+    setData(prev=>({
+      ...prev,
+      [name]: e
+    }));
+  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [categoryRes, tagRes] = await Promise.all([
+          fetchCategories(),
+          fetchTags(),
+        ]);
+
+        setDropdownOptions((prev) => ({
+          ...prev,
+          categories: transformToOptions(categoryRes?.data?.data),
+          tags: transformToOptions(tagRes?.data?.data),
+        }));
+      } catch (error) {
+        console.error("Error fetching dropdown data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Container className="py-5">
       <h2 className="pb-4">{defaultData ? "Update News" : "Add News"}</h2>
@@ -102,23 +163,11 @@ const NewsDetailForm = ({ defaultData = "" }) => {
       <Row>
         <Col sm="6" className="mb-4">
           <Form.Label htmlFor="inputPassword5">Tags</Form.Label>
-
-          <Form.Select name="tags" aria-label="Default select example">
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select>
+          <MultiSelect defaultValue={data?.tags} onChange={(e)=>handleDropdownChange(e, "tags")} options={dropdownOptions?.tags} />
         </Col>
         <Col sm="6" className="mb-4">
           <Form.Label htmlFor="inputPassword5">Category</Form.Label>
-
-          <Form.Select name="category" aria-label="Default select example">
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select>
+          <SingleSelect defaultValue={data?.category} onChange={(e)=>handleDropdownChange(e, "category")}  options={dropdownOptions?.categories} />
         </Col>
       </Row>
       <Row>

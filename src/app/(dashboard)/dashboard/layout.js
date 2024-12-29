@@ -12,7 +12,6 @@ export default function AdminLayout({ children }) {
             <LayoutWrapper>
                 <Sidebar />
                 <div id="main-content">
-
                     {children}
                 </div>
             </LayoutWrapper>

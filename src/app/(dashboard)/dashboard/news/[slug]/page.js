@@ -17,7 +17,7 @@ const NewsDetail = async ({ params }) => {
 
     return (
         <Container>
-            <NewsDetailForm defaultData={data} />
+            <NewsDetailForm defaultData={data}/>
         </Container>
     )
 }
