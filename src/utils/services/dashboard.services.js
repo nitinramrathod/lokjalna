@@ -81,6 +81,12 @@ const fetchTags = () => {
         url: BASE_URL_V1 + '/tag'
     })
 }
+const fetchUsers = () => {
+    return axios({
+        method: 'GET',
+        url: BASE_URL_V1 + '/user'
+    })
+}
 const fetchUser = () => {
     return axios({
         method: 'GET',
@@ -96,5 +102,6 @@ export {
     postCategory,
     postTag,
     deleteTag,
-    deleteCategory
+    deleteCategory,
+    fetchUsers
 }

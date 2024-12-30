@@ -9,10 +9,12 @@ import {
   logout_icon,
   news_paper_icon,
   tag_icon,
+  users_icon,
 } from "@/assets/icons/dashboard.icon";
 import { clearToken } from "@/utils/helper/localStorage";
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 
@@ -31,13 +33,12 @@ const Wrapper = styled.nav`
     gap: 20px;
     align-items: start;
     height: 100%;
-
   }
 
   .collapse-button{
     border: none;
     background: transparent;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
   }
 `;
 const StyledLink = styled(Link)`
@@ -57,27 +58,30 @@ const StyledLink = styled(Link)`
     transition: all 0.3s ease;
   }
 
-  &:hover {
+  &:hover, &.active {
     color: #ff5121;
   }
 `;
 
 const Sidebar = ({collapsed, toggleSidebar}) => {
+  const path = usePathname();
+  console.log('path', path)
   return (
     <Wrapper id="sidebar" >
       <div className="link-wrapper">
         <button className="collapse-button" onClick={toggleSidebar}>{collapsed ? expand_icon: collapse_icon}</button>
-        <StyledLink href={"/dashboard/news"}>
+        <StyledLink className={path == "/dashboard/news" ? "active" : ""} href={"/dashboard/news"}>
           {news_paper_icon}
           <span className="nav-text">News</span>
         </StyledLink>
-        <StyledLink href={"/dashboard/news/add"}>
+        <StyledLink className={path == "/dashboard/news/add" ? "active" : ""} href={"/dashboard/news/add"}>
           {create_icon} <span className="nav-text">Create News</span>
         </StyledLink>
-        <StyledLink href={"/dashboard/categories"}>
+        <StyledLink className={path == "/dashboard/categories" ? "active" : ""} href={"/dashboard/categories"}>
           {category_icon} <span className="nav-text">Categories</span>
         </StyledLink>
-        <StyledLink href={"/dashboard/tags"}>{tag_icon} <span className="nav-text">Tags</span></StyledLink>
+        <StyledLink className={path == "/dashboard/tags" ? "active" : ""} href={"/dashboard/tags"}>{tag_icon} <span className="nav-text">Tags</span></StyledLink>
+        <StyledLink className={path == "/dashboard/users" ? "active" : ""} href={"/dashboard/users"}>{users_icon} <span className="nav-text">Users</span></StyledLink>
         <StyledLink href={"/"}>{home_icon} <span className="nav-text">Home</span></StyledLink>
       </div>
       <Button onClick={clearToken}>{logout_icon}</Button>
