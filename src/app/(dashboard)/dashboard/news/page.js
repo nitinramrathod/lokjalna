@@ -2,6 +2,7 @@
 
 import Table from '@/components/dashboard/table/Table';
 import DeleteButton from '@/components/DeleteButton';
+import useAuth from '@/utils/helper/useAuth';
 import { changeNewsStatus } from '@/utils/services/dashboard.services';
 import { adminGetNews, deleteNews } from '@/utils/services/news.services';
 import Link from 'next/link';
@@ -71,6 +72,8 @@ const NewsList = () => {
         }
     };
 
+    const user = useAuth();
+    const isAdmin = user?.role == 'admin';
 
     return (<>
         <Table
@@ -78,7 +81,6 @@ const NewsList = () => {
             addButton={AddButton}
             header={NEWS_HEADER}
         >
-
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>
                 <td><Link href={`/dashboard/news/${item?._id}`}>{item?.name || "--"}</Link></td>
@@ -96,9 +98,10 @@ const NewsList = () => {
                         title="Actions"
                     >
                         <Dropdown.Item as={Link} href={`/dashboard/news/${item?._id}`} eventKey="3">Edit</Dropdown.Item>
-                        <Dropdown.Item as="button" onClick={(e) => handleChangeStatus(item?._id, item?.status)} eventKey="1">{item?.status == "active" ? "Inactive" : "Active"}</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item onClick={()=>handleDelete(item?._id)} className='delete' eventKey="4">Delete</Dropdown.Item>
+                        {isAdmin && <><Dropdown.Item as="button" onClick={(e) => handleChangeStatus(item?._id, item?.status)} eventKey="1">{item?.status == "active" ? "Inactive" : "Active"}</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item onClick={() => handleDelete(item?._id)} className='delete' eventKey="4">Delete</Dropdown.Item>
+                        </>}
                     </DropdownButton>
                 </td>
             </tr>))}

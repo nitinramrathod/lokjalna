@@ -65,9 +65,18 @@ const StyledLink = styled(Link)`
   }
 `;
 
+
+
 const Sidebar = ({ collapsed, toggleSidebar }) => {
   const path = usePathname();
   const user = useAuth();
+  const isAdmin = user?.role == 'admin';
+
+  const handleLogOut = ()=>{
+    clearToken();
+    window.location.href = "/";
+  }
+
   return (
     <Wrapper id="sidebar">
       <div className="link-wrapper">
@@ -87,7 +96,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
         >
           {create_icon} <span className="nav-text">Create News</span>
         </StyledLink>
-        {user?.role == "admin" && (
+        {isAdmin && (
           <StyledLink
             className={path == "/dashboard/categories" ? "active" : ""}
             href={"/dashboard/categories"}
@@ -96,7 +105,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           </StyledLink>
         )}
 
-        {user?.role == "admin" && (
+        {isAdmin && (
           <StyledLink
             className={path == "/dashboard/tags" ? "active" : ""}
             href={"/dashboard/tags"}
@@ -105,7 +114,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           </StyledLink>
         )}
 
-        {user?.role == "admin" && (
+        {isAdmin && (
           <StyledLink
             className={path == "/dashboard/users" ? "active" : ""}
             href={"/dashboard/users"}
@@ -117,7 +126,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           {home_icon} <span className="nav-text">Home</span>
         </StyledLink>
       </div>
-      <Button onClick={clearToken}>{logout_icon}</Button>
+      <Button onClick={handleLogOut}>{logout_icon}</Button>
     </Wrapper>
   );
 };
