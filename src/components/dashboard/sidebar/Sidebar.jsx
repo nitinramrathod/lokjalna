@@ -12,6 +12,7 @@ import {
   users_icon,
 } from "@/assets/icons/dashboard.icon";
 import { clearToken } from "@/utils/helper/localStorage";
+import useAuth from "@/utils/helper/useAuth";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,7 +26,7 @@ const Wrapper = styled.nav`
   padding: 30px 20px;
   background: #d9d9d9;
   height: 100%;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   .link-wrapper {
     display: flex;
@@ -35,7 +36,7 @@ const Wrapper = styled.nav`
     height: 100%;
   }
 
-  .collapse-button{
+  .collapse-button {
     border: none;
     background: transparent;
     margin-bottom: 25px;
@@ -51,38 +52,70 @@ const StyledLink = styled(Link)`
   transition: all 0.3s ease;
   align-items: center;
   gap: 10px;
-  
-  .nav-text{
+
+  .nav-text {
     display: inline-block;
     min-width: max-content;
     transition: all 0.3s ease;
   }
 
-  &:hover, &.active {
+  &:hover,
+  &.active {
     color: #ff5121;
   }
 `;
 
-const Sidebar = ({collapsed, toggleSidebar}) => {
+const Sidebar = ({ collapsed, toggleSidebar }) => {
   const path = usePathname();
-  console.log('path', path)
+  const user = useAuth();
   return (
-    <Wrapper id="sidebar" >
+    <Wrapper id="sidebar">
       <div className="link-wrapper">
-        <button className="collapse-button" onClick={toggleSidebar}>{collapsed ? expand_icon: collapse_icon}</button>
-        <StyledLink className={path == "/dashboard/news" ? "active" : ""} href={"/dashboard/news"}>
+        <button className="collapse-button" onClick={toggleSidebar}>
+          {collapsed ? expand_icon : collapse_icon}
+        </button>
+        <StyledLink
+          className={path == "/dashboard/news" ? "active" : ""}
+          href={"/dashboard/news"}
+        >
           {news_paper_icon}
           <span className="nav-text">News</span>
         </StyledLink>
-        <StyledLink className={path == "/dashboard/news/add" ? "active" : ""} href={"/dashboard/news/add"}>
+        <StyledLink
+          className={path == "/dashboard/news/add" ? "active" : ""}
+          href={"/dashboard/news/add"}
+        >
           {create_icon} <span className="nav-text">Create News</span>
         </StyledLink>
-        <StyledLink className={path == "/dashboard/categories" ? "active" : ""} href={"/dashboard/categories"}>
-          {category_icon} <span className="nav-text">Categories</span>
+        {user?.role == "admin" && (
+          <StyledLink
+            className={path == "/dashboard/categories" ? "active" : ""}
+            href={"/dashboard/categories"}
+          >
+            {category_icon} <span className="nav-text">Categories</span>
+          </StyledLink>
+        )}
+
+        {user?.role == "admin" && (
+          <StyledLink
+            className={path == "/dashboard/tags" ? "active" : ""}
+            href={"/dashboard/tags"}
+          >
+            {tag_icon} <span className="nav-text">Tags</span>
+          </StyledLink>
+        )}
+
+        {user?.role == "admin" && (
+          <StyledLink
+            className={path == "/dashboard/users" ? "active" : ""}
+            href={"/dashboard/users"}
+          >
+            {users_icon} <span className="nav-text">Users</span>
+          </StyledLink>
+        )}
+        <StyledLink href={"/"}>
+          {home_icon} <span className="nav-text">Home</span>
         </StyledLink>
-        <StyledLink className={path == "/dashboard/tags" ? "active" : ""} href={"/dashboard/tags"}>{tag_icon} <span className="nav-text">Tags</span></StyledLink>
-        <StyledLink className={path == "/dashboard/users" ? "active" : ""} href={"/dashboard/users"}>{users_icon} <span className="nav-text">Users</span></StyledLink>
-        <StyledLink href={"/"}>{home_icon} <span className="nav-text">Home</span></StyledLink>
       </div>
       <Button onClick={clearToken}>{logout_icon}</Button>
     </Wrapper>

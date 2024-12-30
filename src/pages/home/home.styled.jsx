@@ -23,7 +23,7 @@ const Category = styled.p`
   margin: 0;
   border: 1px solid black;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 11px;
   padding: 2px 7px;
   text-transform: uppercase;
   background: #f5f5f5;
@@ -72,7 +72,7 @@ const MainNews = styled(Link)`
   .category-wrapper {
     padding: 10px 0;
     display: flex;
-    gap: 15px;
+    gap: 10px;
   }
 
   &:hover {

@@ -1,5 +1,5 @@
 "use client";
-import { saveToken } from "@/utils/helper/localStorage";
+import { saveToken, saveUser } from "@/utils/helper/localStorage";
 import { getLogin } from "@/utils/services/login.services";
 import styled from "@emotion/styled";
 import Link from "next/link";
@@ -53,7 +53,8 @@ const LoginForm = () => {
         setData("");
         setError("");
         saveToken(resp?.token);
-        route.push('/dashboard/news')
+        saveUser(resp?.user)
+        route.push('/dashboard/news');
       })
       .catch((err) => {
         setError({

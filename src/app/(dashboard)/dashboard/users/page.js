@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 
 const NEWS_HEADER = [
     "Sr. No.",
+    "Role",
     "Name",
     "Email",
     "Id",
@@ -71,6 +72,7 @@ const NewsList = () => {
 
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>
+                <td>{item?.role || "--"}</td>
                 <td>{item?.name || "--"}</td>
                 <td>{item?.email || "--"}</td>
                 <td>{item?._id || "--"}</td>

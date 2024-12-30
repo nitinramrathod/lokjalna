@@ -94,7 +94,7 @@ const AddUser = ({ callback, handleClose }) => {
       <Form.Label htmlFor="inputPassword4">Confirm Password</Form.Label>
       <Form.Control
         onChange={handleInputChange}
-        type="text"
+        type="password"
         id="inputPassword4"
         name="confirm_password"
         placeholder="Enter category name"

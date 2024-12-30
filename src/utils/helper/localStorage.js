@@ -3,6 +3,12 @@ const saveToken = (token) => {
     localStorage.setItem('jwtToken', token);
     }
 };
+const saveUser = (userInfo) => {
+    const stringUser = JSON.stringify(userInfo)
+    if (typeof window !== "undefined") {
+    localStorage.setItem('user', stringUser);
+    }
+};
 
 const getToken = () => {
     if (typeof window !== "undefined") {
@@ -19,5 +25,6 @@ const clearToken = () => {
 export {
     saveToken,
     getToken,
-    clearToken
+    clearToken,
+    saveUser
 }
