@@ -51,12 +51,37 @@ const postTag = (data) => {
         data,
     })
 }
+const postUser = (data) => {
+    const token = getToken();
+
+    return axios({
+        method: 'POST',
+        url: BASE_URL_V1 + '/user',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        data,
+    })
+}
 const deleteTag = (id) => {
     const token = getToken();
 
     return axios({
         method: 'DELETE',
         url: BASE_URL_V1 + '/tag/' + id,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    })
+}
+const deleteUser = (id) => {
+    const token = getToken();
+
+    return axios({
+        method: 'DELETE',
+        url: BASE_URL_V1 + '/user/' + id,
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
@@ -103,5 +128,7 @@ export {
     postTag,
     deleteTag,
     deleteCategory,
-    fetchUsers
+    fetchUsers,
+    postUser,
+    deleteUser
 }

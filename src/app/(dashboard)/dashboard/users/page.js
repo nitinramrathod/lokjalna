@@ -1,16 +1,15 @@
 "use client"
-import { trash_icon } from '@/assets/icons/dashboard.icon';
-import AddTag from '@/components/dashboard/AddTag';
 import AddUser from '@/components/dashboard/AddUser';
 import DeleteButton from '@/components/dashboard/common';
 import Offcanvas from '@/components/dashboard/offcanvas/Offcanvas';
 import Table from '@/components/dashboard/table/Table';
-import { deleteTag, fetchTags, fetchUsers } from '@/utils/services/dashboard.services';
+import { deleteUser, fetchUsers } from '@/utils/services/dashboard.services';
 import React, { useEffect, useState } from 'react'
 
 const NEWS_HEADER = [
     "Sr. No.",
     "Name",
+    "Email",
     "Id",
     "Created On",
     "Action"
@@ -51,7 +50,7 @@ const NewsList = () => {
     }
 
     const handleDelete = (id) => {
-        deleteTag(id).then(res => {
+        deleteUser(id).then(res => {
             console.log('res', res)
             fetchData();
 
@@ -73,7 +72,8 @@ const NewsList = () => {
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>
                 <td>{item?.name || "--"}</td>
-                <td>{item?._id}</td>
+                <td>{item?.email || "--"}</td>
+                <td>{item?._id || "--"}</td>
                 <td>{new Date(item?.createdAt)?.toISOString()?.split("T")[0] || "--"}</td>
                 <td className='text-center' onClick={(e)=>handleDelete(item?._id)}><DeleteButton /></td>
             </tr>))}
