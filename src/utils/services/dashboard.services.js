@@ -4,71 +4,97 @@ import { getToken } from "../helper/localStorage";
 
 const BASE_URL_V1 = 'https://lokjyot-api.onrender.com/api/v1'
 
-const fetchCategories = ()=>{
+const fetchCategories = () => {
     return axios({
         method: 'GET',
-        url: BASE_URL_V1+'/category'
+        url: BASE_URL_V1 + '/category'
     })
 }
 
-const changeNewsStatus = (id,data)=>{
+const changeNewsStatus = (id, data) => {
     const token = getToken();
 
     return axios({
         method: 'POST',
-        url: BASE_URL_V1+'/admin/news/change-status/'+id,
+        url: BASE_URL_V1 + '/admin/news/change-status/' + id,
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
-          },
+        },
         data,
     })
 }
 
-const postCategory = (data)=>{
+const postCategory = (data) => {
     const token = getToken();
 
     return axios({
         method: 'POST',
-        url: BASE_URL_V1+'/category',
+        url: BASE_URL_V1 + '/category',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
-          },
+        },
         data,
     })
 }
-const postTag = (data)=>{
+const postTag = (data) => {
     const token = getToken();
 
     return axios({
         method: 'POST',
-        url: BASE_URL_V1+'/tag',
+        url: BASE_URL_V1 + '/tag',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
-          },
+        },
         data,
     })
 }
-const fetchTags = ()=>{
+const deleteTag = (id) => {
+    const token = getToken();
+
     return axios({
-        method: 'GET',
-        url: BASE_URL_V1+'/tag'
+        method: 'DELETE',
+        url: BASE_URL_V1 + '/tag/' + id,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
     })
 }
-const fetchUser = ()=>{
+const deleteCategory = (id) => {
+    const token = getToken();
+
+    return axios({
+        method: 'DELETE',
+        url: BASE_URL_V1 + '/category/' + id,
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    })
+}
+const fetchTags = () => {
     return axios({
         method: 'GET',
-        url: BASE_URL_V1+'/user'
+        url: BASE_URL_V1 + '/tag'
+    })
+}
+const fetchUser = () => {
+    return axios({
+        method: 'GET',
+        url: BASE_URL_V1 + '/user'
     })
 }
 
-export{
+export {
     fetchCategories,
     fetchTags,
     fetchUser,
     changeNewsStatus,
     postCategory,
-    postTag
+    postTag,
+    deleteTag,
+    deleteCategory
 }

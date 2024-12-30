@@ -8,8 +8,21 @@ const Wrapper = styled.div`
   padding: 0 20px;
   width: 100%;
   height: fit-content;
+  height: 100%;
   overflow-y: auto;
   max-height: calc(100vh - 60px);
+
+  .table-responsive{
+    height: 100%;
+    min-height: 400px;
+  }
+
+  table {
+    width: 100%;
+    overflow-x: auto;
+    margin: 0;
+    position: relative;
+  }
 
   .delete {
     color: red;
@@ -27,12 +40,7 @@ const Wrapper = styled.div`
     }
   }
 
-  table {
-    width: 100%;
-    overflow-x: auto;
-    margin: 0;
-    position: relative;
-  }
+ 
 `;
 const TableHeader = styled.div`
   padding-bottom: 20px;

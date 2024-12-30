@@ -1,15 +1,17 @@
 "use client"
 import AddCategory from '@/components/dashboard/AddCategory';
+import DeleteButton from '@/components/dashboard/common';
 import Offcanvas from '@/components/dashboard/offcanvas/Offcanvas';
 import Table from '@/components/dashboard/table/Table';
-import { fetchCategories } from '@/utils/services/dashboard.services';
+import { deleteCategory, fetchCategories } from '@/utils/services/dashboard.services';
 import React, { useEffect, useState } from 'react'
 
 const NEWS_HEADER = [
     "Sr. No.",
     "Name",
     "Id",
-    "Created On"
+    "Created On",
+    "Action"
 ]
 
 const CategoryList = () => {
@@ -45,6 +47,17 @@ const CategoryList = () => {
         onClick: showCanvas
     }
 
+    const handleDelete = (id) => {
+        deleteCategory(id).then(res => {
+            console.log('res', res)
+            fetchData();
+
+        }).catch(err => {
+            console.log('err', err)
+
+        })
+    }
+
     return (<>
         <Table
             loading={loading}
@@ -57,6 +70,8 @@ const CategoryList = () => {
                 <td>{item?.name || "--"}</td>
                 <td>{item?._id}</td>
                 <td>{new Date(item?.createdAt)?.toISOString()?.split("T")[0] || "--"}</td>
+                <td className='text-center' onClick={(e)=>handleDelete(item?._id)}><DeleteButton /></td>
+
             </tr>))}
 
         </Table>

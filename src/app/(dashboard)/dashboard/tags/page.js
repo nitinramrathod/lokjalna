@@ -1,20 +1,18 @@
 "use client"
+import { trash_icon } from '@/assets/icons/dashboard.icon';
 import AddTag from '@/components/dashboard/AddTag';
+import DeleteButton from '@/components/dashboard/common';
 import Offcanvas from '@/components/dashboard/offcanvas/Offcanvas';
 import Table from '@/components/dashboard/table/Table';
-import DeleteButton from '@/components/DeleteButton';
-import { fetchTags } from '@/utils/services/dashboard.services';
-import { adminGetNews } from '@/utils/services/news.services';
-import Link from 'next/link';
+import { deleteTag, fetchTags } from '@/utils/services/dashboard.services';
 import React, { useEffect, useState } from 'react'
-import { Button, Container } from 'react-bootstrap'
-
 
 const NEWS_HEADER = [
     "Sr. No.",
     "Name",
     "Id",
-    "Created On"
+    "Created On",
+    "Action"
 ]
 
 const NewsList = () => {
@@ -37,10 +35,8 @@ const NewsList = () => {
             console.error("Error fetching dropdown data:", error);
         }
     };
+
     useEffect(() => {
-
-
-
         fetchData();
     }, [])
 
@@ -51,6 +47,17 @@ const NewsList = () => {
         type: "button",
         text: "Create Tag",
         onClick: showCanvas
+    }
+
+    const handleDelete = (id) => {
+        deleteTag(id).then(res => {
+            console.log('res', res)
+            fetchData();
+
+        }).catch(err => {
+            console.log('err', err)
+
+        })
     }
 
 
@@ -67,10 +74,11 @@ const NewsList = () => {
                 <td>{item?.name || "--"}</td>
                 <td>{item?._id}</td>
                 <td>{new Date(item?.createdAt)?.toISOString()?.split("T")[0] || "--"}</td>
-
+                <td className='text-center' onClick={(e)=>handleDelete(item?._id)}><DeleteButton /></td>
             </tr>))}
 
         </Table>
+
 
         <Offcanvas
             show={show}
