@@ -16,9 +16,18 @@ async function getNews() {
     return response.json();
 }
 async function adminGetNews() {
+const token = getToken();
+  
     return axios({
         method: 'GET',
-        url: BASE_URL_V1+'/admin/news'
+        url: BASE_URL_V1+'/admin/news',
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          cache: 'no-store',
+        }
     })
 }
 
