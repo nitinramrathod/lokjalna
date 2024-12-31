@@ -1,7 +1,6 @@
 "use client"
 
 import Table from '@/components/dashboard/table/Table';
-import DeleteButton from '@/components/DeleteButton';
 import useAuth from '@/utils/helper/useAuth';
 import { changeNewsStatus } from '@/utils/services/dashboard.services';
 import { adminGetNews, deleteNews } from '@/utils/services/news.services';

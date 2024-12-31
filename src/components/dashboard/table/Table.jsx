@@ -60,15 +60,15 @@ const StyledLink = styled(Link)`
   font-size: 16px;
   color: #ff570f;
 `;
-const Tr = styled.tr``;
+
 const Th = styled.th`
-    background: #4d4d4d;
-    z-index: 2;
+    background: #4d4d4d !important;
+    z-index: 2; 
     position: sticky;
-    color: white;
+    color: white !important;
     min-width: ${({minWidth})=> minWidth ? minWidth : "fit-content"};
     top: -2px;
- 
+    padding: 10px !important;
 `;
 
 const Table = ({
@@ -92,11 +92,11 @@ const Table = ({
 
       <BootstrapTable striped responsive bordered hover>
         <thead>
-          <Tr>
+          <tr>
             {header?.map((item, index) => (
               <Th minWidth={item?.minWidth}  key={item + index}>{item?.title || "--"}</Th>
             ))}
-          </Tr>
+          </tr>
         </thead>
         <tbody>
           {loading ? (

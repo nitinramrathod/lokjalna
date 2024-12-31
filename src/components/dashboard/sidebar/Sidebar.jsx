@@ -18,6 +18,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import UserAvatar from "./UserAvatar";
 
 const Wrapper = styled.nav`
   display: flex;
@@ -126,7 +127,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           {home_icon} <span className="nav-text">Home</span>
         </StyledLink>
       </div>
-      <Button onClick={handleLogOut}>{logout_icon}</Button>
+      <UserAvatar handleLogOut={handleLogOut} user={user}/>
     </Wrapper>
   );
 };

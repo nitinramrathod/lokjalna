@@ -12,7 +12,6 @@ const collapsedStyle = css`
 
   #main-content {
     width: calc(100% - 60px);
-    padding-top: 30px;
   }
   .nav-text {
     opacity: 0;
