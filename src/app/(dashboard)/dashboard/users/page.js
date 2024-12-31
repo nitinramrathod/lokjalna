@@ -6,14 +6,35 @@ import Table from '@/components/dashboard/table/Table';
 import { deleteUser, fetchUsers } from '@/utils/services/dashboard.services';
 import React, { useEffect, useState } from 'react'
 
-const NEWS_HEADER = [
-    "Sr. No.",
-    "Role",
-    "Name",
-    "Email",
-    "Id",
-    "Created On",
-    "Action"
+const USER_HEADER = [
+    {
+        title: "Sr. No.",
+        minWidth: "70px"
+    },
+    {
+        title: "Role",
+        minWidth: "90px"
+    },
+    {
+        title: "Name",
+        minWidth: "130px"
+    },
+    {
+        title: "Email",
+        minWidth: "90px"
+    },
+    {
+        title: "Id",
+        minWidth: "90px"
+    },
+    {
+        title: "Created On",
+        minWidth: "130px"
+    },
+    {
+        title: "Action.",
+        minWidth: "90px"
+    }
 ]
 
 const NewsList = () => {
@@ -67,7 +88,7 @@ const NewsList = () => {
             addButton={addButton}
             loading={loading}
             title="Users List"
-            header={NEWS_HEADER}
+            header={USER_HEADER}
         >
 
             {data?.map((item, index) => (<tr key={item?._id}>

@@ -11,13 +11,34 @@ import { Dropdown, DropdownButton } from 'react-bootstrap'
 
 
 const NEWS_HEADER = [
-    "Sr. No.",
-    "Title",
-    "Author Name",
-    "Publish Date",
-    "Category",
-    "Status",
-    "Action",
+    {
+        title: "Sr. No.",
+        minWidth: "80px"
+    },
+    {
+        title: "Title",
+        minWidth: "300px"
+    },
+    {
+        title: "Author Name",
+        minWidth: "150px"
+    },
+    {
+        title: "Publish Date",
+        minWidth: "120px"
+    },
+    {
+        title: "Category",
+        minWidth: "140px"
+    },
+    {
+        title: "Status.",
+        minWidth: "90px"
+    },
+    {
+        title: "Action.",
+        minWidth: "90px"
+    }
 ]
 
 const AddButton = {

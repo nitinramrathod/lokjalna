@@ -12,6 +12,7 @@ const collapsedStyle = css`
 
   #main-content {
     width: calc(100% - 60px);
+    padding-top: 30px;
   }
   .nav-text {
     opacity: 0;
@@ -22,7 +23,7 @@ const collapsedStyle = css`
 const Wrapper = styled.section`
   display: flex;
   height: 100vh;
-  min-width: 1024px;
+  overflow: hidden;
 
   #sidebar {
     width: 200px;
@@ -31,9 +32,7 @@ const Wrapper = styled.section`
   #main-content {
     transition: all 0.3s ease;
     padding-top: 20px;
-    width: calc(100% - 200px);
-    height: calc(100vh);
-    overflow-y: auto;
+    width: calc(100% - 200px);  
   }
   ${({ collapsed }) => (collapsed ? collapsedStyle : "")}
 `;

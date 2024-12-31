@@ -4,9 +4,7 @@ import { Container } from 'react-bootstrap'
 
 const NewsDetail = () => {
     return (
-        <Container>
             <NewsDetailForm />
-        </Container>
     )
 }
 

@@ -9,12 +9,11 @@ const Wrapper = styled.div`
   width: 100%;
   height: fit-content;
   height: 100%;
-  overflow-y: auto;
-  max-height: calc(100vh - 60px);
+  /* overflow-y: auto; */
 
   .table-responsive{
-    height: 100%;
-    min-height: 400px;
+    height: calc(100% - 70px);
+    min-height: 300px;
   }
 
   table {
@@ -51,6 +50,7 @@ const TableHeader = styled.div`
   .title {
     font-size: 24px;
     font-weight: 600;
+    margin-bottom: 0;
   }
 `;
 
@@ -60,14 +60,15 @@ const StyledLink = styled(Link)`
   font-size: 16px;
   color: #ff570f;
 `;
-const Tr = styled.tr`
-  th {
+const Tr = styled.tr``;
+const Th = styled.th`
     background: #4d4d4d;
+    z-index: 2;
     position: sticky;
     color: white;
-    min-width: fit-content;
-    top: 0;
-  }
+    min-width: ${({minWidth})=> minWidth ? minWidth : "fit-content"};
+    top: -2px;
+ 
 `;
 
 const Table = ({
@@ -93,7 +94,7 @@ const Table = ({
         <thead>
           <Tr>
             {header?.map((item, index) => (
-              <th key={item + index}>{item}</th>
+              <Th minWidth={item?.minWidth}  key={item + index}>{item?.title || "--"}</Th>
             ))}
           </Tr>
         </thead>

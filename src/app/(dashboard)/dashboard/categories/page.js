@@ -7,11 +7,26 @@ import { deleteCategory, fetchCategories } from '@/utils/services/dashboard.serv
 import React, { useEffect, useState } from 'react'
 
 const NEWS_HEADER = [
-    "Sr. No.",
-    "Name",
-    "Id",
-    "Created On",
-    "Action"
+    {
+        title: "Sr. No.",
+        minWidth: "70px"
+    },
+    {
+        title: "Name",
+        minWidth: "130px"
+    },
+    {
+        title: "Id",
+        minWidth: "90px"
+    },
+    {
+        title: "Created On",
+        minWidth: "130px"
+    },
+    {
+        title: "Action.",
+        minWidth: "90px"
+    }
 ]
 
 const CategoryList = () => {
@@ -43,7 +58,7 @@ const CategoryList = () => {
 
     const addButton = {
         type: "button",
-        text: "Create Category",
+        text: "Create",
         onClick: showCanvas
     }
 
