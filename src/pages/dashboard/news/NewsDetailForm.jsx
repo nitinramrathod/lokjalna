@@ -18,7 +18,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 const FormWrapper = styled.div`
   height: 100%;
   overflow-y: auto;
-  padding-bottom: 20px;
+  padding: 20px;
 `;
 const NewsDetailForm = ({ defaultData = "" }) => {
   const formattedData = {
@@ -95,7 +95,6 @@ const NewsDetailForm = ({ defaultData = "" }) => {
 
   return (
     <FormWrapper>
-      <Container>
         <h2 className="pb-4">{defaultData ? "Update News" : "Add News"}</h2>
         <Row className="mb-4">
           <Col sm="12">
@@ -111,7 +110,21 @@ const NewsDetailForm = ({ defaultData = "" }) => {
           </Col>
         </Row>
         <Row>
-          <Col sm="6" className="mb-4">
+          <Col sm="12" className="mb-5">
+            <Form.Label htmlFor="short_description">Short Description</Form.Label>
+            <Form.Control
+              onChange={handleInputChange}
+              rows={3}
+              as="textarea"
+              id="description"
+              name="short_description"
+              value={data?.short_description || ""}
+              aria-describedby="passwordHelpBlock"
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm="4" className="mb-4">
             <Form.Label htmlFor="inputPassword5">Image URL</Form.Label>
             <Form.Control
               onChange={handleInputChange}
@@ -122,7 +135,7 @@ const NewsDetailForm = ({ defaultData = "" }) => {
               aria-describedby="passwordHelpBlock"
             />
           </Col>
-          <Col sm="6" className="mb-4">
+          <Col sm="4" className="mb-4">
             <Form.Label htmlFor="inputPassword5">Location</Form.Label>
             <Form.Control
               onChange={handleInputChange}
@@ -133,9 +146,7 @@ const NewsDetailForm = ({ defaultData = "" }) => {
               aria-describedby="passwordHelpBlock"
             />
           </Col>
-        </Row>
-        <Row>
-          <Col sm="6" className="mb-4">
+          <Col sm="4" className="mb-4">
             <Form.Label htmlFor="inputPassword5">Publish Date</Form.Label>
             <Form.Control
               type="date"
@@ -146,7 +157,9 @@ const NewsDetailForm = ({ defaultData = "" }) => {
               aria-describedby="passwordHelpBlock"
             />
           </Col>
-          <Col sm="6" className="mb-4">
+        </Row>
+        <Row>
+        <Col sm="4" className="mb-4">
             <Form.Label htmlFor="author_name">Author Name</Form.Label>
             <Form.Control
               type="text"
@@ -157,9 +170,7 @@ const NewsDetailForm = ({ defaultData = "" }) => {
               aria-describedby="passwordHelpBlock"
             />
           </Col>
-        </Row>
-        <Row>
-          <Col sm="6" className="mb-4">
+          <Col sm="4" className="mb-4">
             <Form.Label htmlFor="inputPassword5">Tags</Form.Label>
             <MultiSelect
               defaultValue={data?.tags}
@@ -167,7 +178,7 @@ const NewsDetailForm = ({ defaultData = "" }) => {
               options={dropdownOptions?.tags}
             />
           </Col>
-          <Col sm="6" className="mb-4">
+          <Col sm="4" className="mb-4">
             <Form.Label htmlFor="inputPassword5">Category</Form.Label>
             <SingleSelect
               defaultValue={data?.category}
@@ -197,7 +208,6 @@ const NewsDetailForm = ({ defaultData = "" }) => {
             </Button>
           </Col>
         </Row>
-      </Container>
     </FormWrapper>
   );
 };
