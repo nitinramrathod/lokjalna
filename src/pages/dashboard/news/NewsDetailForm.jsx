@@ -127,6 +127,8 @@ const NewsDetailForm = ({ defaultData = "" }) => {
             name="short_description"
             id="short_description"
             label="Short Description"
+            placeholder="Enter Short Description"
+
             rows={3}
             error={errors?.name}
           />
@@ -213,6 +215,8 @@ const NewsDetailForm = ({ defaultData = "" }) => {
             name="long_description"
             id="long_description"
             label="Description"
+            placeholder="Enter Description"
+
             rows={7}
             error={errors?.long_description}
           />

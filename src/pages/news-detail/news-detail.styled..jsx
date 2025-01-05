@@ -12,7 +12,7 @@ const Wrapper = styled.section`
     margin-bottom: 10px;
   }
 
-  .date{
+  .date {
     text-align: center;
     margin-bottom: 20px;
   }
@@ -29,7 +29,7 @@ const StyledBackButton = styled.button`
   align-items: center;
   font-weight: 500;
   color: orange;
-  svg path{
+  svg path {
     fill: orange;
   }
 `;
@@ -49,29 +49,43 @@ const DetailWrapper = styled.article`
   text-decoration: none;
   background: transparent;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 26px;
   padding: 5px 15px;
   border-radius: 25px;
+  letter-spacing: 0.3px;
   margin: 20px auto;
   width: fit-content;
   max-width: 800px;
 
+  .short-description {
+    font-weight: 600;
+    font-size: 18px;
+    font-style: italic;
+  }
+  .author-name {
+    font-weight: 700;
+    text-align: end;
+    font-size: 18px;
+  }
+
   @media (min-width: 1200px) {
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 18px;
+    line-height: 36px;
+
+    .short-description {
+      font-size: 20px;
+    }
   }
 `;
 
-const BackButton = ({children})=>{
-    const router = useRouter()
+const BackButton = ({ children }) => {
+  const router = useRouter();
 
-    const handleClick = ()=>{
-        router.back()
-    }
-    return (
-        <StyledBackButton onClick={handleClick}>{children}</StyledBackButton>
-    )
-}
+  const handleClick = () => {
+    router.back();
+  };
+  return <StyledBackButton onClick={handleClick}>{children}</StyledBackButton>;
+};
 
 export default Wrapper;
 export { BackButton, DetailWrapper, Category };

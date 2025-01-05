@@ -1,23 +1,23 @@
 import Image from "next/image";
 import React from "react";
 import { DetailHeading } from "../common/text.styled";
-import Wrapper, { BackButton, Category, DetailWrapper } from "./news-detail.styled.";
+import Wrapper, {
+  BackButton,
+  Category,
+  DetailWrapper,
+} from "./news-detail.styled.";
 import { back_icon } from "@/assets/icons/navigation.icon";
 import { Date } from "../home/home.styled";
 import { formatDateWithDay } from "@/utils/helper/dateFormater";
 
-const Landing = ({data}) => {
+const Landing = ({ data }) => {
   return (
     <Wrapper>
       <BackButton>{back_icon} Back to list</BackButton>
 
-      <Category>
-        Sport News
-      </Category>
+      <Category>{data?.category?.name || "--"}</Category>
 
-      <DetailHeading className="heading">
-        {data?.name}
-      </DetailHeading>
+      <DetailHeading className="heading">{data?.name}</DetailHeading>
       <Date className="date">{formatDateWithDay(data?.publish_date)}</Date>
       <Image
         className="landing-image"
@@ -27,8 +27,10 @@ const Landing = ({data}) => {
         alt={data?.name}
       />
       <DetailWrapper>
-      {data?.long_description}
-        </DetailWrapper>
+        <p className="short-description">{data?.short_description}</p>
+        <div dangerouslySetInnerHTML={{ __html: data?.long_description }} />
+        <h3 className="author-name">-{data?.author_name}</h3>
+      </DetailWrapper>
     </Wrapper>
   );
 };

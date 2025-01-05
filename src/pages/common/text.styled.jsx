@@ -20,14 +20,14 @@ export const truncate3line = css`
 
 export const DetailHeading = styled.h1`
   font-size: 20px;
-  line-height: 24px;
+  line-height: 34px;
   color: #2d2d2d;
   font-weight: 600;
   text-align: center;
 
   @media (min-width: 1200px) {
     font-size: 32px;
-    line-height: 36px;
+    line-height: 48px;
 
     
   }

@@ -33,7 +33,7 @@ const Rr = styled.tr`
   }
 `;
 
-const TableLoader = ({ rows = 10, columns = 5 }) => {
+const TableLoader = ({ rows = 16, columns = 5 }) => {
   return Array.from({ length: rows })?.map((item) => (
     <Rr key={item}>
       {Array.from({ length: columns })?.map((column) => (
