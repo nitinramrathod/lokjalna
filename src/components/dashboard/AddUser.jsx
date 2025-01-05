@@ -1,33 +1,40 @@
 import { postTag, postUser } from "@/utils/services/dashboard.services";
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import SingleSelect from "../form/SingleSelect";
+import Input from "../form/Input";
 
 const AddUser = ({ callback, handleClose }) => {
   const [data, setData] = useState({});
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = () => {
     const formData = new FormData();
-  
+    setLoading(true);
+
     for (const [key, value] of Object.entries(data)) {
       if (value !== null && value !== undefined) {
         formData.append(key, value);
       }
     }
-  
+
     if (data?.role?.value) {
       formData.set("role", data.role.value);
     }
-  
+
     postUser(formData)
       .then((res) => {
-        console.log("User successfully created:", res);
+        setLoading(false);
+        setErrors("");
         if (callback) callback();
         if (handleClose) handleClose();
       })
       .catch((err) => {
+        const errors = err.response.data.errors;
+        setLoading(false);
+        setErrors(errors);
         console.error("Error creating user:", err);
-        // Optionally, add user feedback here (e.g., toast notification)
       });
   };
 
@@ -35,13 +42,12 @@ const AddUser = ({ callback, handleClose }) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-
-  const handleDropdownChange = (e, name)=>{
-    setData(prev=>({
+  const handleDropdownChange = (e, name) => {
+    setData((prev) => ({
       ...prev,
-      [name]: e
+      [name]: e,
     }));
-  }
+  };
 
   const USER_ROLE = [
     { label: "Admin", value: "admin" },
@@ -51,57 +57,65 @@ const AddUser = ({ callback, handleClose }) => {
   return (
     <div>
       <Col className="pb-4">
-        <Form.Label htmlFor="inputPassword5">Name</Form.Label>
-        <Form.Control
+        <Input
           onChange={handleInputChange}
+          value={data?.name || ""}
           type="text"
-          id="inputPassword1"
+          id="name"
           name="name"
-          placeholder="Enter category name"
-          aria-describedby="passwordHelpBlock"
+          label="Name"
+          placeholder="Enter Name"
+          error={errors?.name}
         />
       </Col>
       <Col className="pb-4">
-        <Form.Label htmlFor="inputPassword5">Email Id</Form.Label>
-        <Form.Control
+        <Input
           onChange={handleInputChange}
-          type="text"
-          id="inputPassword2"
+          value={data?.email || ""}
+          type="email"
+          id="email"
           name="email"
-          placeholder="Enter category name"
-          aria-describedby="passwordHelpBlock"
+          label="Email"
+          placeholder="Enter email"
+          error={errors?.email}
         />
       </Col>
       <Col className="mb-4">
-        <Form.Label htmlFor="inputPassword3">Role</Form.Label>
         <SingleSelect
-        defaultValue={USER_ROLE[1]}
-         onChange={(e)=>handleDropdownChange(e, "role")}
-         options={USER_ROLE}
+          label={"Role"}
+          defaultValue={USER_ROLE[1]}
+          onChange={(e) => handleDropdownChange(e, "role")}
+          options={USER_ROLE}
+          error={errors?.role}
         />
       </Col>
       <Col className="mb-4">
-        <Form.Label htmlFor="inputPassword3">Password</Form.Label>
-        <Form.Control
+        <Input
           onChange={handleInputChange}
+          value={data?.password || ""}
           type="text"
-          id="inputPassword3"
+          id="password"
           name="password"
-          placeholder="Enter category name"
-          aria-describedby="passwordHelpBlock"
+          label="Password"
+          placeholder="Enter password"
+          error={errors?.password}
         />
       </Col>
-      <Form.Label htmlFor="inputPassword4">Confirm Password</Form.Label>
-      <Form.Control
-        onChange={handleInputChange}
-        type="password"
-        id="inputPassword4"
-        name="confirm_password"
-        placeholder="Enter category name"
-        aria-describedby="passwordHelpBlock"
-      />
-      <Button onClick={handleSubmit} className="mt-4 px-4">
-        Save
+      <Col className="mb-4">
+        <Input
+          onChange={handleInputChange}
+          value={data?.confirm_password || ""}
+          type="password"
+          id="confirm_password"
+          name="confirm_password"
+          label="Confirm Password"
+          placeholder="Enter confirm password"
+          error={errors?.confirm_password}
+        />
+      </Col>
+
+      <Button disabled={loading} onClick={handleSubmit} className="px-5 ">
+        {loading ? <Spinner animation="border" size="sm" /> : "Save"}
       </Button>
     </div>
   );

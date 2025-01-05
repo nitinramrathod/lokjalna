@@ -47,23 +47,17 @@ async function getSingleNews(slug) {
 async function postNews(data) {
   const token = getToken();
 
-  try {
-    const response = await axios.post(
-      'https://lokjyot-api.onrender.com/api/v1/admin/news',
-      data,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        cache: 'no-store',
-      }
-    );
+  return axios({
+    method: 'POST',
+    url: BASE_URL_V1 + '/admin/news',
+    data,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    cache: 'no-store',
 
-    return response.data;
-  } catch (error) {
-    throw new Error(`Failed to post data: ${error.response?.statusText || error.message}`);
-  }
+  })
 }
 async function updateNews(data, id) {
   const token = getToken();

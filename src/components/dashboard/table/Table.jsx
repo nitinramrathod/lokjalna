@@ -1,8 +1,10 @@
 "use client";
+import { add_icon } from "@/assets/icons/dashboard.icon";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
 import { Button, Table as BootstrapTable, Spinner } from "react-bootstrap";
+import TableLoader from "./TableLoader";
 
 const Wrapper = styled.div`
   padding: 0 20px;
@@ -77,16 +79,18 @@ const Table = ({
   addButton,
   children,
   loading = true,
+  rows ,
+  columns
 }) => {
   return (
     <Wrapper>
       <TableHeader>
         <h4 className="title">{title}</h4>
         {addButton?.type === "link" && (
-          <StyledLink href={addButton?.href}>{addButton?.text}</StyledLink>
+          <Button className="d-flex gap-1 align-center" variant="outline-primary" as={Link} href={addButton?.href}>{add_icon}{addButton?.text}</Button>
         )}
         {addButton?.type === "button" && (
-          <Button onClick={addButton?.onClick}>{addButton?.text}</Button>
+          <Button className="d-flex gap-1 align-center" variant="outline-primary" onClick={addButton?.onClick}>{add_icon}{addButton?.text}</Button>
         )}
       </TableHeader>
 
@@ -100,11 +104,7 @@ const Table = ({
         </thead>
         <tbody>
           {loading ? (
-            <tr>
-              <td className="text-center py-4" colSpan={header?.length}>
-                <Spinner animation="border" variant="primary" />{" "}
-              </td>
-            </tr>
+            <TableLoader rows ={rows } columns={columns}/>
           ) : (
             children
           )}

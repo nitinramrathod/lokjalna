@@ -89,6 +89,7 @@ const NewsList = () => {
             loading={loading}
             title="Users List"
             header={USER_HEADER}
+            columns={7}
         >
 
             {data?.map((item, index) => (<tr key={item?._id}>

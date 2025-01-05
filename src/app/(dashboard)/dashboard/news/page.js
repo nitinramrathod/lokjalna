@@ -31,11 +31,11 @@ const NEWS_HEADER = [
         minWidth: "140px"
     },
     {
-        title: "Status.",
+        title: "Status",
         minWidth: "90px"
     },
     {
-        title: "Action.",
+        title: "Action",
         minWidth: "90px"
     }
 ]
@@ -100,6 +100,7 @@ const NewsList = () => {
             loading={loading}
             addButton={AddButton}
             header={NEWS_HEADER}
+            columns={7}
         >
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>

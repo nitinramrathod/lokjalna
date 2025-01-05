@@ -1,8 +1,8 @@
 "use client";
 
+import Input from "@/components/form/Input";
 import MultiSelect from "@/components/form/MultiSelect";
 import SingleSelect from "@/components/form/SingleSelect";
-import { clearToken } from "@/utils/helper/localStorage";
 import { transformToOptions } from "@/utils/helper/transformToOptions";
 import {
   fetchCategories,
@@ -10,10 +10,9 @@ import {
 } from "@/utils/services/dashboard.services";
 import { postNews, updateNews } from "@/utils/services/news.services";
 import styled from "@emotion/styled";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Row, Spinner } from "react-bootstrap";
 
 const FormWrapper = styled.div`
   height: 100%;
@@ -27,6 +26,8 @@ const NewsDetailForm = ({ defaultData = "" }) => {
     category: transformToOptions(defaultData?.category),
   };
   const [data, setData] = useState(formattedData);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [dropdownOptions, setDropdownOptions] = useState({});
 
@@ -34,6 +35,8 @@ const NewsDetailForm = ({ defaultData = "" }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const formData = new FormData();
 
@@ -51,14 +54,18 @@ const NewsDetailForm = ({ defaultData = "" }) => {
       formData.set("category", data?.category?.value);
     }
 
-    try {
-      const response = await saveNews(formData, defaultData?._id);
-      setData("");
-      router.push("/dashboard/news");
-    } catch (error) {
-      console.log("error", error);
-      // clearToken();
-    }
+    saveNews(formData, defaultData?._id)
+      .then((res) => {
+        setData("");
+        router.push("/dashboard/news");
+        setLoading(false);
+        setErrors("");
+      })
+      .catch((err) => {
+        const errors = err.response.data.errors;
+        setLoading(false);
+        setErrors(errors);
+      });
   };
 
   const handleInputChange = (e) => {
@@ -95,119 +102,129 @@ const NewsDetailForm = ({ defaultData = "" }) => {
 
   return (
     <FormWrapper>
-        <h2 className="pb-4">{defaultData ? "Update News" : "Add News"}</h2>
-        <Row className="mb-4">
-          <Col sm="12">
-            <Form.Label htmlFor="name">News Title</Form.Label>
-            <Form.Control
-              onChange={handleInputChange}
-              value={data?.name || ""}
-              type="text"
-              id="name"
-              name="name"
-              aria-describedby="passwordHelpBlock"
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm="12" className="mb-5">
-            <Form.Label htmlFor="short_description">Short Description</Form.Label>
-            <Form.Control
-              onChange={handleInputChange}
-              rows={3}
-              as="textarea"
-              id="description"
-              name="short_description"
-              value={data?.short_description || ""}
-              aria-describedby="passwordHelpBlock"
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm="4" className="mb-4">
-            <Form.Label htmlFor="inputPassword5">Image URL</Form.Label>
-            <Form.Control
-              onChange={handleInputChange}
-              type="text"
-              name="image_url"
-              value={data?.image_url || ""}
-              id="inputPassword5"
-              aria-describedby="passwordHelpBlock"
-            />
-          </Col>
-          <Col sm="4" className="mb-4">
-            <Form.Label htmlFor="inputPassword5">Location</Form.Label>
-            <Form.Control
-              onChange={handleInputChange}
-              type="text"
-              name="location"
-              value={data?.location || ""}
-              id="inputPassword5"
-              aria-describedby="passwordHelpBlock"
-            />
-          </Col>
-          <Col sm="4" className="mb-4">
-            <Form.Label htmlFor="inputPassword5">Publish Date</Form.Label>
-            <Form.Control
-              type="date"
-              name="publish_date"
-              value={data?.publish_date || ""}
-              onChange={handleInputChange}
-              id="inputPassword5"
-              aria-describedby="passwordHelpBlock"
-            />
-          </Col>
-        </Row>
-        <Row>
+      <h2 className="pb-4">{defaultData ? "Update News" : "Add News"}</h2>
+      <Row className="mb-4">
+        <Col sm="12">
+          <Input
+            onChange={handleInputChange}
+            value={data?.name || ""}
+            type="text"
+            id="name"
+            name="name"
+            label="News Title"
+            placeholder="Enter news title"
+            error={errors?.name}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="12" className="mb-5">
+          <Input
+            onChange={handleInputChange}
+            value={data?.short_description || ""}
+            type="text"
+            as="textarea"
+            name="short_description"
+            id="short_description"
+            label="Short Description"
+            rows={3}
+            error={errors?.name}
+          />
+        </Col>
+      </Row>
+      <Row>
         <Col sm="4" className="mb-4">
-            <Form.Label htmlFor="author_name">Author Name</Form.Label>
-            <Form.Control
-              type="text"
-              name="author_name"
-              value={data?.author_name || ""}
-              onChange={handleInputChange}
-              id="author_name"
-              aria-describedby="passwordHelpBlock"
-            />
-          </Col>
-          <Col sm="4" className="mb-4">
-            <Form.Label htmlFor="inputPassword5">Tags</Form.Label>
-            <MultiSelect
-              defaultValue={data?.tags}
-              onChange={(e) => handleDropdownChange(e, "tags")}
-              options={dropdownOptions?.tags}
-            />
-          </Col>
-          <Col sm="4" className="mb-4">
-            <Form.Label htmlFor="inputPassword5">Category</Form.Label>
-            <SingleSelect
-              defaultValue={data?.category}
-              onChange={(e) => handleDropdownChange(e, "category")}
-              options={dropdownOptions?.categories}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm="12" className="mb-5">
-            <Form.Label htmlFor="long_description">Description</Form.Label>
-            <Form.Control
-              onChange={handleInputChange}
-              rows={7}
-              as="textarea"
-              id="description"
-              name="long_description"
-              value={data?.long_description || ""}
-              aria-describedby="passwordHelpBlock"
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm="12">
-            <Button onClick={handleSubmit} variant="primary">
-              {defaultData ? "Update" : "Save"}
-            </Button>
-          </Col>
-        </Row>
+          <Input
+            onChange={handleInputChange}
+            value={data?.image_url || ""}
+            type="text"
+            id="image_url"
+            name="image_url"
+            label="Image URL"
+            placeholder="Enter Image URL"
+            error={errors?.image_url}
+          />
+        </Col>
+        <Col sm="4" className="mb-4">
+          <Input
+            onChange={handleInputChange}
+            value={data?.location || ""}
+            type="text"
+            id="location"
+            name="location"
+            label="Location"
+            placeholder="Enter Location"
+            error={errors?.location}
+          />
+        </Col>
+        <Col sm="4" className="mb-4">
+          <Input
+            onChange={handleInputChange}
+            value={data?.publish_date || ""}
+            id="publish_date"
+            name="publish_date"
+            label="Publish Date"
+            placeholder="Enter Publish Date"
+            type="date"
+            error={errors?.publish_date}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="4" className="mb-4">
+          <Input
+            onChange={handleInputChange}
+            value={data?.author_name || ""}
+            id="author_name"
+            name="author_name"
+            label="Author Name"
+            placeholder="Enter Author Name"
+            error={errors?.author_name}
+          />
+        </Col>
+        <Col sm="4" className="mb-4">
+          <MultiSelect
+            label="Tags"
+            id="Tags"
+            defaultValue={data?.tags}
+            onChange={(e) => handleDropdownChange(e, "tags")}
+            options={dropdownOptions?.tags}
+            error={errors?.tags}
+          />
+        </Col>
+        <Col sm="4" className="mb-4">
+          <SingleSelect
+            label="Category"
+            id="Category"
+            defaultValue={data?.category}
+            onChange={(e) => handleDropdownChange(e, "category")}
+            options={dropdownOptions?.categories}
+            error={errors?.category}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="12" className="mb-5">
+          <Input
+            onChange={handleInputChange}
+            value={data?.long_description || ""}
+            type="text"
+            as="textarea"
+            name="long_description"
+            id="long_description"
+            label="Description"
+            rows={7}
+            error={errors?.long_description}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="12">
+          <Button disabled={loading} className="px-5" onClick={handleSubmit} variant="primary">
+            {loading ? <Spinner animation="border" size="sm" />: (defaultData ? "Update" : "Save")}
+          </Button>
+        </Col>
+      </Row>
     </FormWrapper>
   );
 };

@@ -25,7 +25,7 @@ const TAGS_HEADER = [
         minWidth: "130px"
     },
     {
-        title: "Action.",
+        title: "Action",
         minWidth: "90px"
     }
 ]
