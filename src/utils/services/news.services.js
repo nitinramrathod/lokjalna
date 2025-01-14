@@ -30,6 +30,21 @@ async function adminGetNews() {
 
   })
 }
+async function adminGetArticles() {
+  const token = getToken();
+
+  return axios({
+    method: 'GET',
+    url: BASE_URL_V1 + '/admin/articles',
+
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    cache: 'no-store',
+
+  })
+}
 
 async function getSingleNews(slug) {
   const response = await fetch(`https://lokjyot-api.onrender.com/api/v1/news/${slug}`, {
@@ -103,5 +118,6 @@ export {
   getSingleNews,
   updateNews,
   deleteNews,
-  adminGetNews
+  adminGetNews,
+  adminGetArticles
 }

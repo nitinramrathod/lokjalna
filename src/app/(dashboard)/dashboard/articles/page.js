@@ -3,7 +3,7 @@
 import Table from '@/components/dashboard/table/Table';
 import useAuth from '@/utils/helper/useAuth';
 import { changeNewsStatus } from '@/utils/services/dashboard.services';
-import { adminGetNews, deleteNews } from '@/utils/services/news.services';
+import { adminGetArticles, adminGetNews, deleteNews } from '@/utils/services/news.services';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { Dropdown, DropdownButton } from 'react-bootstrap'
@@ -41,8 +41,8 @@ const NEWS_HEADER = [
 ]
 
 const AddButton = {
-    href: "/dashboard/news/add",
-    text: "Add News",
+    href: "/dashboard/articles/add",
+    text: "Add Article",
     type: "link"
 };
 
@@ -54,7 +54,7 @@ const NewsList = () => {
     const fetchData = async () => {
         try {
             const [categoryRes] = await Promise.all([
-                adminGetNews(),
+                adminGetArticles(),
             ]);
 
             setData(categoryRes?.data?.data);
@@ -100,12 +100,13 @@ const NewsList = () => {
             loading={loading}
             addButton={AddButton}
             header={NEWS_HEADER}
-            columns={7}
+            title="Articles List"
+            columns={NEWS_HEADER?.length}
             noDataFound = {!(data?.length > 0)}
         >
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>
-                <td><Link href={`/dashboard/news/${item?._id}`}>{item?.name || "--"}</Link></td>
+                <td><Link href={`/dashboard/articles/${item?._id}`}>{item?.name || "--"}</Link></td>
                 <td>{item?.author_name || "--"}</td>
                 <td>{new Date(item?.publish_date).toISOString().split("T")[0] || "--"}</td>
                 <td>{item?.category?.name || "--"}</td>
@@ -119,7 +120,7 @@ const NewsList = () => {
                         variant="secondary"
                         title="Actions"
                     >
-                        <Dropdown.Item as={Link} href={`/dashboard/news/${item?._id}`} eventKey="3">Edit</Dropdown.Item>
+                        <Dropdown.Item as={Link} href={`/dashboard/articles/${item?._id}`} eventKey="3">Edit</Dropdown.Item>
                         {isAdmin && <><Dropdown.Item as="button" onClick={(e) => handleChangeStatus(item?._id, item?.status)} eventKey="1">{item?.status == "active" ? "Inactive" : "Active"}</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item onClick={() => handleDelete(item?._id)} className='delete' eventKey="4">Delete</Dropdown.Item>

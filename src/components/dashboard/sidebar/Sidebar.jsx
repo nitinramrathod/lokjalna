@@ -92,6 +92,13 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           <span className="nav-text">News</span>
         </StyledLink>
         <StyledLink
+          className={path == "/dashboard/articles" ? "active" : ""}
+          href={"/dashboard/articles"}
+        >
+          {news_paper_icon}
+          <span className="nav-text">Articles</span>
+        </StyledLink>
+        <StyledLink
           className={path == "/dashboard/news/add" ? "active" : ""}
           href={"/dashboard/news/add"}
         >

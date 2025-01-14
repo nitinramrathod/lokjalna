@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { Button, Table as BootstrapTable, Spinner } from "react-bootstrap";
 import TableLoader from "./TableLoader";
+import TableNoDataFound from "./TableNoDataFound";
 
 const Wrapper = styled.div`
   padding: 0 20px;
@@ -80,8 +81,12 @@ const Table = ({
   children,
   loading = true,
   rows ,
-  columns
+  columns,
+  noDataFound= false
 }) => {
+  
+  console.log('noDataFound', noDataFound)
+
   return (
     <Wrapper>
       <TableHeader>
@@ -105,7 +110,7 @@ const Table = ({
         <tbody>
           {loading ? (
             <TableLoader rows ={rows } columns={columns}/>
-          ) : (
+          ) : noDataFound ? <TableNoDataFound columns={columns}/> : (
             children
           )}
         </tbody>

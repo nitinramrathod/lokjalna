@@ -4,13 +4,14 @@ import { Form } from "react-bootstrap";
 
 import Select from "react-select";
 
-const SingleSelect = ({ onChange, name,error, defaultValue, label, options }) => {
+const SingleSelect = ({ onChange, name,error, defaultValue, label, placeholder, options }) => {
   return (
     <div>
       <Form.Label htmlFor={name + "-label"}>{label}</Form.Label>
 
       <Select
         defaultValue={defaultValue}
+        placeholder={placeholder}
         onChange={onChange}
         options={options}
         className="basic-multi-select"
