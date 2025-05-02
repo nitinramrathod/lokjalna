@@ -1,9 +1,10 @@
+import ContactUs from '@/pages/contact-us/ContactUs'
 import React from 'react'
 
-const ContactUs = () => {
+const ContactUsPage = () => {
   return (
-    <div>ContactUs</div>
+    <ContactUs/>
   )
 }
 
-export default ContactUs
+export default ContactUsPage
