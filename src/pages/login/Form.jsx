@@ -6,14 +6,26 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
+import logo from "@/assets/images/new-icon.png";
+import Image from "next/image";
+import Input from "@/components/form/Input";
 
+const Section = styled.section`
+background: linear-gradient(to right, rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.1)), url('/images/logos/indian-map.avif');
+background-size: cover;
+background-position: top;
+min-height: 100vh;
+height: 100%;
+padding-top: 100px;
+`
 const StyledForm = styled.form`
   padding: 60px 30px;
-  background: #eeeeee;
-  border-radius: 20px;
-  margin: 80px auto;
+  background: rgba(255, 255, 255, 0.712);
+  backdrop-filter: blur(10px);
+  border-radius: 13px;
   max-width: 400px;
-  margin-top: 140px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
 
   .button-wrapper {
     display: flex;
@@ -23,13 +35,14 @@ const StyledForm = styled.form`
   }
 `;
 
-const FormHeading = styled.h1`
-  font-size: 32px;
-  font-weight: 700;
-  text-align: center;
-  line-height: 36px;
-  margin-bottom: 30px;
-  color: orange;
+const FormHeading = styled(Link)`
+text-align: center;
+display: block;
+ img{
+  width: 65%;
+  height: auto;
+  margin-bottom: 40px; 
+  }
 `;
 
 const LoginForm = () => {
@@ -68,46 +81,43 @@ const LoginForm = () => {
   console.log('error', error)
 
   return (
-    <Container>
-      <StyledForm>
-        <FormHeading>Login Page</FormHeading>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Enter Email"
-          className="mb-3"
-        >
-          <Form.Control
+    <Section>
+      <Container>
+        <StyledForm>
+          <FormHeading href={'/'}>
+            <Image src={logo}></Image>
+
+          </FormHeading>
+
+          <Input
+            label="Email"
+            placeholder="Enter Email"
+            name="email"
             value={data.email || ""}
             onChange={handleChange}
-            name="email"
-            type="email"
-            placeholder="Enter Email"
+            error={error?.email}
+            className="mb-4"
           />
-          {error?.email && <p>{error.email}</p>}
-        </FloatingLabel>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Enter Password"
-          className="mb-3"
-        >
-          <Form.Control
-            onChange={handleChange}
-            value={data.password || ""}
-            name="password"
-            type="password"
+          <Input
+            label="Password"
             placeholder="Enter Password"
-          />
-          {error?.password && <p>{error.password}</p>}
+            name="password"
+            value={data.password || ""}
+            onChange={handleChange}
+            error={error?.password}
+            type="password"
 
-        </FloatingLabel>
-        <div className="button-wrapper">
-          <Link href="/forgot-password">Forgot password.</Link>
-          <Button onClick={handleSubmit} variant="primary">
-            Login
-          </Button>
-        </div>
-      </StyledForm>
-    </Container>
+          />
+
+          <div className="button-wrapper">
+            <Link href="/forgot-password">Forgot password.</Link>
+            <Button onClick={handleSubmit} variant="primary">
+              Login
+            </Button>
+          </div>
+        </StyledForm>
+      </Container>
+    </Section>
   );
 };
 

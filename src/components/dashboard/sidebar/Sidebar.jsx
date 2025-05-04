@@ -11,7 +11,7 @@ import {
   tag_icon,
   users_icon,
 } from "@/assets/icons/dashboard.icon";
-import { clearToken } from "@/utils/helper/localStorage";
+import { clearToken, clearUser } from "@/utils/helper/localStorage";
 import useAuth from "@/utils/helper/useAuth";
 import styled from "@emotion/styled";
 import Link from "next/link";
@@ -75,6 +75,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
 
   const handleLogOut = ()=>{
     clearToken();
+    clearUser();
     window.location.href = "/";
   }
 

@@ -4,8 +4,7 @@ export const navigationLinks = [
     { name: "World News", href: "/news/world-news" },
     { name: "About Us", href: "/about-us" },
     { name: "Contact Us", href: "/contact-us" },
-    { name: "Dashboard", href: "/dashboard/news" },
-    { name: "Login", href: "/login" },
+    // { name: "Dashboard", href: "/dashboard/news" }  
   ];
 
   export default navigationLinks;

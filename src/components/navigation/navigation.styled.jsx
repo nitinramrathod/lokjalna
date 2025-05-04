@@ -1,6 +1,7 @@
 "use client";
 
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 const Wrapper = styled.nav`
   padding: 10px 0;
@@ -34,7 +35,17 @@ const TopNav = styled.div`
     }
   }
 
+  .right-panel-wrapper{
+    flex: 1;
+    justify-content: end;
+    display: flex;
+    gap: 10px;
+  }
+
   @media (min-width: 1200px) {
+  .right-panel-wrapper{
+    gap: 20px;
+  }
     .logo {
       width: 150px;
       height: 50px;
@@ -46,6 +57,24 @@ const TopNav = styled.div`
     }
   }
 `;
+const Avatar = styled(Link)`
+width: 35px;
+text-decoration: none;
+height: 35px;
+border-radius: 50%;
+display: grid;
+place-items: center;
+color: #ffffff;
+background: ${({bg})=> bg ? bg : '#ff802b'};
+font-size: 14px;
+/* border: 1px solid #646464; */
+
+@media (min-width: 1200px) {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+`
 
 const MenuButton = styled.button`
   border: none;
@@ -66,7 +95,7 @@ const GlobalSearch = styled.div`
   border: 1px solid #ffa500;
   width: 70%;
   max-width: 500px;
-  min-width: 240px;
+  min-width: 210px;
 
   input {
     border: none;
@@ -75,4 +104,4 @@ const GlobalSearch = styled.div`
   }
 `;
 
-export { Wrapper, MenuButton, TopNav, GlobalSearch };
+export { Wrapper, MenuButton, Avatar, TopNav, GlobalSearch };

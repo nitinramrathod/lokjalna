@@ -12,9 +12,10 @@ const Input = ({
   type = "text",
   as = "input",
   rows = "3",
+  className=""
 }) => {
   return (
-    <>
+    <div className={className}>
       <Form.Label htmlFor={name + "-label"}>{label}</Form.Label>
       <Form.Control
         as={as}
@@ -27,7 +28,7 @@ const Input = ({
         placeholder={placeholder}
       />
       {error && <ErrorText>{error}</ErrorText>}
-    </>
+    </div>
   );
 };
 

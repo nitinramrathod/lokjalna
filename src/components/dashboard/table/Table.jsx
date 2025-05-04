@@ -15,8 +15,10 @@ const Wrapper = styled.div`
   /* overflow-y: auto; */
 
   .table-responsive{
-    height: calc(100% - 70px);
-    min-height: 300px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.288);
+    border-radius: 12px;
+    max-height: calc(100% - 70px);
+    /* min-height: 300px; */
   }
 
   table {
@@ -24,6 +26,8 @@ const Wrapper = styled.div`
     overflow-x: auto;
     margin: 0;
     position: relative;
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   .delete {
