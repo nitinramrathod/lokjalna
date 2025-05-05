@@ -23,7 +23,7 @@ async function adminGetNews() {
     url: BASE_URL_V1 + '/admin/news',
 
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${token}`,
     },
     cache: 'no-store',
@@ -38,7 +38,7 @@ async function adminGetArticles() {
     url: BASE_URL_V1 + '/admin/articles',
 
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${token}`,
     },
     cache: 'no-store',
@@ -67,7 +67,7 @@ async function postNews(data) {
     url: BASE_URL_V1 + '/admin/news',
     data,
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${token}`,
     },
     cache: 'no-store',
@@ -76,30 +76,26 @@ async function postNews(data) {
 }
 async function updateNews(data, id) {
   const token = getToken();
-  try {
-    const response = await axios.put(
-      `https://lokjyot-api.onrender.com/api/v1/admin/news/${id}`,
-      data,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        cache: 'no-store',
-      }
-    );
 
-    return response.data;
-  } catch (error) {
-    throw new Error(`Failed to post data: ${error.response?.statusText || error.message}`);
-  }
+  return axios({
+    method: 'PUT',
+    url: BASE_URL_V1 + '/admin/news/'+id,
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
+    },
+    cache: 'no-store',
+
+  })
 }
+
 async function deleteNews(id) {
   const token = getToken();
   const response = await fetch(`${BASE_URL_V1}/admin/news/${id}`, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'multipart/form-data',
       'Authorization': `Bearer ${token}`,
     },
     cache: 'no-store',

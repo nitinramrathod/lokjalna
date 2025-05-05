@@ -9,6 +9,7 @@ import Wrapper, {
 import { back_icon } from "@/assets/icons/navigation.icon";
 import { Date } from "../home/home.styled";
 import { formatDateWithDay } from "@/utils/helper/dateFormater";
+import { backendURL } from "@/utils/services/services";
 
 const Landing = ({ data }) => {
   return (
@@ -23,7 +24,7 @@ const Landing = ({ data }) => {
         className="landing-image"
         width={600}
         height={300}
-        src={data?.image_url}
+        src={backendURL+data?.image}
         alt={data?.name}
       />
       <DetailWrapper>

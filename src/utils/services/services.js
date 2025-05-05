@@ -1,3 +1,5 @@
+const backendURL ='https://lokjyot-api.onrender.com';
+
 async function getNewsDetail(slug) {
     const response = await fetch(`https://lokjyot-api.onrender.com/api/v1/news/${slug}`, {
         method: 'GET',
@@ -12,5 +14,6 @@ async function getNewsDetail(slug) {
 }
 
 export {
-    getNewsDetail
+    getNewsDetail,
+    backendURL
 }

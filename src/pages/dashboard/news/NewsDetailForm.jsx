@@ -1,7 +1,9 @@
 "use client";
 
+import ImageInput from "@/components/form/ImageInput";
 import Input from "@/components/form/Input";
 import MultiSelect from "@/components/form/MultiSelect";
+import RTEInput from "@/components/form/RTE";
 import SingleSelect from "@/components/form/SingleSelect";
 import { transformToOptions } from "@/utils/helper/transformToOptions";
 import {
@@ -11,7 +13,7 @@ import {
 import { postNews, updateNews } from "@/utils/services/news.services";
 import styled from "@emotion/styled";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Col, Row, Spinner } from "react-bootstrap";
 
 const FormWrapper = styled.div`
@@ -26,10 +28,21 @@ const NewsDetailForm = ({ defaultData = "" }) => {
     category: transformToOptions(defaultData?.category),
   };
   const [data, setData] = useState(formattedData);
+  const fileInputRef = useRef(null);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const [dropdownOptions, setDropdownOptions] = useState({});
+  const [dropdownOptions, setDropdownOptions] = useState({
+    type:[{
+      label:'News',
+      value: 'news'
+    },
+    {
+      label:'Article',
+      value: 'article'
+    }
+  ]
+  });
 
   const saveNews = defaultData ? updateNews : postNews;
 
@@ -41,7 +54,14 @@ const NewsDetailForm = ({ defaultData = "" }) => {
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(data)) {
-      formData.append(key, value);
+      if (key !== "tags" && key !== 'image') {
+        formData.append(key, value);
+      }
+    }
+
+    const file = fileInputRef.current.files[0];
+    if (file) {
+      formData.append('image', file);
     }
 
     if (data?.tags?.length > 0) {
@@ -53,6 +73,9 @@ const NewsDetailForm = ({ defaultData = "" }) => {
     if (data?.category) {
       formData.set("category", data?.category?.value);
     }
+    if (data?.type) {
+      formData.set("type", data?.type?.value);
+    }
 
     saveNews(formData, defaultData?._id)
       .then((res) => {
@@ -62,7 +85,8 @@ const NewsDetailForm = ({ defaultData = "" }) => {
         setErrors("");
       })
       .catch((err) => {
-        const errors = err.response.data.errors;
+        debugger;
+        const errors = err?.response?.data?.errors;
         setLoading(false);
         setErrors(errors);
       });
@@ -71,9 +95,12 @@ const NewsDetailForm = ({ defaultData = "" }) => {
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+  const handleRTEChange = (value, name) => {    
+    setData({ ...data, [name]: value });
+  };
 
   const handleDropdownChange = (e, name) => {
-    console.log("e", e);
+    
     setData((prev) => ({
       ...prev,
       [name]: e,
@@ -119,6 +146,7 @@ const NewsDetailForm = ({ defaultData = "" }) => {
       </Row>
       <Row>
         <Col sm="12" className="mb-5">
+         
           <Input
             onChange={handleInputChange}
             value={data?.short_description || ""}
@@ -128,7 +156,6 @@ const NewsDetailForm = ({ defaultData = "" }) => {
             id="short_description"
             label="Short Description"
             placeholder="Enter Short Description"
-
             rows={3}
             error={errors?.name}
           />
@@ -136,16 +163,16 @@ const NewsDetailForm = ({ defaultData = "" }) => {
       </Row>
       <Row>
         <Col sm="4" className="mb-4">
-          <Input
-            onChange={handleInputChange}
-            value={data?.image_url || ""}
-            type="text"
-            id="image_url"
-            name="image_url"
-            label="Image URL"
-            placeholder="Enter Image URL"
-            error={errors?.image_url}
-          />
+        <ImageInput
+           type="file"
+           id="image"
+           name="image"
+           label="Image"
+           innerRef={fileInputRef}
+           placeholder="Select Image"
+           error={errors?.image}
+           src={data.image}
+        />
         </Col>
         <Col sm="4" className="mb-4">
           <Input
@@ -204,10 +231,29 @@ const NewsDetailForm = ({ defaultData = "" }) => {
             error={errors?.category}
           />
         </Col>
+        <Col sm="4" className="mb-4">
+          <SingleSelect
+            label="Type"
+            id="Type"
+            defaultValue={data?.type}
+            onChange={(e) => handleDropdownChange(e, "type")}
+            options={dropdownOptions?.type}
+            error={errors?.type}
+          />
+        </Col>
       </Row>
       <Row>
         <Col sm="12" className="mb-5">
-          <Input
+        <RTEInput
+            onChange={handleRTEChange}
+            value={data?.long_description || ""}
+            name="long_description"
+            id="long_description"
+            label="Description"
+            placeholder="Enter Description"
+            error={errors?.long_description}
+          />
+          {/* <Input
             onChange={handleInputChange}
             value={data?.long_description || ""}
             type="text"
@@ -219,13 +265,13 @@ const NewsDetailForm = ({ defaultData = "" }) => {
 
             rows={7}
             error={errors?.long_description}
-          />
+          /> */}
         </Col>
       </Row>
       <Row>
         <Col sm="12">
           <Button disabled={loading} className="px-5" onClick={handleSubmit} variant="primary">
-            {loading ? <Spinner animation="border" size="sm" />: (defaultData ? "Update" : "Save")}
+            {loading ? <Spinner animation="border" size="sm" /> : (defaultData ? "Update" : "Save")}
           </Button>
         </Col>
       </Row>

@@ -10,6 +10,7 @@ import {
 import Image from "next/image";
 import TrendingSection from "./TrendingSection";
 import { formatDateToReadable } from "@/utils/helper/dateFormater";
+import { backendURL } from "@/utils/services/services";
 
 const Landing = ({ data, trending }) => {
   return (
@@ -21,7 +22,7 @@ const Landing = ({ data, trending }) => {
             <Image
               width={600}
               height={300}
-              src={data?.image_url}
+              src={backendURL+ data?.image}
               alt={data?.name}
             />
             <div className="category-wrapper">

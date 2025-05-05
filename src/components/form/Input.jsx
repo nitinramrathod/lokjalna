@@ -12,12 +12,14 @@ const Input = ({
   type = "text",
   as = "input",
   rows = "3",
-  className=""
+  className="",
+  innerRef
 }) => {
   return (
     <div className={className}>
       <Form.Label htmlFor={name + "-label"}>{label}</Form.Label>
       <Form.Control
+      ref={innerRef}
         as={as}
         onChange={onChange}
         rows={rows}
