@@ -1,6 +1,10 @@
+'use client'
+
 import ErrorText from '@/pages/common/form.styld';
 import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
+import dynamic from 'next/dynamic';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
+// import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
 const RTEInput = ({
