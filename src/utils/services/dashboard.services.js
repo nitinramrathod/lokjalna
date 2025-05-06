@@ -2,7 +2,7 @@ import axios from "axios"
 import { getToken } from "../helper/localStorage";
 
 
-const BASE_URL_V1 = 'https://lokjyot-api.onrender.com/api/v1'
+export const BASE_URL_V1 = 'https://lokjyot-api.onrender.com/api/v1'
 
 const fetchCategories = () => {
     return axios({
