@@ -14,6 +14,13 @@ export const transformToOptions = (data) => {
         label: data.name,
       };
     }
+
+    if (typeof data === "string" && data !== null) {
+      return {
+        value: data,
+        label: data.charAt(0).toUpperCase() + data.slice(1),
+      };
+    }
   
     return [];
   };

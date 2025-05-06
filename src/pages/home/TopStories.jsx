@@ -9,6 +9,7 @@ import Image from "next/image";
 import styled from "@emotion/styled";
 import { Date, SectionHeading, Title } from "./home.styled";
 import Link from "next/link";
+import { backendURL } from "@/utils/services/services";
 
 const StyledCard = styled(Link)`
   text-decoration: none;
@@ -60,7 +61,7 @@ const Card = ({data}) => {
       <Image
         width={100}
         height={100}
-        src={data?.image_url}
+        src={backendURL+data?.image}
         alt={data?.name}
       />
       <div className="text-wrapper">

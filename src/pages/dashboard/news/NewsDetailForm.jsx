@@ -26,6 +26,7 @@ const NewsDetailForm = ({ defaultData = "" }) => {
     ...defaultData,
     tags: transformToOptions(defaultData?.tags),
     category: transformToOptions(defaultData?.category),
+    type: transformToOptions(defaultData?.type),
   };
   const [data, setData] = useState(formattedData);
   const fileInputRef = useRef(null);
@@ -73,7 +74,9 @@ const NewsDetailForm = ({ defaultData = "" }) => {
     if (data?.category) {
       formData.set("category", data?.category?.value);
     }
+    
     if (data?.type) {
+      debugger;
       formData.set("type", data?.type?.value);
     }
 
