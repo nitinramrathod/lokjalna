@@ -22,7 +22,7 @@ const ImageInput = ({
                     ref={innerRef}
                     placeholder={placeholder}
                 />
-                {src && <img src={backendURL + src} width={100} alt="" />}
+                {src && <img src={src} width={100} alt="" />}
             </div>
             {error && <ErrorText>{error}</ErrorText>}
 

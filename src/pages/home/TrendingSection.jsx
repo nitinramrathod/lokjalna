@@ -11,7 +11,7 @@ const LatestCard = ({data}) => {
       <Image
         width={100}
         height={100}
-        src={backendURL+data?.image}
+        src={data?.image}
         alt={data?.name}
       />
       <div className="text-wrapper">

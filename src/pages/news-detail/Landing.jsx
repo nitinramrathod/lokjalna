@@ -24,7 +24,7 @@ const Landing = ({ data }) => {
         className="landing-image"
         width={600}
         height={300}
-        src={backendURL+data?.image}
+        src={data?.image}
         alt={data?.name}
       />
       <DetailWrapper>
