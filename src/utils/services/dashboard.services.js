@@ -18,7 +18,7 @@ const changeNewsStatus = (id, data) => {
         method: 'POST',
         url: BASE_URL_V1 + '/admin/news/change-status/' + id,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
         },
         data,
@@ -32,7 +32,7 @@ const postCategory = (data) => {
         method: 'POST',
         url: BASE_URL_V1 + '/category',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
         },
         data,
@@ -45,7 +45,7 @@ const postTag = (data) => {
         method: 'POST',
         url: BASE_URL_V1 + '/tag',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
         },
         data,
@@ -58,7 +58,7 @@ const postUser = (data) => {
         method: 'POST',
         url: BASE_URL_V1 + '/user',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
         },
         data,
@@ -71,7 +71,7 @@ const deleteTag = (id) => {
         method: 'DELETE',
         url: BASE_URL_V1 + '/tag/' + id,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
         },
     })
@@ -83,7 +83,7 @@ const deleteUser = (id) => {
         method: 'DELETE',
         url: BASE_URL_V1 + '/user/' + id,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
         },
     })
@@ -95,7 +95,7 @@ const deleteCategory = (id) => {
         method: 'DELETE',
         url: BASE_URL_V1 + '/category/' + id,
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
         },
     })

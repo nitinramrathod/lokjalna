@@ -3,7 +3,7 @@ async function getLogin(data) {
         const response = await fetch('https://lokjyot-api.onrender.com/api/v1/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
             },
             body: JSON.stringify(data),
             cache: 'no-store',
