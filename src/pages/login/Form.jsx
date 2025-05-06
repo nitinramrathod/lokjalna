@@ -69,10 +69,11 @@ const LoginForm = () => {
 
     getLogin(formData)
       .then((resp) => {
+        debugger;
         setData("");
         setError("");
-        saveToken(resp?.token);
-        saveUser(resp?.user)
+        saveToken(resp?.data?.token);
+        saveUser(resp?.data?.user)
         route.push('/dashboard/news');
       })
       .catch((err) => {

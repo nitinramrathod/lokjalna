@@ -5,6 +5,7 @@ const useAuth = () => {
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
+        debugger;
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
