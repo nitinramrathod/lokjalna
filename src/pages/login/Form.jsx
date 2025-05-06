@@ -61,7 +61,13 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    getLogin(data)
+    const formData = new FormData();
+
+    for (const [key, value] of Object.entries(data)) {
+      formData.append(key, value);
+    }
+
+    getLogin(formData)
       .then((resp) => {
         setData("");
         setError("");
