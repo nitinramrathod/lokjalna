@@ -10,6 +10,7 @@ import styled from "@emotion/styled";
 import { Date, SectionHeading, Title } from "./home.styled";
 import Link from "next/link";
 import { backendURL } from "@/utils/services/services";
+import { formatDateToReadable } from "@/utils/helper/dateFormater";
 
 const StyledCard = styled(Link)`
   text-decoration: none;
@@ -68,7 +69,7 @@ const Card = ({data}) => {
         <Title className="title">
         {data?.name}
         </Title>
-        <Date>14th Dec 2024</Date>
+        <Date>{formatDateToReadable(data?.publish_date)}</Date>
       </div>
     </StyledCard>
   );
