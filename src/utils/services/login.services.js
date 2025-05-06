@@ -5,7 +5,7 @@ async function getLogin(data) {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
-            body: JSON.stringify(data),
+            body: data,
             cache: 'no-store',
         });
 
