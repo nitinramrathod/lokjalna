@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
-import logo from "@/assets/images/new-icon.png";
+import logo from "@/assets/images/full-logo.png";
 import Image from "next/image";
 import Input from "@/components/form/Input";
 

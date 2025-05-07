@@ -9,7 +9,7 @@ import Image from "next/image";
 import styled from "@emotion/styled";
 import { Date, SectionHeading, Title } from "./home.styled";
 import Link from "next/link";
-import { backendURL } from "@/utils/services/services";
+
 import { formatDateToReadable } from "@/utils/helper/dateFormater";
 
 const StyledCard = styled(Link)`

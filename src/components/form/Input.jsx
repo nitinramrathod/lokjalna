@@ -18,7 +18,7 @@ const Input = ({
   return (
     <div className={className}>
       <Form.Label htmlFor={name + "-label"}>{label}</Form.Label>
-      <Form.Control
+      {onChange ? <> <Form.Control
       ref={innerRef}
         as={as}
         onChange={onChange}
@@ -28,7 +28,17 @@ const Input = ({
         id={name + "-label"}
         name={name}
         placeholder={placeholder}
-      />
+      /></>: <> <Form.Control
+      ref={innerRef}
+        as={as}
+        onChange={onChange}
+        rows={rows}
+        type={type}
+        id={name + "-label"}
+        name={name}
+        placeholder={placeholder}
+      /></>}
+     
       {error && <ErrorText>{error}</ErrorText>}
     </div>
   );

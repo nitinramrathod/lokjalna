@@ -3,7 +3,7 @@ import { Date, SectionHeading } from "./home.styled";
 import Image from "next/image";
 import { StyledLatestCard, Title, Wrapper } from "@/pages/home/trending-section.styled";
 import { formatDateToReadable } from "@/utils/helper/dateFormater";
-import { backendURL } from "@/utils/services/services";
+
 
 const LatestCard = ({data}) => {
   return (

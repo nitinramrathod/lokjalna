@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import TrendingSection from "./TrendingSection";
 import { formatDateToReadable } from "@/utils/helper/dateFormater";
-import { backendURL } from "@/utils/services/services";
+
 
 const Landing = ({ data, trending }) => {
   return (

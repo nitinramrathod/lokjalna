@@ -9,7 +9,7 @@ import Wrapper, {
 import { back_icon } from "@/assets/icons/navigation.icon";
 import { Date } from "../home/home.styled";
 import { formatDateWithDay } from "@/utils/helper/dateFormater";
-import { backendURL } from "@/utils/services/services";
+
 
 const Landing = ({ data }) => {
   return (
