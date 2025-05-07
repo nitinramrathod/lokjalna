@@ -2,7 +2,7 @@
 import Input from '@/components/form/Input';
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, Container, Row } from 'react-bootstrap'
 import { Title } from '../about-us/AboutUs';
 import axios from 'axios';
@@ -64,18 +64,42 @@ const Contact = styled.div`
   /* border-left: 5px solid #1a73e8; */
 `;
 
+const Alert = styled.div`
+padding: 10px 20px;
+background: rgba(105, 250, 177, 0.26);
+color: #005e1c;
+border-radius: 7px;
+text-align: left;
+border: 1px solid rgba(0, 126, 38, 0.267);
+box-shadow: 0 0 10px rgba(77, 77, 77, 0.171);
+margin-bottom: 20px;
+`
+
 
 function ContactUs() {
-const formRef = useRef()
-  const handleSubmit = (e)=>{
+  const formRef = useRef();
+  const [formState, setFormState] = useState({
+    isPending: false,
+    isSuccess: false
+  })
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setFormState(prev=>({...prev, isPending: true}));   
     const data = new FormData(formRef.current);
 
-    submitEnquiry(data).then(res=>{
+    submitEnquiry(data).then(res => {
       console.log('res', res)
+      setFormState(prev=>({...prev, isSuccess: true}));
+      setTimeout(() => {
+        setFormState(prev=>({...prev, isSuccess: false}));        
+      }, 5000);
+
       formRef.current.reset();
-    }).catch(err=>{
+    }).catch(err => {
+      setFormState(prev=>({...prev, isSuccess: false}));
       console.log('err', err)
+    }).finally(final=>{
+      setFormState(prev=>({...prev, isPending: false})); 
     })
   }
 
@@ -93,7 +117,7 @@ const formRef = useRef()
           </ParagraphWrapper>
 
           <Form ref={formRef}
-          onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
           >
             <Row>
               <div className="col-md-12 mb-4">
@@ -124,9 +148,12 @@ const formRef = useRef()
                 />
               </div>
               <div className="col-12 mt-4 text-end">
+                {formState?.isSuccess && 
+              <Alert>🎉 Thanks for reaching out! We'll get in touch with you soon.</Alert>
+                }
 
-                <StyledButton type="submit">Submit<span class="material-symbols-outlined">
-                arrow_right_alt
+                <StyledButton disabled={formState?.isPending} type="submit">{formState?.isPending ? 'Submiting...': 'Submit'}<span class="material-symbols-outlined">
+                  arrow_right_alt
                 </span></StyledButton>
               </div>
             </Row>

@@ -99,18 +99,18 @@ const StyledNavigationBox = styled.div`
   transition: all 0.5s ease-in;
 
   img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
   }
 
   .description {
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
     ${truncate2line}
   }
   .title {
-    font-size: 16px;
+    font-size: 13px;
     ${truncate2line}
   }
 
@@ -121,7 +121,7 @@ const StyledNavigationBox = styled.div`
   @media (min-width: 1200px) {
     min-width: 250px;
     gap: 20px;
-    padding: 10px;
+    padding: 8px;
   }
 `;
 

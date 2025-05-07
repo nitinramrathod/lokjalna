@@ -9,7 +9,7 @@ import { Container } from "react-bootstrap";
 import Link from "next/link";
 import navigationLinks from "@/utils/constants/navigation-links.constant";
 import Image from "next/image";
-import logo from "@/assets/images/full-logo.png";
+import logo from "@/assets/images/full-logo-white.png";
 import {
   facebook_icon,
   instagram_icon,
