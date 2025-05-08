@@ -1,5 +1,4 @@
 "use client";
-import { trash_icon } from "@/assets/icons/dashboard.icon";
 import styled from "@emotion/styled";
 
 const StyledDeleteButton = styled.button`
@@ -7,18 +6,45 @@ const StyledDeleteButton = styled.button`
   border: none;
   cursor: pointer;
   outline: none;
-  color: #f45b5b;
-  font-size: 18px;
+  color: ${({type})=>type ==='DELETE'? '#f45b5b': '#3d7aff'};
+  font-size: 5px;
   transition: all 0.3s ease;
 
-  &:hover {
-    color: #ff0000;
+  span{
+    font-size: 22px;
   }
+
+  &:hover {
+    color: ${({type})=>type ==='DELETE'? '#ff0000': '#3d7aff'};
+  }
+
 `;
-const DeleteButton = ({ onClick }) => {
+const DeleteButton = ({ onClick, type="DELETE"}) => {
+  let title;
+  let icon;
+  switch (type) {
+    case "DELETE":
+      title = 'Delete this record'
+      icon = <span class="material-symbols-outlined">delete_forever</span>
+      
+      break;
+    case "EDIT":
+      title = 'Edit this record'
+      icon = <span class="material-symbols-outlined">edit_square</span>
+      
+      break;
+    case "VIEW":
+      title = 'Delete this record'
+      icon = <span class="material-symbols-outlined">delete_forever</span>
+      
+      break;
+  
+    default:
+      break;
+  }
   return (
-    <StyledDeleteButton title="Delete this record." onClick={onClick}>
-      {trash_icon}
+    <StyledDeleteButton type={type} title={title} onClick={onClick}>
+    {icon}
     </StyledDeleteButton>
   );
 };

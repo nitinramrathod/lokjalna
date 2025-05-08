@@ -35,7 +35,8 @@ async function adminGetArticles() {
 
   return axios({
     method: 'GET',
-    url: BASE_URL_V1 + '/admin/articles',
+    url: BASE_URL_V1 + '/admin/news',
+    params: {type: 'article'},
 
     headers: {
       'Content-Type': 'multipart/form-data',

@@ -45,6 +45,11 @@ const Wrapper = styled.div`
       color: #fff;
     }
   }
+  .action-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 
  
 `;

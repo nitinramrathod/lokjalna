@@ -76,6 +76,17 @@ const deleteTag = (id) => {
         },
     })
 }
+const deleteSubmission = (id) => {
+    const token = getToken();
+    return axios({
+        method: 'DELETE',
+        url: BASE_URL_V1 + '/submission/' + id,
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        },
+    })
+}
 const deleteUser = (id) => {
     const token = getToken();
 
@@ -106,6 +117,18 @@ const fetchTags = () => {
         url: BASE_URL_V1 + '/tag'
     })
 }
+const fetchSubmissions = () => {
+    const token = getToken();
+
+    return axios({
+        method: 'GET',
+        url: BASE_URL_V1 + '/submission',
+        headers: {
+            // 'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        },
+    })
+}
 const fetchUsers = () => {
     return axios({
         method: 'GET',
@@ -130,5 +153,7 @@ export {
     deleteCategory,
     fetchUsers,
     postUser,
-    deleteUser
+    deleteUser,
+    fetchSubmissions,
+    deleteSubmission
 }

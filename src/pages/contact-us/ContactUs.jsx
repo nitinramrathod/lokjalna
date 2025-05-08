@@ -16,6 +16,7 @@ const Wrapper = styled.section`
 
   @media screen and (min-width: 992px){
     flex-direction: row;
+    align-items: flex-start;
   }
 `;
 const Section = styled.section`
@@ -34,10 +35,14 @@ p{
   
 }
 img{
-  width: 80%;
+  width: 100%;
   height: auto;
 }
- 
+@media screen and (min-width: 992px){
+  img{
+  width: 90%;
+}
+  }
 `;
 
 const Form = styled.form`
@@ -113,7 +118,7 @@ function ContactUs() {
               लेखक किंवा बातमीदार म्हणून सहभागी व्हायचं असल्यास तुमचा अनुभव, माहिती आणि उद्देश खालील फॉर्ममधील <strong> &quot;Message&quot; </strong>
               विभागात लिहा — आमचा प्रतिनिधी लवकरच तुमच्याशी संपर्क साधेल.
             </p>
-            <Image className='mt-4' src="/images/contact-us/maharashtra-map.png" width={300} height={250} alt='Maharashtra Map'></Image>
+            <Image src="/images/contact-us/maharashtra-map.png" width={300} height={250} alt='Maharashtra Map'></Image>
           </ParagraphWrapper>
 
           <Form ref={formRef}

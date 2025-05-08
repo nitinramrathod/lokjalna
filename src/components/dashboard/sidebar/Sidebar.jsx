@@ -19,6 +19,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import UserAvatar from "./UserAvatar";
+import logo from "@/assets/images/full-logo.svg";
+import short_logo from "@/assets/images/short-logo.svg";
+import Image from "next/image";
 
 const Wrapper = styled.nav`
   display: flex;
@@ -41,11 +44,17 @@ const Wrapper = styled.nav`
     border: none;
     background: transparent;
     margin-bottom: 25px;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
   }
+
 `;
 const StyledLink = styled(Link)`
   display: flex;
-  font-size: 18px;
+  font-size: 16px;
   text-decoration: none;
   color: #2b2b2b;
   font-weight: 500;
@@ -83,8 +92,15 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
     <Wrapper id="sidebar">
       <div className="link-wrapper">
         <button className="collapse-button" onClick={toggleSidebar}>
-          {collapsed ? expand_icon : collapse_icon}
+          {collapsed ? <Image src={short_logo}/> : <Image src={logo}/>}
         </button>
+        <StyledLink
+          className={path == "/dashboard/dashboard" ? "active" : ""}
+          href={"/dashboard/dashboard"}
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span className="nav-text">Dashboard</span>
+        </StyledLink>
         <StyledLink
           className={path == "/dashboard/news" ? "active" : ""}
           href={"/dashboard/news"}
@@ -93,24 +109,27 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           <span className="nav-text">News</span>
         </StyledLink>
         <StyledLink
-          className={path == "/dashboard/articles" ? "active" : ""}
-          href={"/dashboard/articles"}
-        >
-          {news_paper_icon}
-          <span className="nav-text">Articles</span>
-        </StyledLink>
-        <StyledLink
           className={path == "/dashboard/news/add" ? "active" : ""}
           href={"/dashboard/news/add"}
         >
           {create_icon} <span className="nav-text">Create News</span>
         </StyledLink>
+        <StyledLink
+          className={path == "/dashboard/articles" ? "active" : ""}
+          href={"/dashboard/articles"}
+        >
+          <span class="material-symbols-outlined">article</span>
+          <span className="nav-text">Articles</span>
+        </StyledLink>
+        
         {isAdmin && (
           <StyledLink
             className={path == "/dashboard/categories" ? "active" : ""}
             href={"/dashboard/categories"}
           >
-            {category_icon} <span className="nav-text">Categories</span>
+            <span class="material-symbols-outlined">
+category
+</span> <span className="nav-text">Categories</span>
           </StyledLink>
         )}
 
@@ -120,6 +139,14 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
             href={"/dashboard/tags"}
           >
             {tag_icon} <span className="nav-text">Tags</span>
+          </StyledLink>
+        )}
+        {isAdmin && (
+          <StyledLink
+            className={path == "/dashboard/submissions" ? "active" : ""}
+            href={"/dashboard/submissions"}
+          >
+           <span class="material-symbols-outlined">mail</span> <span className="nav-text">Submissions</span>
           </StyledLink>
         )}
 
