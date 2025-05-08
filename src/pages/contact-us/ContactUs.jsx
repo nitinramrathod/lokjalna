@@ -149,7 +149,7 @@ function ContactUs() {
               </div>
               <div className="col-12 mt-4 text-end">
                 {formState?.isSuccess && 
-              <Alert>🎉 Thanks for reaching out! We'll get in touch with you soon.</Alert>
+              <Alert>🎉 Thanks for reaching out! We&apos;ll get in touch with you soon.</Alert>
                 }
 
                 <StyledButton disabled={formState?.isPending} type="submit">{formState?.isPending ? 'Submiting...': 'Submit'}<span class="material-symbols-outlined">
