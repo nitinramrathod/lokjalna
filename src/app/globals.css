@@ -32,6 +32,10 @@
 
 }
 
+#main-content{
+  background: #f2fdff;
+}
+
 @media (min-width: 1200px) {
   .website-wrapper{
     margin-top: 111px;

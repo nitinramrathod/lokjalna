@@ -7,6 +7,7 @@ import {
   OverlayTrigger,
   Popover,
 } from "react-bootstrap";
+import Image from "next/image";
 
 const Wrapper = styled.div`
   .avatar {
@@ -19,6 +20,16 @@ const Wrapper = styled.div`
     font-size: 18px;
     cursor: pointer;
     border-radius: 50%;
+    padding: 1px;
+  }
+
+  .avatar-image{
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    /* border: 1px solid #0380a5; */
   }
 `;
 
@@ -92,7 +103,8 @@ const UserAvatar = ({ user, handleLogOut }) => {
           onToggle={handlePopoverClick} // Toggle visibility on click
         >
           <h3 className="avatar" ref={popoverRef} title={user?.name}>
-            {initials}
+            {user?.image ? <Image className="avatar-image" width={50} height={50} alt={user?.name} src={user.image}/>: initials}
+            
           </h3>
         </OverlayTrigger>
       </div>

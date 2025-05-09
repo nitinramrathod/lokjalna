@@ -56,7 +56,7 @@ const Navigation = () => {
               <input type="text" placeholder="Search News" />
               {search_icon}
             </GlobalSearch>
-            {user?.initial ? <Avatar title='Got to Dashboard' target="_blank" bg='#3cd9ff' href={'/dashboard/news'}>{user?.initial}</Avatar> : <Avatar title='Got to Login' target="_blank" href='/login'>{login_icon}</Avatar>}
+            {user?.initial ? <Avatar title='Got to Dashboard' target="_blank" bg='#3cd9ff' href={'/dashboard'}>{user?.image ? <Image src={user?.image} width={50} height={50} alt={user?.name}/>: user?.initial}</Avatar> : <Avatar title='Got to Login' target="_blank" href='/login'>{login_icon}</Avatar>}
             
             
             <MenuButton onClick={(e) => setShow(!show)}>

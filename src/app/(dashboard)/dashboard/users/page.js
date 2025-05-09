@@ -4,6 +4,7 @@ import DeleteButton from '@/components/dashboard/common';
 import Offcanvas from '@/components/dashboard/offcanvas/Offcanvas';
 import Table from '@/components/dashboard/table/Table';
 import { deleteUser, fetchUsers } from '@/utils/services/dashboard.services';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 
 const USER_HEADER = [
@@ -12,13 +13,18 @@ const USER_HEADER = [
         minWidth: "70px"
     },
     {
-        title: "Role",
+        title: "Image",
         minWidth: "90px"
     },
-    {
+      {
         title: "Name",
         minWidth: "130px"
     },
+    {
+        title: "Role",
+        minWidth: "90px"
+    },
+  
     {
         title: "Email",
         minWidth: "90px"
@@ -94,8 +100,9 @@ const NewsList = () => {
 
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>
-                <td>{item?.role || "--"}</td>
+                <td><Image className='image' src={item?.image} width={30} height={30} alt={item?.name}/></td>
                 <td>{item?.name || "--"}</td>
+                <td>{item?.role || "--"}</td>
                 <td>{item?.email || "--"}</td>
                 <td>{item?._id || "--"}</td>
                 <td>{new Date(item?.createdAt)?.toISOString()?.split("T")[0] || "--"}</td>

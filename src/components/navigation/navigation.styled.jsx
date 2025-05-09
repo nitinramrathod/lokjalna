@@ -67,6 +67,15 @@ place-items: center;
 color: #ffffff;
 background: ${({bg})=> bg ? bg : '#ff802b'};
 font-size: 14px;
+padding: 1px;
+
+img{
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 50%;
+}
 /* border: 1px solid #646464; */
 
 @media (min-width: 1200px) {

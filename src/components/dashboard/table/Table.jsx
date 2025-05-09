@@ -72,9 +72,20 @@ const StyledLink = styled(Link)`
   font-size: 16px;
   color: #ff570f;
 `;
+const Tbody = styled.tbody`
+.image{
+  height: 60px;
+  width: auto;
+  object-fit: cover;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 87, 15, 0.274);
+}
+ 
+`;
 
 const Th = styled.th`
-    background: #4d4d4d !important;
+    background: #5a91cb !important;
     z-index: 2; 
     position: sticky;
     color: white !important;
@@ -116,13 +127,13 @@ const Table = ({
             ))}
           </tr>
         </thead>
-        <tbody>
+        <Tbody>
           {loading ? (
-            <TableLoader rows ={rows } columns={columns}/>
-          ) : noDataFound ? <TableNoDataFound columns={columns}/> : (
+            <TableLoader rows ={rows } columns={header?.length}/>
+          ) : noDataFound ? <TableNoDataFound columns={header?.length}/> : (
             children
           )}
-        </tbody>
+        </Tbody>
       </BootstrapTable>
     </Wrapper>
   );

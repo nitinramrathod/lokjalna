@@ -1,13 +1,15 @@
 import { postTag, postUser } from "@/utils/services/dashboard.services";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import SingleSelect from "../form/SingleSelect";
 import Input from "../form/Input";
+import ImageInput from "../form/ImageInput";
 
 const AddUser = ({ callback, handleClose }) => {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleSubmit = () => {
     const formData = new FormData();
@@ -21,6 +23,11 @@ const AddUser = ({ callback, handleClose }) => {
 
     if (data?.role?.value) {
       formData.set("role", data.role.value);
+    }
+
+      const file = fileInputRef.current.files[0];
+    if (file) {
+      formData.append('image', file);
     }
 
     postUser(formData)
@@ -57,6 +64,18 @@ const AddUser = ({ callback, handleClose }) => {
   return (
     <div>
       <Col className="pb-4">
+        <ImageInput
+          onChange={handleInputChange}
+          innerRef={fileInputRef}
+          id="image"
+          name="image"
+          label="Image"
+          placeholder="Enter Image"
+          src={data.image}
+          error={errors?.name}
+        />
+      </Col>
+      <Col className="pb-4">
         <Input
           onChange={handleInputChange}
           value={data?.name || ""}
@@ -78,6 +97,18 @@ const AddUser = ({ callback, handleClose }) => {
           label="Email"
           placeholder="Enter email"
           error={errors?.email}
+        />
+      </Col>
+      <Col className="pb-4">
+        <Input
+          onChange={handleInputChange}
+          value={data?.mobile || ""}
+          type="tel"
+          id="mobile"
+          name="mobile"
+          label="Mobile"
+          placeholder="Enter mobile"
+          error={errors?.mobile}
         />
       </Col>
       <Col className="mb-4">

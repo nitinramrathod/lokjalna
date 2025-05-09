@@ -28,7 +28,7 @@ const Wrapper = styled.nav`
   gap: 15px;
   flex-direction: column;
   padding: 30px 20px;
-  background: #d9d9d9;
+      background: linear-gradient(#e9f2ff, #83b9f1);
   height: 100%;
   transition: all 0.3s ease;
 
@@ -46,8 +46,8 @@ const Wrapper = styled.nav`
     margin-bottom: 25px;
 
     img{
-      width: 100%;
-      height: auto;
+      width: auto;
+      height: 35px;
     }
   }
 
@@ -95,8 +95,8 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           {collapsed ? <Image src={short_logo}/> : <Image src={logo}/>}
         </button>
         <StyledLink
-          className={path == "/dashboard/dashboard" ? "active" : ""}
-          href={"/dashboard/dashboard"}
+          className={path == "/dashboard" ? "active" : ""}
+          href={"/dashboard"}
         >
           <span class="material-symbols-outlined">dashboard</span>
           <span className="nav-text">Dashboard</span>

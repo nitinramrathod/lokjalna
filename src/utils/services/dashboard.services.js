@@ -135,17 +135,22 @@ const fetchUsers = () => {
         url: BASE_URL_V1 + '/user'
     })
 }
-const fetchUser = () => {
+const fetchStats = () => {
+    const token = getToken();
+
     return axios({
         method: 'GET',
-        url: BASE_URL_V1 + '/user'
+        url: BASE_URL_V1 + '/dashboard/stats',
+         headers: {
+            Authorization: `Bearer ${token}`,
+        },
     })
 }
 
 export {
     fetchCategories,
     fetchTags,
-    fetchUser,
+    fetchStats,
     changeNewsStatus,
     postCategory,
     postTag,

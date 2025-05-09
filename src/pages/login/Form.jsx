@@ -73,8 +73,8 @@ const LoginForm = () => {
         setData("");
         setError("");
         saveToken(resp?.data?.token);
-        saveUser(resp?.data?.user)
-        route.push('/dashboard/news');
+        saveUser(resp?.data?.user);
+        route.push('/dashboard');
       })
       .catch((err) => {
         setError({
