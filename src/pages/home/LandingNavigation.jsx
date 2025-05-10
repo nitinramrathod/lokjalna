@@ -8,8 +8,8 @@ const NavigationBox = ({data}) => {
       <Image
         width={100}
         height={100}
-        src="/images/landing-news.png"
-        alt="landing image"
+        src={data.image}
+        alt={data.name}
       />
       <div className="text-wrapper">
         <h3 className="title">{data.name}</h3>
@@ -23,18 +23,22 @@ const navigationItems = [
     {
         name:"Politics and Government",
         description:"Elections, policies, diplomacy, and governance updates.",
+        image: '/images/homepage/politics.webp'
     },
     {
         name:"Business and Finance",
         description:"Markets, economy, corporate news, personal finance.",
+        image: '/images/homepage/finance.png'
     },
     {
         name:"Sports",
         description:"Games, scores, athletes, events, and analysis.",
+        image: '/images/homepage/sport.png'
     },
     {
         name:"Technology and Science",
         description:"Innovations, gadgets, discoveries, and tech trends.",
+        image: '/images/homepage/technology.png'
     },
 ]
 const LandingNavigation = () => {

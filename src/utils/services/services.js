@@ -15,7 +15,6 @@ async function getNewsDetail(slug) {
 }
 
 async function submitEnquiry(data) {
-
     return axios({
         method: 'POST',
         url: BASE_URL_V1 + '/submission',

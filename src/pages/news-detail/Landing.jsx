@@ -9,9 +9,11 @@ import Wrapper, {
 import { back_icon } from "@/assets/icons/navigation.icon";
 import { Date } from "../home/home.styled";
 import { formatDateWithDay } from "@/utils/helper/dateFormater";
+import Link from "next/link";
 
 
 const Landing = ({ data }) => {
+  console.log('data', data)
   return (
     <Wrapper>
       <BackButton>{back_icon} Back to list</BackButton>
@@ -19,7 +21,7 @@ const Landing = ({ data }) => {
       <Category>{data?.category?.name || "--"}</Category>
 
       <DetailHeading className="heading">{data?.name}</DetailHeading>
-      <Date className="date">{formatDateWithDay(data?.publish_date)}</Date>
+      <Date className="date"><Link href={`/news/author-news?author=${data?.author_name}`}> {data?.author_name}</Link> | {formatDateWithDay(data?.publish_date)}</Date>
       <Image
         className="landing-image"
         width={600}
@@ -30,7 +32,7 @@ const Landing = ({ data }) => {
       <DetailWrapper>
         <p className="short-description">{data?.short_description}</p>
         <div dangerouslySetInnerHTML={{ __html: data?.long_description }} />
-        <h3 className="author-name">-{data?.author_name}</h3>
+        {/* <h3 className="author-name">-{data?.author_name}</h3> */}
       </DetailWrapper>
     </Wrapper>
   );

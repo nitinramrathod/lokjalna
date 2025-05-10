@@ -75,7 +75,7 @@ const Card = ({data}) => {
   );
 };
 
-const TopStories = ({ section_name = "no name", data }) => {
+const SliderSection = ({ section_name = "no name", data }) => {
   return (
     <Wrapper>
       <Container>
@@ -109,4 +109,4 @@ const TopStories = ({ section_name = "no name", data }) => {
   );
 };
 
-export default TopStories;
+export default SliderSection;
