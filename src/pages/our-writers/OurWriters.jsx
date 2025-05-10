@@ -47,7 +47,7 @@ function OurWriters({data}) {
             त्यांचे लेख वाचा, त्यांचे विचार जाणून घ्या आणि लोकज्योतच्या विश्वासार्हतेचा भाग व्हा.
           </Paragraph>
           <WritersContainer>
-           {data?.length > 0 && data?.map(item=> <WriterBox data={item}/>)}
+           {data?.length > 0 && data?.map((item, index)=> <WriterBox key={item?.name + index} data={item}/>)}
 
           </WritersContainer>
 
