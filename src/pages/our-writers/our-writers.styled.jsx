@@ -97,7 +97,7 @@ export const FounderInfo = styled.div`
 
 import React from 'react'
 
-export const WriterBox = ({ data: writer }) => {
+export default WriterBox = ({ data: writer }) => {
 
     return (
         <WriterBoxStyled>
