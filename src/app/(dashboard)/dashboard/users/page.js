@@ -38,7 +38,7 @@ const USER_HEADER = [
         minWidth: "130px"
     },
     {
-        title: "Action.",
+        title: "Action",
         minWidth: "90px"
     }
 ]
@@ -47,6 +47,7 @@ const NewsList = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [show, setShow] = useState(false);
+    const [editId, setEditId] =useState(null);
 
     const fetchData = async () => {
         try {
@@ -66,10 +67,13 @@ const NewsList = () => {
 
     useEffect(() => {
         fetchData();
-    }, [])
+    }, []);
 
     const showCanvas = () => setShow(true);
-    const hideCanvas = () => setShow(false);
+    const hideCanvas = () => {
+        setShow(false);
+        setEditId(null);
+    };
 
     const addButton = {
         type: "button",
@@ -88,6 +92,12 @@ const NewsList = () => {
         })
     }
 
+    // Handle Edit 
+    const handleEdit =(id)=>{
+        setEditId(id);
+        showCanvas();
+    }
+
 
     return (<>
         <Table
@@ -100,13 +110,16 @@ const NewsList = () => {
 
             {data?.map((item, index) => (<tr key={item?._id}>
                 <td>{index + 1}</td>
-                <td><Image className='image' src={item?.image} width={30} height={30} alt={item?.name}/></td>
+                <td><Image className='image' src={item?.image || '/images/placeholders/avtar-placeholder.png'} width={30} height={30} alt={item?.name}/></td>
                 <td>{item?.name || "--"}</td>
                 <td>{item?.role || "--"}</td>
                 <td>{item?.email || "--"}</td>
                 <td>{item?._id || "--"}</td>
                 <td>{new Date(item?.createdAt)?.toISOString()?.split("T")[0] || "--"}</td>
-                <td className='text-center' onClick={(e)=>handleDelete(item?._id)}><DeleteButton /></td>
+                <td className='text-center'>
+                    <DeleteButton type='EDIT' onClick={()=>handleEdit(item?._id)}/>
+                    <DeleteButton type='DELETE'  onClick={(e)=>handleDelete(item?._id)} />
+                    </td>
             </tr>))}
 
         </Table>
@@ -117,7 +130,7 @@ const NewsList = () => {
             handleClose={hideCanvas}
             title='Create User'
         >
-            <AddUser handleClose={hideCanvas} callback={fetchData} />
+            <AddUser id={editId} handleClose={hideCanvas} callback={fetchData} />
         </Offcanvas>
 
 

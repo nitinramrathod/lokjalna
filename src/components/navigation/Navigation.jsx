@@ -1,7 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TopNav, Wrapper, GlobalSearch, MenuButton, Avatar } from "./navigation.styled";
 import { Container } from "react-bootstrap";
+import { useRouter } from 'next/navigation';
 import {
   close_menu_icon,
   login_icon,
@@ -16,17 +17,22 @@ import MobileNavbar from "./MobileNavbar";
 import { usePathname } from "next/navigation";
 import WebNavbar from "./WebNavbar";
 import { getUser } from "@/utils/helper/localStorage";
+import { useSearchParams } from 'next/navigation'
 
 const Navigation = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
+  const router = useRouter()
+  const searchInputRef = useRef();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const query = searchParams.get('query')
 
   useEffect(() => {
     let user = getUser();
-    if(user){
+    if (user) {
       let temp = JSON.parse(user);
-      temp.initial=  temp.name.charAt(0).toUpperCase()
+      temp.initial = temp.name.charAt(0).toUpperCase()
       setUser(temp);
     }
     console.log('user', user)
@@ -36,6 +42,25 @@ const Navigation = () => {
 
     handleRouteChange();
   }, [pathname]);
+
+  const handleGlobalSearch = (e) => {
+    let search = searchInputRef.current.value;
+
+    if (search.trim()) {
+      router.push(`/search?query=${encodeURIComponent(search)}`)
+    } else {
+      router.push(`/`)
+    }
+  }
+
+  useEffect(() => {
+    if(query){
+      searchInputRef.current.value = query;
+    }else{
+      router.push(`/`)
+    }
+  }, [query])
+
 
   return (
     <Wrapper>
@@ -52,16 +77,16 @@ const Navigation = () => {
             </Link>
             <div className="right-panel-wrapper">
 
-            <GlobalSearch>
-              <input type="text" placeholder="Search News" />
-              {search_icon}
-            </GlobalSearch>
-            {user?.initial ? <Avatar title='Got to Dashboard' target="_blank" bg='#3cd9ff' href={'/dashboard'}>{user?.image ? <Image src={user?.image} width={50} height={50} alt={user?.name}/>: user?.initial}</Avatar> : <Avatar title='Got to Login' target="_blank" href='/login'>{login_icon}</Avatar>}
-            
-            
-            <MenuButton onClick={(e) => setShow(!show)}>
-              {show ? close_menu_icon : open_menu_icon}
-            </MenuButton>
+              <GlobalSearch>
+                <input type="text" onKeyDown={(e) => { if (e.key === 'Enter') handleGlobalSearch() }} placeholder="Search News" ref={searchInputRef} />
+                <button onClick={handleGlobalSearch}>{search_icon}</button>
+              </GlobalSearch>
+              {user?.initial ? <Avatar title='Got to Dashboard' target="_blank" bg='#3cd9ff' href={'/dashboard'}>{user?.image ? <Image src={user?.image} width={50} height={50} alt={user?.name} /> : user?.initial}</Avatar> : <Avatar title='Got to Login' target="_blank" href='/login'>{login_icon}</Avatar>}
+
+
+              <MenuButton onClick={(e) => setShow(!show)}>
+                {show ? close_menu_icon : open_menu_icon}
+              </MenuButton>
             </div>
           </TopNav>
           <MobileNavbar show={show}></MobileNavbar>

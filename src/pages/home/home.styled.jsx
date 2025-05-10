@@ -19,11 +19,13 @@ const Wrapper = styled.section`
   }
 `;
 
-const Category = styled.p`
+const Tag = styled.p`
   margin: 0;
   border: 1px solid black;
   border-radius: 5px;
   font-size: 11px;
+      line-height: 16px;
+
   padding: 2px 7px;
   text-transform: uppercase;
   background: #f5f5f5;
@@ -148,7 +150,7 @@ export {
   Title,
   Date,
   SectionHeading,
-  Category,
+  Tag,
   StyledNavigationBox,
   MainNews,
   titleTextStyles,

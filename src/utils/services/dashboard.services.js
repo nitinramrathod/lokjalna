@@ -64,6 +64,31 @@ const postUser = (data) => {
         data,
     })
 }
+const updateUser = (data, id) => {
+    const token = getToken();
+
+    return axios({
+        method: 'PUT',
+        url: BASE_URL_V1 + '/user/'+id,
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        },
+        data,
+    })
+}
+const getUserDetail = (id) => {
+    const token = getToken();
+
+    return axios({
+        method: 'GET',
+        url: BASE_URL_V1 + '/user/'+id,
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+        }
+    })
+}
 const deleteTag = (id) => {
     const token = getToken();
 
@@ -158,7 +183,9 @@ export {
     deleteCategory,
     fetchUsers,
     postUser,
+    getUserDetail,
     deleteUser,
     fetchSubmissions,
-    deleteSubmission
+    deleteSubmission,
+    updateUser
 }

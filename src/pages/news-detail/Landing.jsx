@@ -7,7 +7,7 @@ import Wrapper, {
   DetailWrapper,
 } from "./news-detail.styled.";
 import { back_icon } from "@/assets/icons/navigation.icon";
-import { Date } from "../home/home.styled";
+import { Date, Tag } from "../home/home.styled";
 import { formatDateWithDay } from "@/utils/helper/dateFormater";
 import Link from "next/link";
 
@@ -32,7 +32,12 @@ const Landing = ({ data }) => {
       <DetailWrapper>
         <p className="short-description">{data?.short_description}</p>
         <div dangerouslySetInnerHTML={{ __html: data?.long_description }} />
-        {/* <h3 className="author-name">-{data?.author_name}</h3> */}
+        <div className="category-wrapper">
+              Tags: {data?.tags?.length > 0 &&
+                data?.tags?.map((item, index) => (
+                  <Tag key={item?.name + index}> {item?.name}</Tag>
+                ))}
+            </div>
       </DetailWrapper>
     </Wrapper>
   );

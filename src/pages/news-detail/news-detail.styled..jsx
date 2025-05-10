@@ -68,6 +68,12 @@ const DetailWrapper = styled.article`
     font-size: 18px;
   }
 
+  .category-wrapper{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
   @media (min-width: 1200px) {
     font-size: 18px;
     line-height: 36px;

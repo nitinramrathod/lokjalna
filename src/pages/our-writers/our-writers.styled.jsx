@@ -46,6 +46,7 @@ img{
     width: 150px;
     height: auto;
     border-radius: 10px;
+    background: #e2e2e2;
 }
 .name{
     font-size: 24px;

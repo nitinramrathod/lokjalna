@@ -111,6 +111,20 @@ const GlobalSearch = styled.div`
     outline: none;
     width: calc(100% - 20px);
   }
+  button{
+    background: transparent;
+    border: 0;
+
+      svg path{
+        transition:all .5s ease;
+      }
+
+    &:hover{
+      svg path{
+        fill: red;
+      }
+    }
+  }
 `;
 
 export { Wrapper, MenuButton, Avatar, TopNav, GlobalSearch };

@@ -1,11 +1,11 @@
-import { postTag, postUser } from "@/utils/services/dashboard.services";
-import React, { useRef, useState } from "react";
+import { getUserDetail, postTag, postUser, updateUser } from "@/utils/services/dashboard.services";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import SingleSelect from "../form/SingleSelect";
 import Input from "../form/Input";
 import ImageInput from "../form/ImageInput";
 
-const AddUser = ({ callback, handleClose }) => {
+const AddUser = ({ callback, id, handleClose }) => {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -25,12 +25,14 @@ const AddUser = ({ callback, handleClose }) => {
       formData.set("role", data.role.value);
     }
 
-      const file = fileInputRef.current.files[0];
+    const file = fileInputRef.current.files[0];
     if (file) {
       formData.append('image', file);
     }
 
-    postUser(formData)
+    let saveUser = id ? updateUser : postUser
+
+    saveUser(formData, id)
       .then((res) => {
         setLoading(false);
         setErrors("");
@@ -61,6 +63,19 @@ const AddUser = ({ callback, handleClose }) => {
     { label: "Publisher", value: "publisher" },
   ];
 
+  useEffect(() => {
+    if (id) {
+      getUserDetail(id).then(res=>{
+        let {email, name, role, mobile, image, bio} = res?.data?.data;        
+        setData({email, name, role, mobile, image, bio})
+
+      }).catch(err=>{
+        console.log('err', err)
+      })
+    }
+  }, [id])
+
+
   return (
     <div>
       <Col className="pb-4">
@@ -71,7 +86,7 @@ const AddUser = ({ callback, handleClose }) => {
           name="image"
           label="Image"
           placeholder="Enter Image"
-          src={data.image}
+          src={data.image }
           error={errors?.name}
         />
       </Col>
@@ -118,6 +133,18 @@ const AddUser = ({ callback, handleClose }) => {
           onChange={(e) => handleDropdownChange(e, "role")}
           options={USER_ROLE}
           error={errors?.role}
+        />
+      </Col>
+      <Col className="mb-4">
+        <Input
+          onChange={handleInputChange}
+          value={data?.bio || ""}
+          type="text"
+          as="textarea"
+          name="bio"
+          label="Bio"
+          placeholder="Enter bio"
+          error={errors?.bio}
         />
       </Col>
       <Col className="mb-4">

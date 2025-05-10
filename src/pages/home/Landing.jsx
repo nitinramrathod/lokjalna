@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import {
-  Category,
+  Tag,
   MainNews,
   SectionHeading,
   Title,
@@ -28,7 +28,7 @@ const Landing = ({ data, trending }) => {
             <div className="category-wrapper">
               {data?.tags?.length > 0 &&
                 data?.tags?.map((item, index) => (
-                  <Category key={item?.name + index}> {item?.name}</Category>
+                  <Tag key={item?.name + index}> {item?.name}</Tag>
                 ))}
             </div>
 
