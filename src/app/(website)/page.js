@@ -3,6 +3,7 @@ import LandingNavigation from "@/pages/home/LandingNavigation";
 import SliderSection from "@/pages/home/SliderSection";
 import { getNews } from "@/utils/services/news.services";
 
+
 export default async function Home() {
   let data;
   try {
@@ -20,12 +21,14 @@ export default async function Home() {
 
   return (
    <>
+  
    <LandingNavigation></LandingNavigation>
    <Landing data={breaking} trending={trending}/> 
    
    {topStories?.length > 0 && <SliderSection data={topStories} section_name="Top Stories"/>}
    {localNews?.length > 0 && <SliderSection data={localNews} section_name="Local News"/>}
    {sportNews?.length > 0 && <SliderSection data={sportNews} section_name="Sport News"/>}
+  
    </>
   );
 }

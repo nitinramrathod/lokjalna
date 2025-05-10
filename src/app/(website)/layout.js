@@ -1,4 +1,5 @@
 
+import { Suspense } from "react";
 import Navigation from "../../components/navigation/Navigation";
 import Footer from "@/components/footer/Footer";
 
@@ -54,9 +55,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <div className='website-wrapper'>
+      <Suspense fallback={<div>Loading writers...</div>}>
       <Navigation />
       {children}
       <Footer />
+      </Suspense>
     </div>
   );
 }

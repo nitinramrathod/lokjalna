@@ -1,6 +1,6 @@
 import OurWriters from '@/pages/our-writers/OurWriters'
 import { fetchUsers } from '@/utils/services/dashboard.services';
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const OurWritersPage =async () => {
    let users;
