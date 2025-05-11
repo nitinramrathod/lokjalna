@@ -34,13 +34,17 @@ const Tr = styled.tr`
 `;
 
 const TableLoader = ({ rows = 16, columns = 5 }) => {
-  return Array.from({ length: rows })?.map((item, index) => (
-    <Tr key={`${item}-${index}`}>
-      {Array.from({ length: columns })?.map((column) => (
-        <td  key={`${column}-${index}`}></td>
+  return (
+    <>
+      {Array.from({ length: rows }).map((_, rowIndex) => (
+        <tr key={`tr-${rowIndex}`}>
+          {Array.from({ length: columns }).map((_, colIndex) => (
+            <td key={`td-${rowIndex}-${colIndex}`}></td>
+          ))}
+        </tr>
       ))}
-    </Tr>
-  ));
+    </>
+  );
 };
 
 export default TableLoader;

@@ -3,6 +3,12 @@
 import ImageInput from "@/components/form/ImageInput";
 import Input from "@/components/form/Input";
 import MultiSelect from "@/components/form/MultiSelect";
+import dynamic from 'next/dynamic';
+
+// const RTEInput = dynamic(() => import("@/components/form/RTE"), {
+//   ssr: false,
+//   loading: () => <p>Loading editor...</p>,
+// });
 import RTEInput from "@/components/form/RTE";
 import SingleSelect from "@/components/form/SingleSelect";
 import { transformToOptions } from "@/utils/helper/transformToOptions";
