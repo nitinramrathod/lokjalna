@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import { StyledNavigationBox, StyledNavWrapper } from "./home.styled";
 import Image from "next/image";
@@ -46,7 +48,7 @@ const LandingNavigation = () => {
     <Container>
       <StyledNavWrapper>
         {navigationItems.map((item, index) => (
-          <NavigationBox data={item} key={index}></NavigationBox>))}
+          <NavigationBox data={item} key={index + 'dd'}></NavigationBox>))}
       </StyledNavWrapper>
     </Container>
   );

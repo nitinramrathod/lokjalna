@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Rr = styled.tr`
+const Tr = styled.tr`
   td {
     padding: 20px 10px;
     position: relative; /* Ensure relative positioning for the loader */
@@ -34,12 +34,12 @@ const Rr = styled.tr`
 `;
 
 const TableLoader = ({ rows = 16, columns = 5 }) => {
-  return Array.from({ length: rows })?.map((item) => (
-    <Rr key={item}>
+  return Array.from({ length: rows })?.map((item, index) => (
+    <Tr key={`${item}-${index}`}>
       {Array.from({ length: columns })?.map((column) => (
-        <td key={column}></td>
+        <td  key={`${column}-${index}`}></td>
       ))}
-    </Rr>
+    </Tr>
   ));
 };
 

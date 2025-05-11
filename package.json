@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
-    "next": "14.2.20",
+    "next": "15.3.2",
     "quill": "^2.0.3",
     "react": "^18",
     "react-bootstrap": "^2.10.6",

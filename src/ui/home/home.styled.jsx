@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import { truncate2line } from "../common/text.styled";
 import Link from "next/link";
 
-const { default: styled } = require("@emotion/styled");
+import styled from "@emotion/styled";
 
 
 
@@ -84,7 +84,7 @@ const MainNews = styled(Link)`
   }
 `;
 
-const StyledNavWrapper = styled.section`
+const StyledNavWrapper = styled.div`
   display: flex;
   gap: 10px;
   overflow-x: auto;

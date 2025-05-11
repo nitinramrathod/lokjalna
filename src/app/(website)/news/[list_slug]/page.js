@@ -1,4 +1,4 @@
-import SliderSection from '@/pages/home/SliderSection'
+import SliderSection from '@/ui/home/SliderSection'
 import { getNews } from '@/utils/services/news.services';
 import React from 'react'
 

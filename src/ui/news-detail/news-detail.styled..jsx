@@ -1,9 +1,8 @@
 "use client";
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/navigation";
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .landing-image {
     width: 100%;
     height: auto;
@@ -94,4 +93,4 @@ const BackButton = ({ children }) => {
 };
 
 export default Wrapper;
-export { BackButton, DetailWrapper, Category };
+export { BackButton, DetailWrapper, Wrapper, Category };

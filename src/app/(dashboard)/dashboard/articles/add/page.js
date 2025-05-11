@@ -1,4 +1,4 @@
-import ArticleDetailForm from '@/pages/dashboard/articles/ArticleDetailForm'
+import ArticleDetailForm from '@/ui/dashboard/articles/ArticleDetailForm'
 import React from 'react'
 import { Container } from 'react-bootstrap'
 

@@ -1,4 +1,4 @@
-import OurWriters from '@/pages/our-writers/OurWriters'
+import OurWriters from '@/ui/our-writers/OurWriters'
 import { fetchUsers } from '@/utils/services/dashboard.services';
 import React, { Suspense } from 'react'
 

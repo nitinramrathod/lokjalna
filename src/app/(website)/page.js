@@ -1,6 +1,6 @@
-import Landing from "@/pages/home/Landing";
-import LandingNavigation from "@/pages/home/LandingNavigation";
-import SliderSection from "@/pages/home/SliderSection";
+import Landing from "@/ui/home/Landing";
+import LandingNavigation from "@/ui/home/LandingNavigation";
+import SliderSection from "@/ui/home/SliderSection";
 import { getNews } from "@/utils/services/news.services";
 
 

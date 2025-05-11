@@ -1,12 +1,12 @@
-import SliderSection from '@/pages/home/SliderSection';
-import Landing from '@/pages/news-detail/Landing'
+import SliderSection from '@/ui/home/SliderSection';
+import Landing from '@/ui/news-detail/Landing'
 import { getNews } from '@/utils/services/news.services';
 import { getNewsDetail } from '@/utils/services/services';
 import React from 'react'
 import { Container } from 'react-bootstrap'
 
 export const generateMetadata = async ({ params }) => {
-    const { detail_slug } = params;
+    const { detail_slug } = await params;
     const { data } = await getNewsDetail(detail_slug);
     return {
         title: data?.name,
@@ -39,7 +39,7 @@ export const generateMetadata = async ({ params }) => {
 }
 
 const NewsDetail = async ({ params }) => {
-    const { detail_slug } = params;
+    const { detail_slug } = await params;
     const { data } = await getNewsDetail(detail_slug);
 
     let relatedNews;
@@ -52,8 +52,9 @@ const NewsDetail = async ({ params }) => {
 
     return (
         <Container>
-            <Landing data={data} />
-            <SliderSection data={relatedNews.data} section_name="Related News" />
+            
+<Landing data={data} />
+            <SliderSection data={relatedNews.data} section_name="Related News" /> 
         </Container>
     )
 }

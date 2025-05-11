@@ -1,4 +1,4 @@
-import NewsDetailForm from '@/pages/dashboard/news/NewsDetailForm'
+import NewsDetailForm from '@/ui/dashboard/news/NewsDetailForm'
 import React from 'react'
 import { Container } from 'react-bootstrap'
 

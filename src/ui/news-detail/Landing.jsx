@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import { DetailHeading } from "../common/text.styled";
-import Wrapper, {
+import  {
   BackButton,
+  Wrapper,
   Category,
   DetailWrapper,
 } from "./news-detail.styled.";
@@ -13,7 +14,6 @@ import Link from "next/link";
 
 
 const Landing = ({ data }) => {
-  console.log('data', data)
   return (
     <Wrapper>
       <BackButton>{back_icon} Back to list</BackButton>
@@ -26,7 +26,7 @@ const Landing = ({ data }) => {
         className="landing-image"
         width={600}
         height={300}
-        src={data?.image}
+        src={data?.image || null}
         alt={data?.name}
       />
       <DetailWrapper>

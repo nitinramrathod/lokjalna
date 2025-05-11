@@ -1,4 +1,4 @@
-import ErrorText from '@/pages/common/form.styld'
+import ErrorText from '@/ui/common/form.styld'
 
 import React from 'react'
 import { Form } from 'react-bootstrap'

@@ -54,12 +54,14 @@ const Navigation = () => {
   }
 
   useEffect(() => {
-    if(query){
+    
+    if(query && pathname == '/search'){
       searchInputRef.current.value = query;
-    }else{
+    }
+    if(!query && pathname == '/search'){
       router.push(`/`)
     }
-  }, [query])
+  }, [query, pathname])
 
 
   return (

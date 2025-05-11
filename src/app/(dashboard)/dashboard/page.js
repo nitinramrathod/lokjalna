@@ -83,34 +83,34 @@ const Dashboard = () => {
 
         <Wrapper>
             <StatBox>
-                <span class="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">group</span>
                 <span className="count">{data?.totalUsers || '--'}</span>
                 <p>Total Users</p>
             </StatBox>
             <StatBox>
-                <span class="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">group</span>
 
                 <span className="count">{data?.totalNews || '--'}</span>
                 <p>Total News</p>
             </StatBox>
             <StatBox>
-                <span class="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">group</span>
                 <span className="count">{data?.totalArticles || '--'}</span>
                 <p>Total Articles</p>
             </StatBox>
             <StatBox>
-                <span class="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">group</span>
                 <span className="count">{data?.totalSubmissions || '--'}</span>
                 <p>Total Submissions</p>
             </StatBox>
             <StatBox>
-                <span class="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">group</span>
 
                 <span className="count">{data?.totalTags || '--'}</span>
                 <p>Total Tags</p>
             </StatBox>
             <StatBox>
-                <span class="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">group</span>
 
                 <span className="count">{data?.totalCategories || '--'}</span>
                 <p>Total Categories</p>

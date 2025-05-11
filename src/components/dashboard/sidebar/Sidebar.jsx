@@ -92,13 +92,13 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
     <Wrapper id="sidebar">
       <div className="link-wrapper">
         <button className="collapse-button" onClick={toggleSidebar}>
-          {collapsed ? <Image src={short_logo}/> : <Image src={logo}/>}
+          {collapsed ? <Image src={short_logo} alt="Jalna Lokjyot News"/> : <Image src={logo} alt="Jalna Lokjyot News"/>}
         </button>
         <StyledLink
           className={path == "/dashboard" ? "active" : ""}
           href={"/dashboard"}
         >
-          <span class="material-symbols-outlined">dashboard</span>
+          <span className="material-symbols-outlined">dashboard</span>
           <span className="nav-text">Dashboard</span>
         </StyledLink>
         <StyledLink
@@ -118,7 +118,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
           className={path == "/dashboard/articles" ? "active" : ""}
           href={"/dashboard/articles"}
         >
-          <span class="material-symbols-outlined">article</span>
+          <span className="material-symbols-outlined">article</span>
           <span className="nav-text">Articles</span>
         </StyledLink>
         
@@ -127,7 +127,7 @@ const Sidebar = ({ collapsed, toggleSidebar }) => {
             className={path == "/dashboard/categories" ? "active" : ""}
             href={"/dashboard/categories"}
           >
-            <span class="material-symbols-outlined">
+            <span className="material-symbols-outlined">
 category
 </span> <span className="nav-text">Categories</span>
           </StyledLink>
@@ -146,7 +146,7 @@ category
             className={path == "/dashboard/submissions" ? "active" : ""}
             href={"/dashboard/submissions"}
           >
-           <span class="material-symbols-outlined">mail</span> <span className="nav-text">Submissions</span>
+           <span className="material-symbols-outlined">mail</span> <span className="nav-text">Submissions</span>
           </StyledLink>
         )}
 

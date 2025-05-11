@@ -1,4 +1,4 @@
-import NewsDetailForm from '@/pages/dashboard/news/NewsDetailForm'
+import NewsDetailForm from '@/ui/dashboard/news/NewsDetailForm'
 import { getSingleNews } from '@/utils/services/news.services';
 import React from 'react'
 

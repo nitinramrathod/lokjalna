@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { EmotionRegistry } from "@/utils/emotions";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +30,10 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <EmotionRegistry>
+
         {children}
+        </EmotionRegistry>
       </body>
     </html>
   );

@@ -157,7 +157,7 @@ function ContactUs() {
               <Alert>🎉 Thanks for reaching out! We&apos;ll get in touch with you soon.</Alert>
                 }
 
-                <StyledButton disabled={formState?.isPending} type="submit">{formState?.isPending ? 'Submiting...': 'Submit'}<span class="material-symbols-outlined">
+                <StyledButton disabled={formState?.isPending} type="submit">{formState?.isPending ? 'Submiting...': 'Submit'}<span className="material-symbols-outlined">
                   arrow_right_alt
                 </span></StyledButton>
               </div>

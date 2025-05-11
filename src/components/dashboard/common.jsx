@@ -25,17 +25,17 @@ const DeleteButton = ({ onClick, type="DELETE"}) => {
   switch (type) {
     case "DELETE":
       title = 'Delete this record'
-      icon = <span class="material-symbols-outlined">delete_forever</span>
+      icon = <span className="material-symbols-outlined">delete_forever</span>
       
       break;
     case "EDIT":
       title = 'Edit this record'
-      icon = <span class="material-symbols-outlined">edit_square</span>
+      icon = <span className="material-symbols-outlined">edit_square</span>
       
       break;
     case "VIEW":
       title = 'Delete this record'
-      icon = <span class="material-symbols-outlined">delete_forever</span>
+      icon = <span className="material-symbols-outlined">delete_forever</span>
       
       break;
   

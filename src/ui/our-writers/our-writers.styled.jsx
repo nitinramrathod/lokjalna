@@ -109,7 +109,7 @@ const WriterBox = ({ data: writer }) => {
                 height={250}
             />
             <div className="detail-wrapper">
-                <Link href={`/news/author-news?author=nitin-rathod`}><Highlight className='name'>{writer?.name || '--'} <span class="material-symbols-outlined text-success">
+                <Link href={`/news/author-news?author=nitin-rathod`}><Highlight className='name'>{writer?.name || '--'} <span className="material-symbols-outlined text-success">
 link
 </span></Highlight></Link>
                 <p className="email">{writer?.email || '--'}</p>

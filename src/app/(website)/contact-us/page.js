@@ -1,4 +1,4 @@
-import ContactUs from '@/pages/contact-us/ContactUs'
+import ContactUs from '@/ui/contact-us/ContactUs'
 import React from 'react'
 
 const ContactUsPage = () => {
