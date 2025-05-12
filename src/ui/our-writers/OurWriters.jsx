@@ -5,7 +5,6 @@ import { Container } from 'react-bootstrap'
 import WriterBox, { FounderImage, FounderInfo, FounderSection, Highlight, Paragraph, Section, Title, Wrapper, WritersContainer } from './our-writers.styled';
 
 function OurWriters({data}) {
-  console.log('data', data, '<==')
   return (
     <Wrapper>
       <Container>

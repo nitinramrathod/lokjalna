@@ -1,6 +1,7 @@
 import OurWriters from '@/ui/our-writers/OurWriters'
 import { fetchUsers } from '@/utils/services/dashboard.services';
-import React, { Suspense } from 'react'
+
+export const revalidate = 600;
 
 const OurWritersPage =async () => {
    let users;
