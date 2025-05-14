@@ -11,7 +11,7 @@ import Image from "next/image";
 import Input from "@/components/form/Input";
 
 const Section = styled.section`
-background: linear-gradient(to right, rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.1)), url('/images/logos/indian-map.avif');
+background: linear-gradient(to right, rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.1)), url('/images/logos/indian-map.png');
 background-size: cover;
 background-position: top;
 min-height: 100vh;
