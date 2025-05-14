@@ -3,7 +3,6 @@ import LandingNavigation from "@/ui/home/LandingNavigation";
 import SliderSection from "@/ui/home/SliderSection";
 import { getNews } from "@/utils/services/news.services";
 
-
 export default async function Home() {
   let data;
   try {

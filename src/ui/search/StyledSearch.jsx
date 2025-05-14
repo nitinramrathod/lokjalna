@@ -4,15 +4,17 @@ import SidePanel from './SidePanel'
 import { Container } from 'react-bootstrap'
 
 
-const StyledSearch = () => {
+const StyledSearch = ({query}) => {
     return (
         <Container>
 
         <Wrapper>
-            <SidePanel></SidePanel>
+            <SidePanel/>
             <ResultWrapper>
-                <SearchItem></SearchItem>
-                <SearchItem></SearchItem>
+                <h3 className='result-text'>124 Results for &quot;{query}&quot;</h3>
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
             </ResultWrapper>
         </Wrapper>
         </Container>

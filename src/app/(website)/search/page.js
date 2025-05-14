@@ -5,7 +5,7 @@ const Search = ({searchParams }) => {
     const query = searchParams?.query || '';
   return (
    
-    <StyledSearch/>
+    <StyledSearch query={query}/>
    
   )
 }

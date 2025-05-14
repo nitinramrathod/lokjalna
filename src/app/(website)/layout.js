@@ -1,9 +1,6 @@
 
-// import { Suspense } from "react";
 import Navigation from "../../components/navigation/Navigation";
 import Footer from "@/components/footer/Footer";
-
-
 
 export const metadata = {
   title: {
