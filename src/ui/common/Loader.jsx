@@ -15,7 +15,7 @@ background: linear-gradient(45deg, #a3a3a3, #ffffff);
 const Loader = () => {
     return (
         <Wrapper>
-            <Image src={short_logo} alt="Jalna Lokjyot"/>          
+            <Image height={80} width={80} src={short_logo} alt="Jalna Lokjyot"/>          
         </Wrapper>
     )
 }

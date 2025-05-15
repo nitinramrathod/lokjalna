@@ -4,6 +4,7 @@ import { Button, Col, Form, Row, Spinner } from "react-bootstrap";
 import SingleSelect from "../form/SingleSelect";
 import Input from "../form/Input";
 import ImageInput from "../form/ImageInput";
+import { transformToOptions } from "@/utils/helper/transformToOptions";
 
 const AddUser = ({ callback, id, handleClose }) => {
   const [data, setData] = useState({});
@@ -66,14 +67,18 @@ const AddUser = ({ callback, id, handleClose }) => {
   useEffect(() => {
     if (id) {
       getUserDetail(id).then(res=>{
-        let {email, name, role, mobile, image, bio} = res?.data?.data;        
+        debugger;
+        let {email, name, role, mobile, image, bio} = res?.data?.data;    
+        role = transformToOptions(role);    
         setData({email, name, role, mobile, image, bio})
 
       }).catch(err=>{
         console.log('err', err)
       })
     }
-  }, [id])
+  }, [id]);
+
+  console.log('data', data)
 
 
   return (
@@ -129,7 +134,8 @@ const AddUser = ({ callback, id, handleClose }) => {
       <Col className="mb-4">
         <SingleSelect
           label={"Role"}
-          defaultValue={USER_ROLE[1]}
+          id={"Role"}
+          value={data?.role}
           onChange={(e) => handleDropdownChange(e, "role")}
           options={USER_ROLE}
           error={errors?.role}
