@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { DetailHeading } from "../common/text.styled";
-import  {
+import {
   BackButton,
   Wrapper,
   Category,
@@ -21,7 +21,7 @@ const Landing = ({ data }) => {
       <Category>{data?.category?.name || "--"}</Category>
 
       <DetailHeading className="heading">{data?.name}</DetailHeading>
-      <Date className="date"><Link href={`/news/author-news?author=${data?.author_name}`}> {data?.author_name}</Link> | {formatDateWithDay(data?.publish_date)}</Date>
+      <Date className="date">Updated: <Link href={`/news/author-news?author_id=${data?.publisher._id}&name=${data?.publisher?.name}`}> {data?.publisher?.name}</Link> | {formatDateWithDay(data?.publish_date)}</Date>
       <Image
         className="landing-image"
         width={600}
@@ -33,11 +33,11 @@ const Landing = ({ data }) => {
         <p className="short-description">{data?.short_description}</p>
         <div dangerouslySetInnerHTML={{ __html: data?.long_description }} />
         <div className="category-wrapper">
-              Tags: {data?.tags?.length > 0 &&
-                data?.tags?.map((item, index) => (
-                  <Tag key={item?.name + index}> {item?.name}</Tag>
-                ))}
-            </div>
+          Tags: {data?.tags?.length > 0 &&
+            data?.tags?.map((item, index) => (
+              <Tag key={item?.name + index}> {item?.name}</Tag>
+            ))}
+        </div>
       </DetailWrapper>
     </Wrapper>
   );

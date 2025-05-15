@@ -8,9 +8,9 @@ const NewsList = async ({
 }) => {
   let data;
   const { list_slug } = params;
-  const { author } = searchParams;
+  const { author_id, name } = searchParams;
   try {
-    data = await getNews();
+    data = await getNews({publisher: author_id});
 
   } catch (error) {
     console.log('error', error)
@@ -22,7 +22,7 @@ const NewsList = async ({
     return <div>{trending?.length > 0 && <SliderSection data={trending} section_name="Local News" />}</div>
   }
   if (list_slug === "author-news") {
-    return <div>{trending?.length > 0 && <SliderSection data={trending} section_name={`Writer ${author}`} />}</div>
+    return <div>{trending?.length > 0 && <SliderSection data={trending} section_name={`Writer ${name}`} />}</div>
   }
   return <div>{trending?.length > 0 && <SliderSection data={trending} section_name="World News" />}</div>
 

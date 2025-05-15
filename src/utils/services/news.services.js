@@ -3,10 +3,20 @@ import { getToken } from "../helper/localStorage";
 const BASE_URL_V1 = 'https://lokjyot-api.onrender.com/api/v1'
 
 
-async function getNews() {
-  const response = await fetch('https://lokjyot-api.onrender.com/api/v1/news', {
+async function getNews(params = {}) {
+  const baseUrl = 'https://lokjyot-api.onrender.com/api/v1/news';
+  const url = new URL(baseUrl);
+
+  // Append query parameters
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      url.searchParams.append(key, value);
+    }
+  });
+
+  const response = await fetch(url.toString(), {
     method: 'GET',
-    cache: 'no-store', // To disable caching (optional)
+    cache: 'no-store', // Disable caching (optional)
   });
 
   if (!response.ok) {
