@@ -16,13 +16,13 @@ const NewsList = async ({
     console.log('error', error)
 
   }
-  const trending = data?.data?.slice(1, 5)
+  const trending = data?.data;
 
   if (list_slug === "local-news") {
     return <div>{trending?.length > 0 && <SliderSection data={trending} section_name="Local News" />}</div>
   }
   if (list_slug === "author-news") {
-    return <div>{trending?.length > 0 && <SliderSection data={trending} section_name={`Writer ${name}`} />}</div>
+    return <div>{trending?.length > 0 && <SliderSection data={trending} section_name={`Published By ${name}`} />}</div>
   }
   return <div>{trending?.length > 0 && <SliderSection data={trending} section_name="World News" />}</div>
 
