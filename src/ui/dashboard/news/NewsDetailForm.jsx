@@ -86,6 +86,9 @@ const NewsDetailForm = ({ defaultData = "" }) => {
       formData.set("type", data?.type?.value);
     }
 
+    formData.delete('publisher')
+    formData.delete('tags')
+
     saveNews(formData, defaultData?._id)
       .then((res) => {
         setData("");
