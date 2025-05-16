@@ -30,7 +30,7 @@ export const metadata = {
       "जालना लोकज्योत - सत्याची ज्योत आणि जालन्याचा आवाज! तुमच्या शहरातील सत्य, बातम्या आणि महत्त्वाच्या घडामोडींसाठी भेट द्या.",
     images: [
       {
-        url: "https://jalnalokjyot.vercel.app/images/og-image-v2.png",
+        url: "https://jalnalokjyot.vercel.app/images/jalna-lokjyot.png",
         width: 1200,
         height: 630,
         alt: "जालना लोकज्योत लोगो - सत्याची ज्योत, जालन्याचा आवाज!",
@@ -44,7 +44,7 @@ export const metadata = {
     title: "जालना लोकज्योत | सत्याची ज्योत, जालन्याचा आवाज!",
     description:
       "जालना लोकज्योत - सत्याची ज्योत आणि जालन्याचा आवाज! तुमच्या शहरातील सत्य, बातम्या आणि महत्त्वाच्या घडामोडींसाठी भेट द्या.",
-    images: ["https://jalnalokjyot.vercel.app/images/og-image-v2.png"],
+    images: ["https://jalnalokjyot.vercel.app/images/jalna-lokjyot.png"],
   },
 };
 

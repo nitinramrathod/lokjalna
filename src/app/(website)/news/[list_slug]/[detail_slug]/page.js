@@ -43,18 +43,17 @@ const NewsDetail = async ({ params }) => {
     const { data } = await getNewsDetail(detail_slug);
 
     let relatedNews;
-  try {
-     relatedNews = await getNews();
-    
-  } catch (error) {
-    console.log('error', error);
-  }
+    try {
+        relatedNews = await getNews();
+
+    } catch (error) {
+        console.log('error', error);
+    }
 
     return (
         <Container>
-            
-<Landing data={data} />
-            <SliderSection data={relatedNews.data} section_name="Related News" /> 
+            <Landing data={data} />
+            <SliderSection data={relatedNews.data} section_name="Related News" />
         </Container>
     )
 }

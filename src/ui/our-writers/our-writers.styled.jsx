@@ -148,11 +148,11 @@ const WriterBox = ({ data: writer }) => {
         <Link href={`/news/author-news?author=nitin-rathod`}><Highlight className='name'>{writer?.name || '--'} <span className="material-symbols-outlined text-success">
           link
         </span></Highlight></Link>
-        <p className="email"><span class="material-symbols-outlined">
+        <p className="email"><span className="material-symbols-outlined">
           alternate_email
         </span>{writer?.email || '--'}</p>
         <p className="description">
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             shield_person
           </span> <p> {writer?.bio || 'No Bio Added'}</p>
         </p>

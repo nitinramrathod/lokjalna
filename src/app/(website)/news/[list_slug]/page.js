@@ -28,4 +28,21 @@ const NewsList = async ({
 
 }
 
+{/* <SEOJsonLd
+  type="CollectionPage"
+  data={{
+    name: 'Local News - Jalna Lokjyot',
+    url: 'https://jalnalokjyot.vercel.app/local-news',
+    description: 'Latest breaking and trending local news stories from Jalna and surrounding areas.',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Jalna Lokjyot',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://jalnalokjyot.vercel.app/images/jalna-lokjyot.png',
+      },
+    },
+  }}
+/> */}
+
 export default NewsList

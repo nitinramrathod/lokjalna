@@ -94,12 +94,12 @@ const Dashboard = () => {
                 <p>Total News</p>
             </StatBox>
             <StatBox>
-                <span className="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">article</span>
                 <span className="count">{data?.totalArticles || '--'}</span>
                 <p>Total Articles</p>
             </StatBox>
             <StatBox>
-                <span className="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">mail</span>
                 <span className="count">{data?.totalSubmissions || '--'}</span>
                 <p>Total Submissions</p>
             </StatBox>
@@ -110,7 +110,7 @@ const Dashboard = () => {
                 <p>Total Tags</p>
             </StatBox>
             <StatBox>
-                <span className="material-symbols-outlined icon">group</span>
+                <span className="material-symbols-outlined icon">category</span>
 
                 <span className="count">{data?.totalCategories || '--'}</span>
                 <p>Total Categories</p>

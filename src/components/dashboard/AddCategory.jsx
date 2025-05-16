@@ -6,7 +6,16 @@ const AddCategory = ({callback, handleClose}) => {
   const [data, setData] = useState({});
 
   const handleSubmit = () => {
-    postCategory(data)
+       const formData = new FormData();
+    
+    for (const [key, value] of Object.entries(data)) {
+     
+      formData.append(key, value);
+      
+    }
+
+
+    postCategory(formData)
       .then((res) => {
         console.log("res", res);
         if(callback)callback();

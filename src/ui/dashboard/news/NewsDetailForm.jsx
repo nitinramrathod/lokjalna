@@ -61,9 +61,9 @@ const NewsDetailForm = ({ defaultData = "" }) => {
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(data)) {
-      if (key !== "tags" && key !== 'image') {
-        formData.append(key, value);
-      }
+     
+      formData.append(key, value);
+      
     }
 
     const file = fileInputRef.current.files[0];

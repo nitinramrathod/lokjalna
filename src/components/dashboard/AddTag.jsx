@@ -2,15 +2,24 @@ import { postTag } from "@/utils/services/dashboard.services";
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-const AddTag = ({callback, handleClose}) => {
+const AddTag = ({ callback, handleClose }) => {
   const [data, setData] = useState({});
 
   const handleSubmit = () => {
-    postTag(data)
+
+    const formData = new FormData();
+    
+    for (const [key, value] of Object.entries(data)) {
+      if (key !== "tags" && key !== 'image') {
+        formData.append(key, value);
+      }
+    }
+
+    postTag(formData)
       .then((res) => {
         console.log("res", res);
-        if(callback)callback();
-        if(handleClose)handleClose();
+        if (callback) callback();
+        if (handleClose) handleClose();
       })
       .catch((err) => {
         console.log("err", err);
