@@ -22,6 +22,7 @@ const ResultWrapper = styled.div`
 display: flex;
 flex-direction: column;
 gap: 25px;
+width: 100%;
 `;
 
 const StyledSearchItem = styled.div`
@@ -95,18 +96,18 @@ span{
 }
 `
 
-const SearchItem = () => {
+const SearchItem = ({data}) => {
     return (
         <StyledSearchItem>
             <Image
-                src={'/images/placeholders/avtar-placeholder.png'}
-                alt={'Jalna Lokjyot'}
+                src={data?.image || '/images/placeholder.png'}
+                alt={data?.name}
                 width={200}
                 height={250}
             />
             <div className="detail">
-                <h2 className='title'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, dolore?</h2>
-                <p className='description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, dolore?</p>
+                <h2 className='title'>{data?.name}</h2>
+                <p className='description'>{data?.short_description}</p>
             </div>
 
         </StyledSearchItem>

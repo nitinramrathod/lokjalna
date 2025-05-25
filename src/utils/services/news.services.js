@@ -25,13 +25,13 @@ async function getNews(params = {}) {
 
   return response.json();
 }
-async function adminGetNews() {
+async function adminGetNews(params={}) {
   const token = getToken();
 
   return axios({
     method: 'GET',
     url: BASE_URL_V1 + '/admin/news',
-
+    params,
     headers: {
       'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${token}`,
