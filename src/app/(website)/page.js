@@ -1,3 +1,4 @@
+import CardsSection from "@/ui/home/CardsSection";
 import Landing from "@/ui/home/Landing";
 import LandingNavigation from "@/ui/home/LandingNavigation";
 import SliderSection from "@/ui/home/SliderSection";
@@ -7,8 +8,7 @@ import { getNews } from "@/utils/services/news.services";
 export default async function Home() {
   let data;
   try {
-     data = await getNews();
-    
+     data = await getNews();    
   } catch (error) {
     console.log('error', error);
   }
@@ -20,14 +20,12 @@ export default async function Home() {
  const sportNews = data?.data?.slice(13, 17)
 
   return (
-   <>
-  
+   <>  
    <LandingNavigation></LandingNavigation>
    <Landing data={breaking} trending={trending}/> 
-   
-   {topStories?.length > 0 && <SliderSection data={topStories} section_name="Top Stories"/>}
-   {localNews?.length > 0 && <SliderSection data={localNews} section_name="Local News"/>}
-   {sportNews?.length > 0 && <SliderSection data={sportNews} section_name="Sport News"/>}
+   {topStories?.length > 0 && <CardsSection data={topStories} section_name="Top Stories"/>}
+   {localNews?.length > 0 && <CardsSection data={localNews} section_name="Local News"/>}
+   {sportNews?.length > 0 && <CardsSection data={sportNews} section_name="Sport News"/>}
 
    <SEOJsonLd
       type="WebSite"
@@ -44,8 +42,7 @@ export default async function Home() {
           },
         },
       }}
-    />
-  
+    />  
    </>
   );
 }

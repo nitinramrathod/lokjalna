@@ -17,13 +17,16 @@ const StyledLatestCard = styled(Link)`
   text-decoration: none;
 
   img {
-    width: 130px;
+    width: 140px;
     object-fit: cover;
+    aspect-ratio: 2/1.15;
+    height: auto;
   }
 
   &:hover{
     .title{
       color: orange;
+      text-decoration: underline;
     }
   }
 `;

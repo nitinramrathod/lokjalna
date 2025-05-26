@@ -1,62 +1,60 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import SearchItem, { ResultWrapper, Wrapper } from './search.styled'
-import SidePanel from './SidePanel'
-import { Container } from 'react-bootstrap'
-import { getNews } from '@/utils/services/news.services'
-import ResponsiveSkeletonLoader from './Skeleton'
+"use client";
+import React, { useEffect, useState } from "react";
+import SearchItem, { ResultWrapper, Wrapper } from "./search.styled";
+import SidePanel from "./SidePanel";
+import { Container } from "react-bootstrap";
+import { getNews } from "@/utils/services/news.services";
+import ResponsiveSkeletonLoader from "./Skeleton";
 
+const StyledSearch = ({ query }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const StyledSearch = ({query}) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const [newsRes] = await Promise.all([getNews({ name: query })]);
 
-     const [data, setData] = useState([]);
-        const [loading, setLoading] = useState(true);
-        
-    
-        useEffect(() => {
-            const fetchData = async () => {
-                setLoading(true);
-            try {
-                const [newsRes] = await Promise.all([
-                    getNews({name:query}),
-                ]);
-    
-                setData(newsRes?.data);
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-    
-                console.error("Error fetching dropdown data:", error);
-            }
-        };
+        setData(newsRes?.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
 
-            fetchData();
-        }, [query]);
+        console.error("Error fetching dropdown data:", error);
+      }
+    };
 
-       const LoaderUI = () => {
-            return (<>
-                <ResponsiveSkeletonLoader />
-                <ResponsiveSkeletonLoader />
-                <ResponsiveSkeletonLoader />
-            </>
-            )
-        }
+    fetchData();
+  }, [query]);
 
+  const LoaderUI = () => {
     return (
-        <Container>
+      <>
+        <ResponsiveSkeletonLoader />
+        <ResponsiveSkeletonLoader />
+        <ResponsiveSkeletonLoader />
+      </>
+    );
+  };
 
-        <Wrapper>
-            <SidePanel newsCount = {data?.length}/>
-            <ResultWrapper>
-                <h3 className='result-text'>124 Results for &quot;{query}&quot;</h3>
-                {loading ? <LoaderUI/> : data?.length > 0 ? data.map((item, index) => (
-                    <SearchItem key={index} data={item}/>
-                )) : <div className='no-result'>No Result Found</div>}
-                
-            </ResultWrapper>
-        </Wrapper>
-        </Container>
-    )
-}
+  return (
+    <Container>
+      <Wrapper>
+        <SidePanel newsCount={data?.length} />
+        <ResultWrapper>
+          <h3 className="result-text">{data?.length} Results for &quot;{query}&quot;</h3>
+          {loading ? (
+            <LoaderUI />
+          ) : data?.length > 0 ? (
+            data.map((item, index) => <SearchItem key={index} data={item} />)
+          ) : (
+            <div className="no-result">No Result Found</div>
+          )}
+        </ResultWrapper>
+      </Wrapper>
+    </Container>
+  );
+};
 
-export default StyledSearch
+export default StyledSearch;

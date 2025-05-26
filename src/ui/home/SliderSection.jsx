@@ -17,6 +17,8 @@ const StyledCard = styled(Link)`
   img {
     width: 100%;
     height: auto;
+    aspect-ratio: 2/1.15;
+    object-fit: cover;
   }
 
   .text-wrapper {
@@ -26,6 +28,7 @@ const StyledCard = styled(Link)`
   &:hover {
     .title {
       color: orange;
+      text-decoration: underline;
     }
   }
 `;
@@ -109,4 +112,5 @@ const SliderSection = ({ section_name = "no name", data }) => {
   );
 };
 
+export { Wrapper, Card, StyledCard };
 export default SliderSection;

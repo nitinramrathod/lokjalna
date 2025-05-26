@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
 import SidePanel from './SidePanel';
+import { formatDateWithDay } from '@/utils/helper/dateFormater';
 
 const Wrapper = styled.section`
 display: flex;
@@ -25,13 +26,15 @@ gap: 25px;
 width: 100%;
 `;
 
-const StyledSearchItem = styled.div`
+const StyledSearchItem = styled(Link)`
 display: flex;
 align-items: flex-start;
 flex-direction: column;
 gap: 20px;
 border-bottom: 1px solid rgba(146, 146, 146, 0.562);
     padding-bottom: 20px;
+    text-decoration: none;
+    color: unset;
 
 .description{
     font-size: 14px;
@@ -39,6 +42,7 @@ border-bottom: 1px solid rgba(146, 146, 146, 0.562);
 }
 .title{
     font-size: 18px;
+    transition: all .3s ease;
 }
 img{
     /* width: 200px; */
@@ -47,6 +51,13 @@ img{
     height: auto;
     object-fit: cover;
     border-radius: 7px;
+}
+
+&:hover{
+    .title{
+        color: #297ffd;
+        text-decoration: underline;
+    }
 }
 
 @media (min-width: 768px){
@@ -98,7 +109,7 @@ span{
 
 const SearchItem = ({data}) => {
     return (
-        <StyledSearchItem>
+        <StyledSearchItem href={`/news/search/${data?._id}`}>
             <Image
                 src={data?.image || '/images/placeholder.png'}
                 alt={data?.name}
@@ -108,6 +119,7 @@ const SearchItem = ({data}) => {
             <div className="detail">
                 <h2 className='title'>{data?.name}</h2>
                 <p className='description'>{data?.short_description}</p>
+                <p className='description pt-2'>{data?.publisher?.name} | {formatDateWithDay(data?.publish_date)}</p>
             </div>
 
         </StyledSearchItem>

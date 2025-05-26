@@ -3,12 +3,10 @@
 import { css } from "@emotion/react";
 import { truncate2line } from "../common/text.styled";
 import Link from "next/link";
-
 import styled from "@emotion/styled";
 
-
-
 const Wrapper = styled.section`
+  margin-bottom: 5rem;
   @media (min-width: 1200px) {
     display: flex;
     gap: 40px;
@@ -24,7 +22,7 @@ const Tag = styled.p`
   border: 1px solid black;
   border-radius: 5px;
   font-size: 11px;
-      line-height: 16px;
+  line-height: 16px;
 
   padding: 2px 7px;
   text-transform: uppercase;
@@ -32,22 +30,21 @@ const Tag = styled.p`
 `;
 
 const titleTextStyles = css`
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 15px;
+  line-height: 18px;
   font-weight: 500;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
   color: #424242;
 
-
-  &:hover{
+  &:hover {
     color: orange;
   }
 
   @media (min-width: 1200px) {
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 17px;
+    line-height: 22px;
   }
-`
+`;
 
 const Title = styled.h3`
   ${titleTextStyles}
@@ -78,7 +75,7 @@ const MainNews = styled(Link)`
   }
 
   &:hover {
-    .heading{
+    .heading {
       color: orange;
     }
   }

@@ -24,7 +24,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
 
   @media (min-width: 992px) {
     flex-direction: row;
